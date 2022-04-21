@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 55e76d9634080ed469ce17d78b66bce8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - clip_turnRight: {fileID: 8300000, guid: 0196597188d06b3449c291661b2556e0, type: 3}
+  - clip_turnLeft: {fileID: 8300000, guid: a4004b6818ed0604a8a5ecafd4887316, type: 3}
+  - clip_aimUp: {fileID: 8300000, guid: 98772315507041741ac5e79cf14cd9d5, type: 3}
+  - clip_aimDown: {fileID: 8300000, guid: 3f86adae955bbc84eadaeb1c63b550fc, type: 3}
+  - clip_shootArrow: {fileID: 8300000, guid: 6542cc874605b594eb0c692c3bec3f43, type: 3}
+  - clip_leftHigher: {fileID: 8300000, guid: 2588bca7025fef44ba365ab7bdbe6942, type: 3}
+  - clip_rightLower: {fileID: 8300000, guid: 5ab828bdff837904eb472685ffbfc270, type: 3}
+  - clip_leftLower: {fileID: 8300000, guid: 6547da3babc6e4c43bac412bb2129313, type: 3}
+  - clip_rightHigher: {fileID: 8300000, guid: 89e907160ce712a43bbe7d76f768caf8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
