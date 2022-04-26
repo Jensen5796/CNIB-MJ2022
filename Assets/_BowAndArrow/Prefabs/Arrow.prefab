@@ -251,6 +251,11 @@ MonoBehaviour:
   clip_aimUp: {fileID: 8300000, guid: 98772315507041741ac5e79cf14cd9d5, type: 3}
   clip_aimDown: {fileID: 8300000, guid: 3f86adae955bbc84eadaeb1c63b550fc, type: 3}
   clip_shootArrow: {fileID: 8300000, guid: 6542cc874605b594eb0c692c3bec3f43, type: 3}
+  clip_leftHigher: {fileID: 0}
+  clip_rightLower: {fileID: 0}
+  clip_leftLower: {fileID: 0}
+  clip_rightHigher: {fileID: 0}
+  clip_arrowMissed: {fileID: 8300000, guid: 0d7c6a010baeeb844aff6fd8a6297380, type: 3}
 --- !u!114 &7046829276956346025
 MonoBehaviour:
   m_ObjectHideFlags: 0
