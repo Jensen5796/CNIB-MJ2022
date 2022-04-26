@@ -136,6 +136,11 @@ public class Arrow : XRGrabInteractable
             {
                 //check to see if it missed
                 if (hit.collider.CompareTag("GameAreaBoundary")){
+                    //regular stuff that would happen
+                    TogglePhysics(false);
+                    ChildArrow(hit);
+                    CheckForHittable(hit);
+
                     //arrow hit either ground or game boundary dome
                     //cue Missed Target reactions
                     //destroy arrow
@@ -143,10 +148,7 @@ public class Arrow : XRGrabInteractable
                     MissedTarget();
                     Destroy(this.gameObject, 2);
 
-                    //the other stuff that should happen
-                    TogglePhysics(false);
-                    ChildArrow(hit);
-                    CheckForHittable(hit);
+                    
                 }
                     //otherwise it hit something else
                 else {
