@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hand
   - AuraCollider
+  - Ground
+  - GameAreaBoundary
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Character
   - Arrow
   - AuraColliders
-  - 
+  - GameAreaBoundary
   - 
   - 
   - 

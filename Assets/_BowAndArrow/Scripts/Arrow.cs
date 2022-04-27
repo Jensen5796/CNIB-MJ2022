@@ -95,6 +95,7 @@ public class Arrow : XRGrabInteractable
         base.ProcessInteractable(updatePhase);
 
         RaycastIntoScene(tip.position, tip.TransformDirection(Vector3.down));
+        RemoveDroppedArrow();
 
         if (launched)
         {
@@ -125,6 +126,7 @@ public class Arrow : XRGrabInteractable
         // Check if there was a hit
         if (Physics.Linecast(lastPosition, tip.position, out RaycastHit hit, layerMask))
         {
+            // don't let arrow hit/stick to aura collider
             if (hit.collider.CompareTag("AuraCollider"))
             {
                 //don't stop the arrow
@@ -132,9 +134,28 @@ public class Arrow : XRGrabInteractable
             }
             else
             {
-                TogglePhysics(false);
-                ChildArrow(hit);
-                CheckForHittable(hit);
+                //check to see if it missed
+                if (hit.collider.CompareTag("GameAreaBoundary")){
+                    //regular stuff that would happen
+                    TogglePhysics(false);
+                    ChildArrow(hit);
+                    CheckForHittable(hit);
+
+                    //arrow hit either ground or game boundary dome
+                    //cue Missed Target reactions
+                    //destroy arrow
+                    test.text = "missed target";
+                    MissedTarget();
+                    Destroy(this.gameObject, 2);
+
+                    
+                }
+                    //otherwise it hit something else
+                else {
+                    TogglePhysics(false);
+                    ChildArrow(hit);
+                    CheckForHittable(hit);
+                }
             }
         }
 
@@ -301,5 +322,31 @@ public class Arrow : XRGrabInteractable
         Vector3 direction = target - arrowTip.position;
         direction.Normalize();
         return direction;
+    }
+
+    void MissedTarget()
+    {
+        //reactions from missing target
+        test.text = "missed the target";
+        //sound cue:
+        if (!GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().PlayOneShot(soundcue.clip_arrowMissed);
+        }
+
+    }
+
+    void RemoveDroppedArrow()
+    {
+        
+        if (this.gameObject.transform.position.y < 0.2)
+        {
+            if (!launched)
+            {
+                //arrow is on ground, and it was not launched (it dropped)
+                Destroy(this.gameObject, 2);
+            }
+            
+        }
     }
 }
