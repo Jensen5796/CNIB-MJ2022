@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class AutoRotate : MonoBehaviour
 {
@@ -9,15 +10,20 @@ public class AutoRotate : MonoBehaviour
     Text test;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        test = GetComponent<Text>();
+        GameObject go = GameObject.Find("Text2");
+        test = go.GetComponent<Text>();
+
 
         Transform thisTransform = GetComponent<Transform>();
         float angleToRotate = FindAngle();
         thisTransform.Rotate(0, angleToRotate, 0);
 
+       
         test.text = "Rotated: " + angleToRotate.ToString();
+
+
     }
 
     // Update is called once per frame
