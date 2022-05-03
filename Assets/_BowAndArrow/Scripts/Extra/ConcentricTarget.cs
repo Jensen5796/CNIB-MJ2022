@@ -14,7 +14,8 @@ public class ConcentricTarget : MonoBehaviour, IArrowHittable
 
         ApplyMaterial();
         Debug.Log("You hit the " + name);
-        Debug.Log("Increase score here");
+        //Debug.Log("Increase score here");
+        SumScore.Add(100);
         Debug.Log("Add sound effect/celebration here");
         GetComponent<AudioSource>().PlayOneShot(hitTarget);
 
