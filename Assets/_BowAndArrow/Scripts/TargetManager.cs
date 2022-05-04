@@ -57,16 +57,20 @@ public class TargetManager : MonoBehaviour
             if (arrows.Length > 0)
             {
                 //if any arrows are found as children of target, destroy target in 2 seconds
-                Destroy(target, 2);
+                destroyTarget(target);
+                Destroy(target);
                 numberTargetsCurrent--;
+
+                //if less than desired number, generate a target
+                if (numberTargetsCurrent < numberTargetsDesired)
+                {
+                    generateTarget();
+                }
+
             }
         }
 
-        //if less than desired number, generate a target
-        if (numberTargetsCurrent < numberTargetsDesired)
-        {
-            generateTarget();
-        }
+        
 
     }
 
@@ -90,6 +94,46 @@ public class TargetManager : MonoBehaviour
 
     }
 
+    private void destroyTarget(GameObject target)
+    {
+        // get x and y values to determine which quadrant target was in
+        float xVal = target.transform.position.x;
+        float zVal = target.transform.position.z;
+
+        // destroy target and decrement target counter
+        //Destroy(target);
+        //numberTargetsCurrent--;
+
+        // compare to find quadrant, set corresponding position in array to false
+        if (xVal > 0 && zVal > 0)
+        {            
+            //quadrant 1
+            targetsInQuadrants[1] = false;
+        }
+        else if (xVal < 0 && zVal > 0)
+        {
+            //quadrant 2
+            targetsInQuadrants[2] = false;
+        }
+        else if (xVal < 0 && zVal < 0)
+        {
+            //quadrant 3
+            targetsInQuadrants[3] = false;
+        }
+        else if (xVal > 0 && zVal < 0)
+        {
+            //quadrant 4
+            targetsInQuadrants[4] = false;
+        }
+
+        ////if less than desired number, generate a target
+        //if (numberTargetsCurrent < numberTargetsDesired)
+        //{
+        //    generateTarget();
+        //}
+
+    }
+
     private Vector3 getRandomPosition()
     {
         //get random x value and calculate z value based on desired target distance
@@ -105,14 +149,14 @@ public class TargetManager : MonoBehaviour
         //note: this will always return a value in quadrant 1: will need to randomly assign quadrant elsewhere
         float zValue;
         //special cases: max targetDistanceFromPlayer was random value assigned to x
-        if (Mathf.Abs(xValue) == targetDistanceFromPlayer)
+        if (xValue == targetDistanceFromPlayer)
         {
             zValue = 0.0f;
         }
         //special case: random value assigned to x is 0
         else if (xValue == 0)
         {
-            zValue = targetDistanceFromPlayer;
+            zValue = (float)targetDistanceFromPlayer;
         }
         //otherwise use pythagoras to calculate missing leg in right angle triangle:
         else
@@ -141,7 +185,7 @@ public class TargetManager : MonoBehaviour
 
             case 3:
                 //quadrant 3: negative x, negative z
-                targetPosition.Set(-zValue, yAxisOffset, -zValue);
+                targetPosition.Set(-xValue, yAxisOffset, -zValue);
                 targetsInQuadrants[3] = true;
                 return targetPosition;
 
@@ -155,12 +199,12 @@ public class TargetManager : MonoBehaviour
         return targetPosition;
     }
 
-    private float FindHypotenuse(float x, float z)
-    {
+    //private float FindHypotenuse(float x, float z)
+    //{
         
-        float hyp = Mathf.Sqrt(Mathf.Pow(z, 2) + Mathf.Pow(x, 2));
-        return hyp;
-    }
+    //    float hyp = Mathf.Sqrt(Mathf.Pow(z, 2) + Mathf.Pow(x, 2));
+    //    return hyp;
+    //}
 
     private float findYRotationAngle2(float xValue, float zValue)
     {
@@ -173,13 +217,21 @@ public class TargetManager : MonoBehaviour
         Vector3 playerDirection = player - target;
         angle = Vector3.Angle(Vector3.back, playerDirection);
 
-        if (xValue < 0 || zValue < 0)
+        if (xValue < 0 && zValue > 0) //q2
         {
-            return angle *= -1;
+            return (angle *= -1);
         }
-        else if (xValue > 0)
+        else if (xValue > 0 && zValue > 0) //q1
         {
             return angle;
+        }
+        else if (xValue < 0 && zValue < 0) //q3
+        {
+            return (angle+180);
+        }
+        else if (xValue > 0 && zValue < 0) //q4
+        {
+            return -(angle+180);
         }
         else //xValue = 0
         {
@@ -187,40 +239,40 @@ public class TargetManager : MonoBehaviour
         }
     }
 
-    private float findYRotationAngle(float xValue, float zValue)
-    {
-        float angle = 0;
-        float z = zValue;
-        float x = xValue;
+    //private float findYRotationAngle(float xValue, float zValue)
+    //{
+    //    float angle = 0;
+    //    float z = zValue;
+    //    float x = xValue;
 
-        //Quadrant 1
-        if (x > 0 && z > 0)
-        {
-            angle = Mathf.Cos(z / FindHypotenuse(x, z));
+    //    //Quadrant 1
+    //    if (x > 0 && z > 0)
+    //    {
+    //        angle = Mathf.Cos(z / FindHypotenuse(x, z));
 
-        }
-        //Quadrant 2
-        if (x < 0 && z > 0)
-        {
-            angle = Mathf.Cos(z / FindHypotenuse(x, z));
-            angle *= -1;
-        }
-        //Quadrant 3
-        if (x < 0 && z < 0)
-        {
-            angle = Mathf.Cos(z / FindHypotenuse(x, z));
-            angle += 90;
-            angle *= -1;
-        }
-        //Quadrant 4
-        if (x > 0 && z < 0)
-        {
-            angle = Mathf.Cos(z / FindHypotenuse(x, z));
-            angle += 90;
-        }
+    //    }
+    //    //Quadrant 2
+    //    if (x < 0 && z > 0)
+    //    {
+    //        angle = Mathf.Cos(z / FindHypotenuse(x, z));
+    //        angle *= -1;
+    //    }
+    //    //Quadrant 3
+    //    if (x < 0 && z < 0)
+    //    {
+    //        angle = Mathf.Cos(z / FindHypotenuse(x, z));
+    //        angle += 90;
+    //        angle *= -1;
+    //    }
+    //    //Quadrant 4
+    //    if (x > 0 && z < 0)
+    //    {
+    //        angle = Mathf.Cos(z / FindHypotenuse(x, z));
+    //        angle += 90;
+    //    }
 
-        return angle;
-    }
+    //    return angle;
+    //}
 
     private int findEmptyQuadrant()
     {
