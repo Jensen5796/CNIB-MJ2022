@@ -16,6 +16,7 @@ public class TargetManager : MonoBehaviour
     public float targetDistanceFromPlayer;
 
     private Text test;
+    private Text test2;
     private bool[] targetsInQuadrants;
 
     private void Awake()
@@ -23,6 +24,8 @@ public class TargetManager : MonoBehaviour
         //set up debugging text
         GameObject go = GameObject.Find("Text2");
         test = go.GetComponent<Text>();
+        GameObject go2 = GameObject.Find("Text");
+        test2 = go2.GetComponent<Text>();
 
         //boolean array to track which quadrants have targets
         //using positions 1-4 to match with quadrants (0 will be false or empty)
@@ -35,7 +38,7 @@ public class TargetManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //generateTarget();
+        //generateTestTargets();
 
         //generate desired number of targets
         for (int i = 0; i < numberTargetsDesired; i++)
@@ -48,38 +51,58 @@ public class TargetManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //check to see if targets are hit
-        GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
-        foreach (GameObject target in activeTargets)
-        {
+        ////check to see if targets are hit
+        //GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
+        //foreach (GameObject target in activeTargets)
+        //{
             
-            Arrow[] arrows = target.GetComponentsInChildren<Arrow>();
-            if (arrows.Length > 0)
-            {
-                //if any arrows are found as children of target, destroy target in 2 seconds
-                destroyTarget(target);
-                Destroy(target);
-                numberTargetsCurrent--;
+        //    Arrow[] arrows = target.GetComponentsInChildren<Arrow>();
+        //    if (arrows.Length > 0)
+        //    {
+        //        //if any arrows are found as children of target, destroy target in 2 seconds
+        //        destroyTarget(target);
+        //        Destroy(target);
+        //        numberTargetsCurrent--;
 
-                //if less than desired number, generate a target
-                if (numberTargetsCurrent < numberTargetsDesired)
-                {
-                    generateTarget();
-                }
+        //        //if less than desired number, generate a target
+        //        if (numberTargetsCurrent < numberTargetsDesired)
+        //        {
+        //            generateTarget();
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         
 
+    }
+
+    private void generateTestTargets()
+    {
+        int angle = 0;
+        angle += 90;
+        // calculate position in circle a set radius away for angle
+        Vector3 targetPosition = calculateTargetPosition(angle);
+
+        // calculate rotation based on position
+        float yRot = findYRotationAngle2(targetPosition.x, targetPosition.z);
+
+        // Instantiate target
+        Instantiate(targetPrefab, targetPosition, Quaternion.Euler(0, yRot, 0));
+        numberTargetsCurrent++;
+
+        //test.text = "x=" + targetPosition.x + "; z=" + targetPosition.z + "; rot=" + yRot + "; numTargs=" + numberTargetsCurrent;
     }
 
     private bool generateTarget()
     {
         bool targetCreatedSuccessfully = false;
 
-        // randomly generate positions
-        Vector3 targetPosition = getRandomPosition();
+        // choose quadrant to generate for, return random angle from that quadrant's range
+        int angle = findEmptyQuadrant();
+
+        // calculate position in circle a set radius away for angle
+        Vector3 targetPosition = calculateTargetPosition(angle);
 
         // calculate rotation based on position
         float yRot = findYRotationAngle2(targetPosition.x, targetPosition.z);
@@ -89,7 +112,7 @@ public class TargetManager : MonoBehaviour
         numberTargetsCurrent++;
         targetCreatedSuccessfully = true;
 
-        test.text = "x=" + targetPosition.x + "; z=" + targetPosition.z + "; rot=" + yRot + "; numTargs="+numberTargetsCurrent;
+        //test.text = "x=" + targetPosition.x + "; z=" + targetPosition.z + "; rot=" + yRot + "; numTargs="+numberTargetsCurrent;
         return targetCreatedSuccessfully;
 
     }
@@ -133,71 +156,82 @@ public class TargetManager : MonoBehaviour
         //}
 
     }
-
-    private Vector3 getRandomPosition()
-    {
-        //get random x value and calculate z value based on desired target distance
-        
-        float xValue = Random.Range(0, targetDistanceFromPlayer);
-        float zValue = getZValue(xValue);
-        Vector3 targetPosition = assignTargetQuadrant(xValue, zValue);
-
-        return targetPosition;
-    }
-    private float getZValue(float xValue)
-    {
-        //note: this will always return a value in quadrant 1: will need to randomly assign quadrant elsewhere
-        float zValue;
-        //special cases: max targetDistanceFromPlayer was random value assigned to x
-        if (xValue == targetDistanceFromPlayer)
-        {
-            zValue = 0.0f;
-        }
-        //special case: random value assigned to x is 0
-        else if (xValue == 0)
-        {
-            zValue = (float)targetDistanceFromPlayer;
-        }
-        //otherwise use pythagoras to calculate missing leg in right angle triangle:
-        else
-        {
-            zValue = Mathf.Sqrt(Mathf.Pow(targetDistanceFromPlayer, 2) - Mathf.Pow(xValue, 2));
-        }
-        return zValue;
-    }
-    private Vector3 assignTargetQuadrant(float xValue, float zValue)
+    private Vector3 calculateTargetPosition(int angle)
     {
         Vector3 targetPosition = Vector3.zero;
-        int quadrant = findEmptyQuadrant();
-        switch (quadrant)
-        {
-            case 1:
-                //quadrant 1: positive x, positive z
-                targetPosition.Set(xValue, yAxisOffset, zValue);
-                targetsInQuadrants[1] = true;
-                return targetPosition;
 
-            case 2:
-                //quadrant 2: negative x, positive z
-                targetPosition.Set(-xValue, yAxisOffset, zValue);
-                targetsInQuadrants[2] = true;
-                return targetPosition;
+        float xValue = Mathf.Cos(angle) * targetDistanceFromPlayer;
+        float zValue = Mathf.Sin(angle) * targetDistanceFromPlayer;
 
-            case 3:
-                //quadrant 3: negative x, negative z
-                targetPosition.Set(-xValue, yAxisOffset, -zValue);
-                targetsInQuadrants[3] = true;
-                return targetPosition;
-
-            case 4:
-                //quadrant 4: positive z, negative z
-                targetPosition.Set(xValue, yAxisOffset, -zValue);
-                targetsInQuadrants[4] = true;
-                return targetPosition;
-        }
-
+        test2.text += "; xValue= " + xValue + "; zValue= " + zValue;
+        targetPosition.Set(xValue, yAxisOffset, zValue);
         return targetPosition;
     }
+
+    //private Vector3 getRandomPosition()
+    //{
+    //    //get random x value and calculate z value based on desired target distance
+        
+    //    float xValue = Random.Range(0, targetDistanceFromPlayer);
+    //    float zValue = getZValue(xValue);
+    //    Vector3 targetPosition = assignTargetQuadrant(xValue, zValue);
+
+    //    return targetPosition;
+    //}
+    //private float getZValue(float xValue)
+    //{
+    //    //note: this will always return a value in quadrant 1: will need to randomly assign quadrant elsewhere
+    //    float zValue;
+    //    //special cases: max targetDistanceFromPlayer was random value assigned to x
+    //    if (xValue == targetDistanceFromPlayer)
+    //    {
+    //        zValue = 0.0f;
+    //    }
+    //    //special case: random value assigned to x is 0
+    //    else if (xValue == 0)
+    //    {
+    //        zValue = (float)targetDistanceFromPlayer;
+    //    }
+    //    //otherwise use pythagoras to calculate missing leg in right angle triangle:
+    //    else
+    //    {
+    //        zValue = Mathf.Sqrt(Mathf.Pow(targetDistanceFromPlayer, 2) - Mathf.Pow(xValue, 2));
+    //    }
+    //    return zValue;
+    //}
+    //private Vector3 assignTargetQuadrant(float xValue, float zValue)
+    //{
+    //    Vector3 targetPosition = Vector3.zero;
+    //    int quadrant = findEmptyQuadrant();
+    //    switch (quadrant)
+    //    {
+    //        case 1:
+    //            //quadrant 1: positive x, positive z
+    //            targetPosition.Set(xValue, yAxisOffset, zValue);
+    //            targetsInQuadrants[1] = true;
+    //            return targetPosition;
+
+    //        case 2:
+    //            //quadrant 2: negative x, positive z
+    //            targetPosition.Set(-xValue, yAxisOffset, zValue);
+    //            targetsInQuadrants[2] = true;
+    //            return targetPosition;
+
+    //        case 3:
+    //            //quadrant 3: negative x, negative z
+    //            targetPosition.Set(-xValue, yAxisOffset, -zValue);
+    //            targetsInQuadrants[3] = true;
+    //            return targetPosition;
+
+    //        case 4:
+    //            //quadrant 4: positive z, negative z
+    //            targetPosition.Set(xValue, yAxisOffset, -zValue);
+    //            targetsInQuadrants[4] = true;
+    //            return targetPosition;
+    //    }
+
+    //    return targetPosition;
+    //}
 
     //private float FindHypotenuse(float x, float z)
     //{
@@ -227,11 +261,11 @@ public class TargetManager : MonoBehaviour
         }
         else if (xValue < 0 && zValue < 0) //q3
         {
-            return (angle+180);
+            return (angle);
         }
         else if (xValue > 0 && zValue < 0) //q4
         {
-            return -(angle+180);
+            return -(angle);
         }
         else //xValue = 0
         {
@@ -276,7 +310,7 @@ public class TargetManager : MonoBehaviour
 
     private int findEmptyQuadrant()
     {
-        //finds first empty quadrant and returns it
+        //finds first empty quadrant and returns a random angle in that quadrant
         int emptyQuadrant = 0;
 
         for (int i = 1; i < 5; i++)
@@ -288,6 +322,37 @@ public class TargetManager : MonoBehaviour
             }
         }
 
-        return emptyQuadrant;
+        int angle = getRandomAngle(emptyQuadrant);
+        return angle;
+    }
+
+    private int getRandomAngle(int quadrant)
+    {
+        int angle;
+        switch (quadrant)
+        {
+            case 1:
+                angle = Random.Range(0, 90);
+                targetsInQuadrants[1] = true;
+                break;
+            case 2:
+                angle = Random.Range(90, 180);
+                targetsInQuadrants[2] = true;
+                break;
+            case 3:
+                angle = Random.Range(180, 270);
+                targetsInQuadrants[3] = true;
+                break;
+            case 4:
+                angle = Random.Range(270, 360);
+                targetsInQuadrants[4] = true;
+                break;
+            default:
+                angle = 0;
+                break;
+        }
+        int correctedAngle = angle + 90;
+        test.text += "; q=" + quadrant + "; angle=" + angle+"; unused correctedAng="+correctedAngle;
+        return angle;
     }
 }
