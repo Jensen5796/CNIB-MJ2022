@@ -233,7 +233,7 @@ public class Arrow : XRGrabInteractable
             {
                 if (!GetComponent<AudioSource>().isPlaying)
                 {
-                    
+                    GetComponent<AudioSource>().panStereo = -1;
                     GetComponent<AudioSource>().PlayOneShot(soundcue.clip_turnLeft);
                 }
 
@@ -245,7 +245,8 @@ public class Arrow : XRGrabInteractable
                     //audio: aim higher?? or high pitch beep
                     if (!GetComponent<AudioSource>().isPlaying)
                     {
-                      //  GetComponent<AudioSource>().PlayOneShot(soundcue.clip_aimUp);
+                        GetComponent<AudioSource>().panStereo = -1;
+                        //  GetComponent<AudioSource>().PlayOneShot(soundcue.clip_aimUp);
                         GetComponent<AudioSource>().PlayOneShot(soundcue.clip_leftLower);
                     }
                 }
@@ -256,6 +257,7 @@ public class Arrow : XRGrabInteractable
                     //audio: aim lower?? or low pitch beep
 
                     if (!GetComponent<AudioSource>().isPlaying)
+                    GetComponent<AudioSource>().panStereo = -1;
                     GetComponent<AudioSource>().PlayOneShot(soundcue.clip_leftHigher);
                 }
 
@@ -265,6 +267,7 @@ public class Arrow : XRGrabInteractable
 
                 if (!GetComponent<AudioSource>().isPlaying)
                 {
+                    GetComponent<AudioSource>().panStereo = 1;
                     //audio: aim to left?? or beep from left
                     GetComponent<AudioSource>().PlayOneShot(soundcue.clip_turnRight);
                 }
@@ -278,6 +281,7 @@ public class Arrow : XRGrabInteractable
 
                     if (!GetComponent<AudioSource>().isPlaying) 
                     {
+                        GetComponent<AudioSource>().panStereo = 1;
                         //audio: aim higher?? or high pitch beep
                         GetComponent<AudioSource>().PlayOneShot(soundcue.clip_rightLower);
                     }
@@ -290,6 +294,7 @@ public class Arrow : XRGrabInteractable
 
                     if (!GetComponent<AudioSource>().isPlaying ) 
                     {
+                        GetComponent<AudioSource>().panStereo = 1;
                         //audio: aim lower?? or low pitch beep
                         GetComponent<AudioSource>().PlayOneShot(soundcue.clip_rightHigher);
                     }
@@ -302,6 +307,7 @@ public class Arrow : XRGrabInteractable
                 //audio: shoot the arrow,
                 if (!GetComponent<AudioSource>().isPlaying) 
                 {
+                    GetComponent<AudioSource>().panStereo = 0;
                     GetComponent<AudioSource>().PlayOneShot(soundcue.clip_shootArrow);
                 }
                    
