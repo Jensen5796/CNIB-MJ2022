@@ -36,7 +36,7 @@ public class SumScoreManager : MonoBehaviour {
             if (PlayerPrefs.HasKey("sumHS")) { 
                 // Set high score value and tell manager
                 SumScore.HighScore = PlayerPrefs.GetInt("sumHS");
-                UpdatedHS();
+                //UpdatedHS();
             }
             else
                 SumScore.HighScore = 0;
@@ -51,9 +51,12 @@ public class SumScoreManager : MonoBehaviour {
     }
 
     /// <summary>Notify this manager of a change in high score</summary>
-    public void UpdatedHS () {
-        if(storeHighScore)
-            highScoreField.text = SumScore.HighScore.ToString("0"); // Post new high score to text field
+    public void UpdatedHS (float elapsed) {
+        //if(storeHighScore)
+        // highScoreField.text = SumScore.HighScore.ToString("0"); // Post new high score to text field
+        int x = (int)elapsed % 60;
+        int y = (int)elapsed / 60;
+        highScoreField.text = y.ToString("00") + ":"+ x.ToString("00");
     }
 
 

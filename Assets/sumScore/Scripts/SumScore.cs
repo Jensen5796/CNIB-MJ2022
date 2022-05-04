@@ -29,13 +29,9 @@ public class SumScore {
         }
     }
 
-    public static void UpdateCount()
-    {
-        HighScore += 1; // Add points to current score
-        if (MgrSet())
-        {        
-            mgr.UpdatedHS(); 
-        }
+    public static void UpdateCount(float elapsed)
+    {       
+        mgr.UpdatedHS(elapsed); 
     }
     /// <summary>Removes points from total score</summary>
     /// <param name="pointsToSubtract">Number of points to remove</param>
@@ -72,8 +68,8 @@ public class SumScore {
             Debug.Log("New high score " + Score);
             HighScore = Score;
             PlayerPrefs.SetInt("sumHS", Score); // Store high score in player prefs
-            if (MgrSet())
-                mgr.UpdatedHS(); // Notify manager of change
+            ////if (MgrSet())
+                ////mgr.UpdatedHS(); // Notify manager of change
         }
     }
 
@@ -82,8 +78,8 @@ public class SumScore {
         Debug.Log("Deleting high score");
         PlayerPrefs.DeleteKey("sumHS");
         HighScore = 0;
-        if (MgrSet())
-            mgr.UpdatedHS(); // Notify manager of change
+        ////if (MgrSet())
+            ////mgr.UpdatedHS(); // Notify manager of change
     }
 
 }

@@ -84,7 +84,6 @@ public class Arrow : XRGrabInteractable
 
     private void ApplyForce(PullMeasurer pullMeasurer)
     {
-        SumScore.UpdateCount();//update number of arrows shot
         // Apply force to the arrow
         float power = pullMeasurer.PullAmount;
         Vector3 force = transform.forward * (power * speed);
@@ -100,8 +99,6 @@ public class Arrow : XRGrabInteractable
 
         if (launched)
         {
-            //update arrows shot count
-            SumScore.UpdateCount();
             // Check for collision as often as possible
             if (updatePhase == XRInteractionUpdateOrder.UpdatePhase.Dynamic)
             {
@@ -186,8 +183,9 @@ public class Arrow : XRGrabInteractable
         IArrowHittable hittable = hitObject ? hitObject.GetComponent<IArrowHittable>() : null;
 
         // If we find a valid component, call whatever functionality it has
-        if (hittable != null)
-            hittable.Hit(this);
+        if (hittable != null)       
+            hittable.Hit(this);       
+       
     }
 
     private void RaycastIntoScene(Vector3 targetPosition, Vector3 direction)
