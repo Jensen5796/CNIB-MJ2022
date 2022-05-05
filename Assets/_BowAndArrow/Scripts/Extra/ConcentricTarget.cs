@@ -4,6 +4,7 @@ public class ConcentricTarget : MonoBehaviour, IArrowHittable
 {
     public float forceAmount = 1.0f;
     public Material otherMaterial = null;
+    public int ascore;
     //TODO: make other material if going to change target colour when hit
 
     public AudioClip hitTarget;
@@ -14,7 +15,8 @@ public class ConcentricTarget : MonoBehaviour, IArrowHittable
 
         ApplyMaterial();
         Debug.Log("You hit the " + name);
-        Debug.Log("Increase score here");
+        //Debug.Log("Increase score here");
+        SumScore.Add(ascore);
         Debug.Log("Add sound effect/celebration here");
         GetComponent<AudioSource>().PlayOneShot(hitTarget);
 
