@@ -51,29 +51,29 @@ public class TargetManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ////check to see if targets are hit
-        //GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
-        //foreach (GameObject target in activeTargets)
-        //{
-            
-        //    Arrow[] arrows = target.GetComponentsInChildren<Arrow>();
-        //    if (arrows.Length > 0)
-        //    {
-        //        //if any arrows are found as children of target, destroy target in 2 seconds
-        //        destroyTarget(target);
-        //        Destroy(target);
-        //        numberTargetsCurrent--;
+        //check to see if targets are hit
+        GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
+        foreach (GameObject target in activeTargets)
+        {
 
-        //        //if less than desired number, generate a target
-        //        if (numberTargetsCurrent < numberTargetsDesired)
-        //        {
-        //            generateTarget();
-        //        }
+            Arrow[] arrows = target.GetComponentsInChildren<Arrow>();
+            if (arrows.Length > 0)
+            {
+                //if any arrows are found as children of target, destroy target in 2 seconds
+                destroyTarget(target);
+                Destroy(target);
+                numberTargetsCurrent--;
 
-        //    }
-        //}
+                //if less than desired number, generate a target
+                if (numberTargetsCurrent < numberTargetsDesired)
+                {
+                    generateTarget();
+                }
 
-        
+            }
+        }
+
+
 
     }
 
@@ -128,6 +128,7 @@ public class TargetManager : MonoBehaviour
         float xVal = target.transform.position.x;
         float zVal = target.transform.position.z;
 
+        test2.text = "xVal=" + xVal + "; zVal=" + zVal;
         // destroy target and decrement target counter
         //Destroy(target);
         //numberTargetsCurrent--;
@@ -353,6 +354,7 @@ public class TargetManager : MonoBehaviour
                 targetsInQuadrants[4] = true;
                 break;
             default:
+                //angle = Random.Range(0, 360);
                 angle = 0;
                 break;
         }
