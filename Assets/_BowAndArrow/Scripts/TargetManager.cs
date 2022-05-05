@@ -102,14 +102,14 @@ public class TargetManager : MonoBehaviour
         int angle = findEmptyQuadrant();
 
         // calculate position in circle a set radius away for angle
-        Vector3 targetPosition = calculateTargetPosition(angle);
+        //Vector3 targetPosition = calculateTargetPosition(angle);
 
         //Experiment: set target to zero position and rotate it by angle
         Vector3 startPosition = Vector3.zero;
         startPosition.Set(0, yAxisOffset, 0);
 
         // calculate rotation based on position
-        float yRot = findYRotationAngle2(targetPosition.x, targetPosition.z);
+        //float yRot = findYRotationAngle2(targetPosition.x, targetPosition.z);
 
         // Instantiate target
         //Instantiate(targetPrefab, targetPosition, Quaternion.Euler(0, yRot, 0));
@@ -357,7 +357,7 @@ public class TargetManager : MonoBehaviour
                 break;
         }
         
-        test.text += "; q=" + quadrant + "; angle=";
+        test.text += "; q=" + quadrant + "; angle="+angle;
         return angle;
     }
 }
