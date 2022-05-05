@@ -15,7 +15,7 @@ public class TargetAura : MonoBehaviour, IArrowHittable
         //Calculate position distance and direction from center of spherical target
 
         //Tell user how to direct aim to reach target
-
+        SumScore.Add(1);
 
         //ApplyMaterial();
         //Debug.Log("You hit the " + name);

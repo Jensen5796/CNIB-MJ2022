@@ -183,8 +183,9 @@ public class Arrow : XRGrabInteractable
         IArrowHittable hittable = hitObject ? hitObject.GetComponent<IArrowHittable>() : null;
 
         // If we find a valid component, call whatever functionality it has
-        if (hittable != null)
-            hittable.Hit(this);
+        if (hittable != null)       
+            hittable.Hit(this);       
+       
     }
 
     private void RaycastIntoScene(Vector3 targetPosition, Vector3 direction)
