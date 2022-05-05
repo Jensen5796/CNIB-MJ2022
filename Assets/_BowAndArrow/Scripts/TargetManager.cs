@@ -351,8 +351,8 @@ public class TargetManager : MonoBehaviour
                 angle = 0;
                 break;
         }
-        int correctedAngle = angle + 90;
-        test.text += "; q=" + quadrant + "; angle=" + angle+"; unused correctedAng="+correctedAngle;
+        
+        test.text += "; q=" + quadrant + "; angle=";
         return angle;
     }
 }
