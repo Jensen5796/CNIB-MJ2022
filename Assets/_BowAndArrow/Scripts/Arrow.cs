@@ -29,7 +29,8 @@ public class Arrow : XRGrabInteractable
         collider = GetComponent<Collider>();
         rigidbody = GetComponent<Rigidbody>();
         targetAuraLayermask = LayerMask.GetMask("AuraColliders");
-        test = FindObjectOfType<Text>();
+        GameObject go2 = GameObject.Find("Text");
+        test = go2.GetComponent<Text>();
         soundcue = GetComponent<SoundCues>();
     }
 
