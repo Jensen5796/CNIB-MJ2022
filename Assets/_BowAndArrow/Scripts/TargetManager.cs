@@ -237,7 +237,7 @@ public class TargetManager : MonoBehaviour
                 break;
         }
         
-        test.text += "; q=" + quadrant + "; angle="+angle;
+        //test.text += "; q=" + quadrant + "; angle="+angle;
         return angle;
     }
 }
