@@ -15,6 +15,10 @@ public class TargetManager : MonoBehaviour
     public float yAxisOffset = 1.0f;
     public float targetDistanceFromPlayer;
 
+    private float destroyTargetStartTime = 0;
+    private bool destroyingTarget;
+    private bool beginDestroyingTarget;
+
     private Text test;
     private Text test2;
     private bool[] targetsInQuadrants;
@@ -26,6 +30,7 @@ public class TargetManager : MonoBehaviour
         test = go.GetComponent<Text>();
         GameObject go2 = GameObject.Find("Text");
         test2 = go2.GetComponent<Text>();
+        test.text = "testing";
 
         //boolean array to track which quadrants have targets
         //using positions 1-4 to match with quadrants (0 will be false or empty)
@@ -59,16 +64,15 @@ public class TargetManager : MonoBehaviour
             if (arrows.Length > 0)
             {
                 //if any arrows are found as children of target, destroy target in 2 seconds
+                
                 destroyTarget(target);
-                Destroy(target);
-                numberTargetsCurrent--;
-
-                //if less than desired number, generate a target
-                if (numberTargetsCurrent < numberTargetsDesired)
-                {
-                    generateTarget();
-                }
+                
             }
+        }
+        //if less than desired number, generate a target
+        if (numberTargetsCurrent < numberTargetsDesired)
+        {
+            generateTarget();
         }
     }
 
@@ -114,6 +118,96 @@ public class TargetManager : MonoBehaviour
 
     private void destroyTarget(GameObject target)
     {
+        //test.text = "in destroy function";
+        float currentTime = Time.fixedTime;
+        if (destroyTargetStartTime == 0)
+        {
+            //test.text = "in beginning of destroy function";
+            
+            destroyTargetStartTime = Time.fixedTime;
+            destroyingTarget = true;
+        }
+        if (destroyingTarget == true)
+        {
+            //test.text = "in middle of destroy function; start time is " + destroyTargetStartTime.ToString() + " current time is: "+currentTime.ToString();
+            //if current time - start time = 2 sec,
+            if (currentTime - destroyTargetStartTime >= 2)
+            {
+                // get rotation for target
+                Quaternion rot = target.transform.rotation;
+                float rotation = rot.eulerAngles.y;
+
+                // compare to find quadrant, set corresponding position in array to false
+                if (rotation >= 0 && rotation < 90)
+                {
+                    //quadrant 1
+                    targetsInQuadrants[1] = false;
+                }
+                else if (rotation >= 90 && rotation < 180)
+                {
+                    //quadrant 2
+                    targetsInQuadrants[2] = false;
+                }
+                else if (rotation >= 180 && rotation < 270)
+                {
+                    //quadrant 3
+                    targetsInQuadrants[3] = false;
+                }
+                else if (rotation >= 270 && rotation < 360)
+                {
+                    //quadrant 4
+                    targetsInQuadrants[4] = false;
+                }
+
+                Destroy(target);
+                numberTargetsCurrent--;
+                destroyingTarget = false;
+                destroyTargetStartTime = 0;
+            }
+            
+        }
+
+        // get rotation for target
+        //Quaternion rot = target.transform.rotation;
+        //float rotation = rot.eulerAngles.y;
+
+        //// compare to find quadrant, set corresponding position in array to false
+        //if (rotation >= 0 && rotation < 90)
+        //{
+        //    //quadrant 1
+        //    targetsInQuadrants[1] = false;
+        //}
+        //else if (rotation >= 90 && rotation < 180)
+        //{
+        //    //quadrant 2
+        //    targetsInQuadrants[2] = false;
+        //}
+        //else if (rotation >= 180 && rotation < 270)
+        //{
+        //    //quadrant 3
+        //    targetsInQuadrants[3] = false;
+        //}
+        //else if (rotation >= 270 && rotation < 360)
+        //{
+        //    //quadrant 4
+        //    targetsInQuadrants[4] = false;
+        //}
+        
+        
+        //Destroy(target, 2);
+        //numberTargetsCurrent--;
+
+
+    }
+    IEnumerator waitToDestroyTarget()
+    {
+        yield return new WaitForSeconds(2);
+    }
+
+
+    private void destroyTarget2(GameObject target)
+    {
+
         // get rotation for target
         Quaternion rot = target.transform.rotation;
         float rotation = rot.eulerAngles.y;
@@ -139,6 +233,10 @@ public class TargetManager : MonoBehaviour
             //quadrant 4
             targetsInQuadrants[4] = false;
         }
+
+        Destroy(target);
+        numberTargetsCurrent--;
+
     }
 
     private Vector3 calculateTargetPosition(int angle)
