@@ -85,7 +85,7 @@ MonoBehaviour:
   otherMaterial: {fileID: 2100000, guid: bc77364cebd5ea84bbdaa7560bccb7d9, type: 2}
   ascore: 100
   hitTarget: {fileID: 8300000, guid: a332b558cbb4e3442b23e06fb335d1ed, type: 3}
-  celebration: {fileID: 8300000, guid: c7d83f6f7e2ce4c4682840190b1ab061, type: 3}
+  celebration: {fileID: 8300000, guid: 210e92fe13262de4dbbdab8b9d4c6926, type: 3}
 --- !u!33 &4485088024214343167
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ MonoBehaviour:
   otherMaterial: {fileID: 2100000, guid: bc77364cebd5ea84bbdaa7560bccb7d9, type: 2}
   ascore: 50
   hitTarget: {fileID: 8300000, guid: a332b558cbb4e3442b23e06fb335d1ed, type: 3}
-  celebration: {fileID: 8300000, guid: c7d83f6f7e2ce4c4682840190b1ab061, type: 3}
+  celebration: {fileID: 8300000, guid: 210e92fe13262de4dbbdab8b9d4c6926, type: 3}
 --- !u!33 &4485088024214343138
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -539,7 +539,7 @@ MonoBehaviour:
   otherMaterial: {fileID: 2100000, guid: bc77364cebd5ea84bbdaa7560bccb7d9, type: 2}
   ascore: 20
   hitTarget: {fileID: 8300000, guid: a332b558cbb4e3442b23e06fb335d1ed, type: 3}
-  celebration: {fileID: 8300000, guid: c7d83f6f7e2ce4c4682840190b1ab061, type: 3}
+  celebration: {fileID: 8300000, guid: 210e92fe13262de4dbbdab8b9d4c6926, type: 3}
 --- !u!33 &4485088024214343141
 MeshFilter:
   m_ObjectHideFlags: 0
