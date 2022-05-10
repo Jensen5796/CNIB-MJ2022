@@ -10,6 +10,7 @@ public class SumScore {
 
     private static SumScoreManager mgr; // Easy reference to manager instance
 
+
     // Private constructor to ensure only one copy exists
     private SumScore () { }
 	

@@ -13,8 +13,9 @@ public class SumScoreManager : MonoBehaviour {
     public int initialScore = 0;
     public bool storeHighScore = true, allowNegative = true;
     public Text field; // Text field displaying current score
-    public Text highScoreField; // Text field displaying high score
-
+    public Text highScoreField; // shows the countdown timer
+                                
+    //public Image Background;
     void Awake() {
         // Ensure only one instance is running
         if (instance == null)
@@ -52,11 +53,23 @@ public class SumScoreManager : MonoBehaviour {
 
     /// <summary>Notify this manager of a change in high score</summary>
     public void UpdatedHS (float elapsed) {
+       /* if (elapsed < 10)
+        {
+            highScoreField.Color = Color.Red;
+        }*/
+        if (elapsed < 0)
+        {
+            //end game here
+            //Destroy(gameObject);
+            return;
+        }
         //if(storeHighScore)
         // highScoreField.text = SumScore.HighScore.ToString("0"); // Post new high score to text field
         int x = (int)elapsed % 60;
         int y = (int)elapsed / 60;
+        
         highScoreField.text = y.ToString("00") + ":"+ x.ToString("00");
+        //Background.fillAmount = Background.fillAmount - 50;// elapsed;
     }
 
 
