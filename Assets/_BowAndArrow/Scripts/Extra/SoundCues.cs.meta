@@ -13,11 +13,14 @@ MonoImporter:
   - clip_rightLower: {fileID: 8300000, guid: 5ab828bdff837904eb472685ffbfc270, type: 3}
   - clip_leftLower: {fileID: 8300000, guid: 6547da3babc6e4c43bac412bb2129313, type: 3}
   - clip_rightHigher: {fileID: 8300000, guid: 89e907160ce712a43bbe7d76f768caf8, type: 3}
-  - clip_arrowMissed: {fileID: 8300000, guid: 0d7c6a010baeeb844aff6fd8a6297380, type: 3}
+  - clip_arrowMissed: {fileID: 8300000, guid: bbafc5974ca6d834991fd99aa215de60, type: 3}
   - clip_loadingArrow: {fileID: 8300000, guid: 98ba879eb233b6c40beacacd07ab5db9, type: 3}
   - clip_keepTrying: {fileID: 8300000, guid: 0f955f1960b285c4fbbda6e3ff41be27, type: 3}
+  - clip_10: {fileID: 8300000, guid: 1a4b54e0e4bebbe4690bf38a2efee889, type: 3}
   - clip_20: {fileID: 8300000, guid: 1aa9583c919c7aa4d86a207e04a38c7a, type: 3}
+  - clip_30: {fileID: 8300000, guid: eae39b68f976b8249936e4e99a10ca99, type: 3}
   - clip_40: {fileID: 8300000, guid: 09b695148320bad438bf7fb59598944d, type: 3}
+  - clip_50: {fileID: 8300000, guid: 00d08034764fac841abc6b7be52b70c9, type: 3}
   - clip_60: {fileID: 8300000, guid: e0c13dcff0e630a45a47dacd19397bb3, type: 3}
   - clip_70: {fileID: 8300000, guid: 32780c9845dcd6f4496657ae96b33874, type: 3}
   - clip_80: {fileID: 8300000, guid: c7e65aca9b49eae4f94e15372b23c93c, type: 3}

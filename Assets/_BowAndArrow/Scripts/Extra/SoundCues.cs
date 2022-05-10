@@ -19,8 +19,11 @@ public class SoundCues : MonoBehaviour
 
     //scoring
     public AudioClip clip_keepTrying;
+    public AudioClip clip_10;
     public AudioClip clip_20;
+    public AudioClip clip_30;
     public AudioClip clip_40;
+    public AudioClip clip_50;
     public AudioClip clip_60;
     public AudioClip clip_70;
     public AudioClip clip_80;

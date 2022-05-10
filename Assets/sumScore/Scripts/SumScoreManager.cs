@@ -255,13 +255,25 @@ public class SumScoreManager : MonoBehaviour {
                 }
 
             }
+            else if (num == 10)
+            {
+                GetComponent<AudioSource>().PlayOneShot(soundcue.clip_10);
+            }
             else if (num == 20)
             {
                 GetComponent<AudioSource>().PlayOneShot(soundcue.clip_20);
             }
+            else if (num == 30)
+            {
+                GetComponent<AudioSource>().PlayOneShot(soundcue.clip_30);
+            }
             else if (num == 40)
             {
                 GetComponent<AudioSource>().PlayOneShot(soundcue.clip_40);
+            }
+            else if (num == 50)
+            {
+                GetComponent<AudioSource>().PlayOneShot(soundcue.clip_50);
             }
             else if (num == 60)
             {
@@ -308,6 +320,10 @@ public class SumScoreManager : MonoBehaviour {
         else if (num >= 500 && num < 600)
         {
             GetComponent<AudioSource>().PlayOneShot(soundcue.clip_500);
+        }
+        else if (num >= 600 && num < 700)
+        {
+            GetComponent<AudioSource>().PlayOneShot(soundcue.clip_600);
         }
         else if (num >= 700 && num < 800)
         {
