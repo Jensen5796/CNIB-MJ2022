@@ -11,6 +11,7 @@ public class Bow : XRGrabInteractable
     {
         base.Awake();
         notch = GetComponentInChildren<Notch>();
+
     }
 
     protected override void OnEnable()
@@ -21,12 +22,12 @@ public class Bow : XRGrabInteractable
         //selectEntered.AddListener(notch.SetReady);
         //selectExited.AddListener(notch.SetReady);
         //selectEntered.AddListener(CreateAndSelectArrow);
-        
+
     }
     protected override void OnActivated(ActivateEventArgs args)
     {
         CreateAndSelectArrow(args);
-
+       
         // Make sure to do this
         base.OnActivated(args);
     }
@@ -54,9 +55,11 @@ public class Bow : XRGrabInteractable
     //}
     public void CreateAndSelectArrow(ActivateEventArgs args)
     {
+        
         // Create arrow, force into interacting hand
         Arrow arrow = CreateArrow(args.interactor.transform);
         interactionManager.ForceSelect(args.interactor, arrow);
+
     }
     
 
@@ -64,6 +67,7 @@ public class Bow : XRGrabInteractable
     {
         // Create arrow, and get arrow component
         GameObject arrowObject = Instantiate(arrowPrefab, orientation.position, orientation.rotation);
+      
         return arrowObject.GetComponent<Arrow>();
     }
 }

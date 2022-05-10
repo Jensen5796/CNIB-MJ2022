@@ -15,4 +15,5 @@ public class SoundCues : MonoBehaviour
     public AudioClip clip_leftLower;
     public AudioClip clip_rightHigher;
     public AudioClip clip_arrowMissed;
+    public AudioClip clip_loadingArrow;
 }
