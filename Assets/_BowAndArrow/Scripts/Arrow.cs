@@ -32,6 +32,7 @@ public class Arrow : XRGrabInteractable
         GameObject go2 = GameObject.Find("Text");
         test = go2.GetComponent<Text>();
         soundcue = GetComponent<SoundCues>();
+        GetComponent<AudioSource>().PlayOneShot(soundcue.clip_loadingArrow);
     }
 
     protected override void OnSelectEntering(SelectEnterEventArgs args)

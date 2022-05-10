@@ -256,6 +256,7 @@ MonoBehaviour:
   clip_leftLower: {fileID: 0}
   clip_rightHigher: {fileID: 0}
   clip_arrowMissed: {fileID: 8300000, guid: 0d7c6a010baeeb844aff6fd8a6297380, type: 3}
+  clip_loadingArrow: {fileID: 8300000, guid: 5ac381cdc5fbc8441a49b409955b388c, type: 3}
 --- !u!114 &7046829276956346025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,7 +540,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 59
+  Priority: 119
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
