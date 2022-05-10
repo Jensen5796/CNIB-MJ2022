@@ -57,6 +57,11 @@ public class SumScoreManager : MonoBehaviour {
         int x = (int)elapsed % 60;
         int y = (int)elapsed / 60;
         highScoreField.text = y.ToString("00") + ":"+ x.ToString("00");
+
+        if (y == 0 && x == 11) 
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
 
 
