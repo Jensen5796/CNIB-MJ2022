@@ -31,7 +31,8 @@ public class SumScore {
 
     public static void UpdateCount(float elapsed)
     {       
-        mgr.UpdatedHS(elapsed); 
+        mgr.UpdatedHS(elapsed);
+
     }
     /// <summary>Removes points from total score</summary>
     /// <param name="pointsToSubtract">Number of points to remove</param>
