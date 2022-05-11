@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-    public static float elapsedTime = 150;
-    public int xTimer;
-    public int yTimer;
-    public SoundCues soundcue;
+
+    public static float elapsedTime = 180;
+
     // Start is called before the first frame update
     void Start()
     {

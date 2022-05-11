@@ -69,6 +69,7 @@ public class SumScoreManager : MonoBehaviour {
     public void UpdatedHS (float elapsed) {
         //if(storeHighScore)
         // highScoreField.text = SumScore.HighScore.ToString("0"); // Post new high score to text field
+
         xTimer = (int)elapsed % 60;
         yTimer = (int)elapsed / 60;
         highScoreField.text = yTimer.ToString("00") + ":"+ xTimer.ToString("00");
@@ -244,6 +245,7 @@ public class SumScoreManager : MonoBehaviour {
                 ten = true;
 
             }
+
         }
     }
 
