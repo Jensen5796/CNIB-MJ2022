@@ -26,11 +26,11 @@ public class TargetManager : MonoBehaviour
     private void Awake()
     {
         //set up debugging text
-        GameObject go = GameObject.Find("Text2");
-        test = go.GetComponent<Text>();
+        //GameObject go = GameObject.Find("Text2");
+        //test = go.GetComponent<Text>();
         GameObject go2 = GameObject.Find("Text");
         test2 = go2.GetComponent<Text>();
-        test.text = "testing";
+        //test.text = "testing";
 
         //boolean array to track which quadrants have targets
         //using positions 1-4 to match with quadrants (0 will be false or empty)
@@ -79,7 +79,7 @@ public class TargetManager : MonoBehaviour
     //debugging function
     private void testTargetPos()
     {
-        test.text = "";
+        //test.text = "";
         GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
         foreach (GameObject target in activeTargets)
         {
@@ -88,7 +88,7 @@ public class TargetManager : MonoBehaviour
             float xVal = target.transform.position.x;
             float zVal = target.transform.position.z;
 
-            test.text += "; rot=" + rotation;
+            //test.text += "; rot=" + rotation;
         }
     }
 
