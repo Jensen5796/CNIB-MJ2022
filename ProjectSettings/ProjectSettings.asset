@@ -779,7 +779,14 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -793,11 +800,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 1
-  cloudProjectId: 6c2b2a16-0d13-4576-af63-0d8de770a6be
+  cloudProjectId: 1046365a-5427-4fd9-9c24-faa7a0cc6e2e
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: BowAndArrow_Unity
-  organizationId: c-through
+  organizationId: adedipe
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   virtualTexturingSupportEnabled: 0

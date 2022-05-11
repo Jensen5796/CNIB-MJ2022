@@ -67,6 +67,16 @@ public class SumScoreManager : MonoBehaviour {
 
     /// <summary>Notify this manager of a change in high score</summary>
     public void UpdatedHS (float elapsed) {
+       /* if (elapsed < 10)
+        {
+            highScoreField.Color = Color.Red;
+        }*/
+        if (elapsed < 0)
+        {
+            //end game here
+            //Destroy(gameObject);
+            return;
+        }
         //if(storeHighScore)
         // highScoreField.text = SumScore.HighScore.ToString("0"); // Post new high score to text field
 

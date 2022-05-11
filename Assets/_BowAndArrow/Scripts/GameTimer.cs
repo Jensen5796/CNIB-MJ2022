@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-
     public static float elapsedTime = 180;
-
     // Start is called before the first frame update
+   // public HealthBar healthbar;
     void Start()
     {
-        
+       
     }
 
     private void Awake()
@@ -22,7 +21,7 @@ public class GameTimer : MonoBehaviour
     {
         elapsedTime -= Time.deltaTime;
         SumScore.UpdateCount(elapsedTime);
-
+        //healthbar.Tick(elapsedTime);
     }
 
 }
