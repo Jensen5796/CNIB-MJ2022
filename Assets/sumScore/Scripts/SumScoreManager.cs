@@ -73,7 +73,7 @@ public class SumScoreManager : MonoBehaviour {
         yTimer = (int)elapsed / 60;
         highScoreField.text = yTimer.ToString("00") + ":"+ xTimer.ToString("00");
 
-        if (yTimer == 0 && xTimer == 11) 
+        if (yTimer == 0 && xTimer == 10) 
         {
             if (!GetComponent<AudioSource>().isPlaying)
             {
