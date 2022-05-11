@@ -8,6 +8,8 @@ TagManager:
   - AuraCollider
   - Ground
   - GameAreaBoundary
+  - Target
+  - InnerTarget
   layers:
   - Default
   - TransparentFX

@@ -246,10 +246,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e76d9634080ed469ce17d78b66bce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip_turnRight: {fileID: 8300000, guid: 0196597188d06b3449c291661b2556e0, type: 3}
-  clip_turnLeft: {fileID: 8300000, guid: a4004b6818ed0604a8a5ecafd4887316, type: 3}
-  clip_aimUp: {fileID: 8300000, guid: 98772315507041741ac5e79cf14cd9d5, type: 3}
-  clip_aimDown: {fileID: 8300000, guid: 3f86adae955bbc84eadaeb1c63b550fc, type: 3}
+  clip_turnRight: {fileID: 8300000, guid: 03410b3ccd12b074eb1529aa95819e78, type: 3}
+  clip_turnLeft: {fileID: 8300000, guid: a3fee9426ff2181479f8630c1a71460f, type: 3}
+  clip_aimUp: {fileID: 8300000, guid: a54d0cfdb081b2e41908347e2b7b025f, type: 3}
+  clip_aimDown: {fileID: 8300000, guid: 810bcae69cb1a904a8fd5bb7c80da7e5, type: 3}
   clip_shootArrow: {fileID: 8300000, guid: 6542cc874605b594eb0c692c3bec3f43, type: 3}
   clip_leftHigher: {fileID: 0}
   clip_rightLower: {fileID: 0}
@@ -257,6 +257,7 @@ MonoBehaviour:
   clip_rightHigher: {fileID: 0}
   clip_arrowMissed: {fileID: 8300000, guid: eb99ba8633e8ce949933b1fc8f20b44f, type: 3}
   clip_loadingArrow: {fileID: 8300000, guid: 98ba879eb233b6c40beacacd07ab5db9, type: 3}
+  clip_tenSec: {fileID: 0}
   clip_keepTrying: {fileID: 8300000, guid: 0f955f1960b285c4fbbda6e3ff41be27, type: 3}
   clip_10: {fileID: 0}
   clip_20: {fileID: 8300000, guid: 1aa9583c919c7aa4d86a207e04a38c7a, type: 3}
