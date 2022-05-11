@@ -15,7 +15,7 @@ public class GameTimer : MonoBehaviour
 
     private void Awake()
     {
-        soundcue = GetComponent<SoundCues>();
+        
     }
     // Update is called once per frame
     void Update()
