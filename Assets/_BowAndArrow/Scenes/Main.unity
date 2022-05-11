@@ -3340,9 +3340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cda5368cfd5d0e4d885f2f3c142caaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xTimer: 0
-  yTimer: 0
-  soundcue: {fileID: 0}
 --- !u!1 &1689598634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3395,7 +3392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberTargetsDesired: 3
-  targetPrefab: {fileID: 2762203773592475860, guid: d2c38afe94b2cdf478c726c122edd9d9,
+  targetPrefab: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
     type: 3}
   yAxisOffset: 0.5
   targetDistanceFromPlayer: 0

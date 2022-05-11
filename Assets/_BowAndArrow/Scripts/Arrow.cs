@@ -197,10 +197,8 @@ public class Arrow : XRGrabInteractable
         if (Physics.Raycast(targetPosition, direction, out targetHit, Mathf.Infinity, targetAuraLayermask))
         {
             test.text = "Aura Collider detected";
-            //Transform targetCenter = targetHit.collider.gameObject.GetComponentInChildren<SphereCollider>().transform;
-            Transform targetCenter = targetHit.collider.gameObject.GetComponentInChildren<ConcentricTarget>().gameObject.transform;
-            test.text = targetCenter.position.x.ToString();
-            GivePlayerFeedback(targetHit.point, targetCenter.transform);
+            
+            GivePlayerFeedback(targetHit);
         }
         else
         {
@@ -208,118 +206,202 @@ public class Arrow : XRGrabInteractable
         }
 
     }
+    //old version with spherical aura collider
+    //private void RaycastIntoScene(Vector3 targetPosition, Vector3 direction)
+    //{
 
-    public void GivePlayerFeedback(Vector3 targetHit, Transform targetCenter)
+    //    RaycastHit targetHit;
+    //    if (Physics.Raycast(targetPosition, direction, out targetHit, Mathf.Infinity, targetAuraLayermask))
+    //    {
+    //        test.text = "Aura Collider detected";
+    //        //Transform targetCenter = targetHit.collider.gameObject.GetComponentInChildren<SphereCollider>().transform;
+    //        Transform targetCenter = targetHit.collider.gameObject.GetComponentInChildren<ConcentricTarget>().gameObject.transform;
+    //        test.text = targetCenter.position.x.ToString();
+    //        GivePlayerFeedback(targetHit.point, targetCenter.transform);
+    //    }
+    //    else
+    //    {
+    //        test.text = "Aura Collider not detected";
+    //    }
+
+    //}
+
+    public void GivePlayerFeedback(RaycastHit targetHit)
     {
+        // get name of collider
+        string colliderName = targetHit.collider.gameObject.name;
+        string up = "DirCollider_Up";
+        string down = "DirCollider_Down";
+        string left = "DirCollider_Left";
+        string right = "DirCollider_Right";
 
-        Vector3 targetDirection = CalculateDirection(targetCenter, tip.transform);
-        Vector3 hitDirection = CalculateDirection(targetHit, tip.transform);
-
-
-
-        //get signed angle
-        float angleBetween_X = Vector3.SignedAngle(targetDirection, hitDirection, Vector3.up);
-        //X direction: negative is left of target, positive is right of target
-        float angleBetween_Y = Vector3.SignedAngle(targetDirection, hitDirection, Vector3.right);
-        //Y direction: negative is above target, positive is below target
-
-        test.text = "X=" + angleBetween_X.ToString() + " Y=" + angleBetween_Y.ToString();
-        //if (distance < 0.5)
-        //{
-        //    //audio: shoot the arrow,
-        //    GetComponent<AudioSource>().PlayOneShot(clip_shootArrow);
-        //    //haptic trigger
-        //}
-        //else
+        // check tag for InnerTarget
+        if (targetHit.collider.gameObject.CompareTag("InnerTarget"))
         {
-            if (angleBetween_X > 1.5)   // aim left
+            // the actual target was detected
+            // give feedback to shoot the arrow
+            test.text = "Shoot the arrow";
+            //audio: shoot the arrow,
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                GetComponent<AudioSource>().panStereo = 0;
+                GetComponent<AudioSource>().PlayOneShot(soundcue.clip_shootArrow);
+            }
+        }
+
+        // else give feedback for each direction
+        else
+        {
+            // actual target not detected, detected one of the box colliders
+            if (colliderName == up)
+            {
+                if (!GetComponent<AudioSource>().isPlaying)
+                {
+                    GetComponent<AudioSource>().panStereo = 0;
+                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_aimUp);
+                }
+            }
+            else if (colliderName == down)
+            {
+                if (!GetComponent<AudioSource>().isPlaying)
+                {
+                    GetComponent<AudioSource>().panStereo = 0;
+                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_aimDown);
+                }
+            }
+            else if (colliderName == left)
             {
                 if (!GetComponent<AudioSource>().isPlaying)
                 {
                     GetComponent<AudioSource>().panStereo = -1;
                     GetComponent<AudioSource>().PlayOneShot(soundcue.clip_turnLeft);
                 }
-
-                //check height
-                if (angleBetween_Y < -1.5) // aim lower
-                {
-                    //test.text = "Aim left and lower";
-                    test.text = "X=" + angleBetween_X.ToString() + " Y=" + angleBetween_Y.ToString();
-                    //audio: aim higher?? or high pitch beep
-                    if (!GetComponent<AudioSource>().isPlaying)
-                    {
-                        GetComponent<AudioSource>().panStereo = -1;
-                        //  GetComponent<AudioSource>().PlayOneShot(soundcue.clip_aimUp);
-                        GetComponent<AudioSource>().PlayOneShot(soundcue.clip_leftLower);
-                    }
-                }
-                else if (angleBetween_Y > 1.5) // aim higher
-                {
-                    //test.text = "Aim left and higher";
-                    test.text = "X=" + angleBetween_X.ToString() + " Y=" + angleBetween_Y.ToString();
-                    //audio: aim lower?? or low pitch beep
-
-                    if (!GetComponent<AudioSource>().isPlaying)
-                    GetComponent<AudioSource>().panStereo = -1;
-                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_leftHigher);
-                }
-
             }
-            else if (angleBetween_X < -1.5) //aim right
+            else if (colliderName == right)
             {
-
                 if (!GetComponent<AudioSource>().isPlaying)
                 {
                     GetComponent<AudioSource>().panStereo = 1;
-                    //audio: aim to left?? or beep from left
                     GetComponent<AudioSource>().PlayOneShot(soundcue.clip_turnRight);
                 }
-
-
-                //check height
-                if (angleBetween_Y < -1.5) //aim lower
-                {
-                    //test.text = "Aim right and lower";
-                    test.text = "X=" + angleBetween_X.ToString() + " Y=" + angleBetween_Y.ToString();
-
-                    if (!GetComponent<AudioSource>().isPlaying) 
-                    {
-                        GetComponent<AudioSource>().panStereo = 1;
-                        //audio: aim higher?? or high pitch beep
-                        GetComponent<AudioSource>().PlayOneShot(soundcue.clip_rightLower);
-                    }
-
-                }
-                else if (angleBetween_Y > 1.5) // aim higher
-                {
-                    //test.text = "Aim right and higher";
-                    test.text = "X=" + angleBetween_X.ToString() + " Y=" + angleBetween_Y.ToString();
-
-                    if (!GetComponent<AudioSource>().isPlaying ) 
-                    {
-                        GetComponent<AudioSource>().panStereo = 1;
-                        //audio: aim lower?? or low pitch beep
-                        GetComponent<AudioSource>().PlayOneShot(soundcue.clip_rightHigher);
-                    }
-
-                }
             }
-            else if (angleBetween_X > -1.5 && angleBetween_X < 1.5 && angleBetween_Y > -1.5 && angleBetween_Y < 1.5)
-            {
-                test.text = "Shoot the arrow";
-                //audio: shoot the arrow,
-                if (!GetComponent<AudioSource>().isPlaying) 
-                {
-                    GetComponent<AudioSource>().panStereo = 0;
-                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_shootArrow);
-                }
-                   
-            }
-
-
-        }
+        } 
 
     }
+
+    //older version from spherical aura collider instead of box colliders:
+    //public void GivePlayerFeedback(Vector3 targetHit, Transform targetCenter)
+    //{
+
+    //    Vector3 targetDirection = CalculateDirection(targetCenter, tip.transform);
+    //    Vector3 hitDirection = CalculateDirection(targetHit, tip.transform);
+
+
+
+    //    //get signed angle
+    //    float angleBetween_X = Vector3.SignedAngle(targetDirection, hitDirection, Vector3.up);
+    //    //X direction: negative is left of target, positive is right of target
+    //    float angleBetween_Y = Vector3.SignedAngle(targetDirection, hitDirection, Vector3.right);
+    //    //Y direction: negative is above target, positive is below target
+
+    //    test.text = "X=" + angleBetween_X.ToString() + " Y=" + angleBetween_Y.ToString();
+    //    //if (distance < 0.5)
+    //    //{
+    //    //    //audio: shoot the arrow,
+    //    //    GetComponent<AudioSource>().PlayOneShot(clip_shootArrow);
+    //    //    //haptic trigger
+    //    //}
+    //    //else
+    //    {
+    //        if (angleBetween_X > 1.5)   // aim left
+    //        {
+    //            if (!GetComponent<AudioSource>().isPlaying)
+    //            {
+    //                GetComponent<AudioSource>().panStereo = -1;
+    //                GetComponent<AudioSource>().PlayOneShot(soundcue.clip_turnLeft);
+    //            }
+
+    //            //check height
+    //            if (angleBetween_Y < -1.5) // aim lower
+    //            {
+    //                //test.text = "Aim left and lower";
+    //                test.text = "X=" + angleBetween_X.ToString() + " Y=" + angleBetween_Y.ToString();
+    //                //audio: aim higher?? or high pitch beep
+    //                if (!GetComponent<AudioSource>().isPlaying)
+    //                {
+    //                    GetComponent<AudioSource>().panStereo = -1;
+    //                    //  GetComponent<AudioSource>().PlayOneShot(soundcue.clip_aimUp);
+    //                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_leftLower);
+    //                }
+    //            }
+    //            else if (angleBetween_Y > 1.5) // aim higher
+    //            {
+    //                //test.text = "Aim left and higher";
+    //                test.text = "X=" + angleBetween_X.ToString() + " Y=" + angleBetween_Y.ToString();
+    //                //audio: aim lower?? or low pitch beep
+
+    //                if (!GetComponent<AudioSource>().isPlaying)
+    //                    GetComponent<AudioSource>().panStereo = -1;
+    //                GetComponent<AudioSource>().PlayOneShot(soundcue.clip_leftHigher);
+    //            }
+
+    //        }
+    //        else if (angleBetween_X < -1.5) //aim right
+    //        {
+
+    //            if (!GetComponent<AudioSource>().isPlaying)
+    //            {
+    //                GetComponent<AudioSource>().panStereo = 1;
+    //                //audio: aim to left?? or beep from left
+    //                GetComponent<AudioSource>().PlayOneShot(soundcue.clip_turnRight);
+    //            }
+
+
+    //            //check height
+    //            if (angleBetween_Y < -1.5) //aim lower
+    //            {
+    //                //test.text = "Aim right and lower";
+    //                test.text = "X=" + angleBetween_X.ToString() + " Y=" + angleBetween_Y.ToString();
+
+    //                if (!GetComponent<AudioSource>().isPlaying)
+    //                {
+    //                    GetComponent<AudioSource>().panStereo = 1;
+    //                    //audio: aim higher?? or high pitch beep
+    //                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_rightLower);
+    //                }
+
+    //            }
+    //            else if (angleBetween_Y > 1.5) // aim higher
+    //            {
+    //                //test.text = "Aim right and higher";
+    //                test.text = "X=" + angleBetween_X.ToString() + " Y=" + angleBetween_Y.ToString();
+
+    //                if (!GetComponent<AudioSource>().isPlaying)
+    //                {
+    //                    GetComponent<AudioSource>().panStereo = 1;
+    //                    //audio: aim lower?? or low pitch beep
+    //                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_rightHigher);
+    //                }
+
+    //            }
+    //        }
+    //        else if (angleBetween_X > -1.5 && angleBetween_X < 1.5 && angleBetween_Y > -1.5 && angleBetween_Y < 1.5)
+    //        {
+    //            test.text = "Shoot the arrow";
+    //            //audio: shoot the arrow,
+    //            if (!GetComponent<AudioSource>().isPlaying)
+    //            {
+    //                GetComponent<AudioSource>().panStereo = 0;
+    //                GetComponent<AudioSource>().PlayOneShot(soundcue.clip_shootArrow);
+    //            }
+
+    //        }
+
+
+    //    }
+
+    //}
+
     private Vector3 CalculateDirection(Transform target, Transform arrowTip)
     {
         Vector3 direction = target.position - arrowTip.position;
