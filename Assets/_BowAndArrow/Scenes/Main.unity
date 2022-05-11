@@ -1167,8 +1167,8 @@ MonoBehaviour:
   clip_leftLower: {fileID: 8300000, guid: 6547da3babc6e4c43bac412bb2129313, type: 3}
   clip_rightHigher: {fileID: 8300000, guid: 89e907160ce712a43bbe7d76f768caf8, type: 3}
   clip_arrowMissed: {fileID: 8300000, guid: 0d7c6a010baeeb844aff6fd8a6297380, type: 3}
-  clip_loadingArrow: {fileID: 8300000, guid: 5ac381cdc5fbc8441a49b409955b388c, type: 3}
-  clip_tenSec: {fileID: 8300000, guid: be8c1d9583136ae439eb426fd3688833, type: 3}
+  clip_loadingArrow: {fileID: 8300000, guid: 98ba879eb233b6c40beacacd07ab5db9, type: 3}
+  clip_tenSec: {fileID: 8300000, guid: a1ccaa5a25f310f4191c8424de179a3d, type: 3}
   clip_keepTrying: {fileID: 8300000, guid: 0f955f1960b285c4fbbda6e3ff41be27, type: 3}
   clip_10: {fileID: 8300000, guid: 1a4b54e0e4bebbe4690bf38a2efee889, type: 3}
   clip_20: {fileID: 8300000, guid: 1aa9583c919c7aa4d86a207e04a38c7a, type: 3}
