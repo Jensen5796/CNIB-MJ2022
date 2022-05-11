@@ -21,6 +21,8 @@ public class SumScoreManager : MonoBehaviour {
     public bool ten = false;
     public bool currentScore = false;
     public bool total = false;
+    public bool countdown = false;
+
     public int xTimer;
     public int yTimer;
     void Awake() {
@@ -71,6 +73,17 @@ public class SumScoreManager : MonoBehaviour {
         yTimer = (int)elapsed / 60;
         highScoreField.text = yTimer.ToString("00") + ":"+ xTimer.ToString("00");
 
+        if (yTimer == 0 && xTimer == 11) 
+        {
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                if (!countdown)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_tenSec);
+                    countdown = true;
+                }
+            }
+        }
 
         //two minute
         if (yTimer == 2 && xTimer == 3)
