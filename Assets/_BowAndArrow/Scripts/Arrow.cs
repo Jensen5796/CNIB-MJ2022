@@ -17,7 +17,7 @@ public class Arrow : XRGrabInteractable
     private Vector3 lastPosition = Vector3.zero;
     private bool launched = false;
     //Debugging
-    private Text test;
+    //private Text test;
 
     public LayerMask targetAuraLayermask;
     public SoundCues soundcue;
@@ -30,7 +30,7 @@ public class Arrow : XRGrabInteractable
         rigidbody = GetComponent<Rigidbody>();
         targetAuraLayermask = LayerMask.GetMask("AuraColliders");
         GameObject go2 = GameObject.Find("Text");
-        test = go2.GetComponent<Text>();
+        //test = go2.GetComponent<Text>();
         soundcue = GetComponent<SoundCues>();
         GetComponent<AudioSource>().PlayOneShot(soundcue.clip_loadingArrow);
     }
@@ -146,7 +146,7 @@ public class Arrow : XRGrabInteractable
                     //arrow hit either ground or game boundary dome
                     //cue Missed Target reactions
                     //destroy arrow
-                    test.text = "missed target";
+                    //test.text = "missed target";
                     MissedTarget();
                     Destroy(this.gameObject, 2);
 
@@ -196,13 +196,13 @@ public class Arrow : XRGrabInteractable
         RaycastHit targetHit;
         if (Physics.Raycast(targetPosition, direction, out targetHit, Mathf.Infinity, targetAuraLayermask))
         {
-            test.text = "Aura Collider detected";
+            //test.text = "Aura Collider detected";
             
             GivePlayerFeedback(targetHit);
         }
         else
         {
-            test.text = "Aura Collider not detected";
+            //test.text = "Aura Collider not detected";
         }
 
     }
@@ -240,7 +240,7 @@ public class Arrow : XRGrabInteractable
         {
             // the actual target was detected
             // give feedback to shoot the arrow
-            test.text = "Shoot the arrow";
+            //test.text = "Shoot the arrow";
             //audio: shoot the arrow,
             if (!GetComponent<AudioSource>().isPlaying)
             {
@@ -418,7 +418,7 @@ public class Arrow : XRGrabInteractable
     void MissedTarget()
     {
         //reactions from missing target
-        test.text = "missed the target";
+        //test.text = "missed the target";
         //sound cue:
         if (!GetComponent<AudioSource>().isPlaying)
         {
