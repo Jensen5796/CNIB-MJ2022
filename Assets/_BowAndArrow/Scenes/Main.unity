@@ -2860,7 +2860,7 @@ MonoBehaviour:
   bowL: {fileID: 1691228512}
   handR: {fileID: 1603655962}
   handL: {fileID: 1488236686}
-  menuOption: R
+  menuOption: L
 --- !u!1 &1488236686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3f760d04c86de274ab31c9a10fbe853e,

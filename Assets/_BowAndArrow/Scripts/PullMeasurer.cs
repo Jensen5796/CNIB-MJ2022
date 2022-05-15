@@ -14,7 +14,7 @@ public class PullMeasurer : XRBaseInteractable
     private float pullAmount = 0.0f;
     public float PullAmount => pullAmount;
     public float hapticDuration;
-    public float hapticPullAmount;
+    
 
     private XRBaseInteractor pullingInteractor = null;
 
@@ -33,18 +33,17 @@ public class PullMeasurer : XRBaseInteractable
         rightHandInteractor = rightHand.GetComponent<XRDirectInteractor>();
         rightHandInteractor.playHapticsOnSelectEntered = true;
 
+
         Haptics();
- 
 
     }
 
     private void Haptics()
     {
-        hapticDuration += hapticPullAmount;
+        hapticDuration++;
         rightHandInteractor.hapticSelectEnterDuration = hapticDuration;
-
-
     }
+
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
 
@@ -54,13 +53,12 @@ public class PullMeasurer : XRBaseInteractable
         // Clear interactor, and reset pull amount for animation
         pullingInteractor = null;
 
+        // Reset haptic duration and intensity
         rightHandInteractor.playHapticsOnSelectExited = true;
         rightHandInteractor.hapticSelectExitDuration = .01f;
 
         hapticDuration = 0;
 
-
-        // rightHandInteractor.playHapticsOnSelectEntered = false;
         // Reset everything
         SetPullValues(start.position, 0.0f);
 
@@ -72,8 +70,6 @@ public class PullMeasurer : XRBaseInteractable
 
         if (isSelected)
         {
-
-            Haptics();
 
             // Update pull values while the measurer is grabbed
             if (updatePhase == XRInteractionUpdateOrder.UpdatePhase.Dynamic)
@@ -98,8 +94,7 @@ public class PullMeasurer : XRBaseInteractable
 
         rightHandInteractor.hapticSelectEnterIntensity = newPullAmount;
 
-        // rightHandInteractor.hapticSelectEnterDuration += newPullAmount;
-        hapticPullAmount = newPullAmount;
+        hapticDuration = newPullAmount;
 
 
         // Check if we need to send out event
