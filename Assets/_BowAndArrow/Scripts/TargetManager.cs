@@ -13,11 +13,12 @@ public class TargetManager : MonoBehaviour
 
     public GameObject targetPrefab;
     public float yAxisOffset = 1.0f;
-    public float targetDistanceFromPlayer;
+    private float targetDistanceFromPlayer; //not used anymore, from old function
 
     private float destroyTargetStartTime = 0;
     private bool destroyingTarget;
     private bool beginDestroyingTarget;
+    public float TimeBeforeTargetDestroy;
 
     private Text test;
     private Text test2;
@@ -131,7 +132,7 @@ public class TargetManager : MonoBehaviour
         {
             //test.text = "in middle of destroy function; start time is " + destroyTargetStartTime.ToString() + " current time is: "+currentTime.ToString();
             //if current time - start time = 2 sec,
-            if (currentTime - destroyTargetStartTime >= 2)
+            if (currentTime - destroyTargetStartTime >= TimeBeforeTargetDestroy)
             {
                 // get rotation for target
                 Quaternion rot = target.transform.rotation;

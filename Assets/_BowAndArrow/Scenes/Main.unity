@@ -3237,7 +3237,7 @@ MonoBehaviour:
   targetPrefab: {fileID: 2762203773592475860, guid: d2c38afe94b2cdf478c726c122edd9d9,
     type: 3}
   yAxisOffset: 0.5
-  targetDistanceFromPlayer: 0
+  TimeBeforeTargetDestroy: 2
 --- !u!1 &1702113657
 GameObject:
   m_ObjectHideFlags: 0
