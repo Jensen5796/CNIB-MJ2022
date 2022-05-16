@@ -25,8 +25,9 @@ public class SumScoreManager : MonoBehaviour {
 
     public int xTimer;
     public int yTimer;
-    void Awake() {
 
+    void Awake() {
+        //TimerEnded.SetActive(false);
         soundcue = GetComponent<SoundCues>();
 
         // Ensure only one instance is running
@@ -65,6 +66,7 @@ public class SumScoreManager : MonoBehaviour {
 
     }
 
+
     /// <summary>Notify this manager of a change in high score</summary>
     public void UpdatedHS (float elapsed) {
        /* if (elapsed < 10)
@@ -92,9 +94,12 @@ public class SumScoreManager : MonoBehaviour {
                 {
                     GetComponent<AudioSource>().PlayOneShot(soundcue.clip_tenSec);
                     countdown = true;
+
                 }
+
             }
         }
+
 
         //two minute
         if (yTimer == 2 && xTimer == 3)
@@ -248,15 +253,17 @@ public class SumScoreManager : MonoBehaviour {
         }
         else if (yTimer == 0 && xTimer == 0)
         {
+            
             if (!ten)
             {
 
                 scoringCue_lessThan100();
                 ten = true;
-
+             
             }
 
         }
+
     }
 
     public void scoringCue_lessThan100() 
@@ -409,7 +416,7 @@ public class SumScoreManager : MonoBehaviour {
         }
     }
 
-    
+
 
 
 }
