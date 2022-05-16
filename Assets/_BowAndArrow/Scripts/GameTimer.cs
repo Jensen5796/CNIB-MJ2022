@@ -51,8 +51,8 @@ public class GameTimer : MonoBehaviour
     public void RestartGame()
     {
 
-        SceneManager.LoadScene("TimerEnds");
-        //timerEnded.SetActive(true);
+        //SceneManager.LoadScene("TimerEnds");
+        timerEnded.SetActive(true);
         scoreBoard.SetActive(false);
         timerBar.SetActive(false);
 
