@@ -1,19 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
-    public static bool Restart = false;
-    public GameObject TimerEnded;
+   
+    public GameObject timerEnded;
+    public GameObject scoreBoard;
+    public GameObject timerBar;
+
+    public GameObject MainMenu;
+    public GameObject Credits;
+    
     public static float elapsedTime = 5;
     // Start is called before the first frame update
    // public HealthBar healthbar;
     void Start()
     {
-        TimerEnded = GameObject.Find("MenuCredits");
-        TimerEnded.SetActive(false);
+        timerEnded = GameObject.Find("MenuCredits");
+        scoreBoard = GameObject.Find("sumScore");
+        timerBar = GameObject.Find("health");
+
+        MainMenu = GameObject.Find("Main Menu");
         
+        timerEnded.SetActive(false);
+        MainMenu.SetActive(false); 
+
     }
 
     private void Awake()
@@ -26,21 +39,23 @@ public class GameTimer : MonoBehaviour
         elapsedTime -= Time.deltaTime;
 
 
-            RestartGame(elapsedTime);
-
-
-
-        //healthbar.Tick(elapsedTime);
-    }
-    public void RestartGame(float elapsed)
-    {
-        if (elapsed == 0) 
+        if (elapsedTime <= 0) 
         {
-            TimerEnded.SetActive(true);
-            Debug.Log("Menu Credits activated");
+            RestartGame();
         }
 
         SumScore.UpdateCount(elapsedTime);
+
+        //healthbar.Tick(elapsedTime);
+    }
+    public void RestartGame()
+    {
+
+        SceneManager.LoadScene("TimerEnds");
+        //timerEnded.SetActive(true);
+        scoreBoard.SetActive(false);
+        timerBar.SetActive(false);
+
     }
 }
 
