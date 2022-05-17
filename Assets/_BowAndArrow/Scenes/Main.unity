@@ -1135,7 +1135,7 @@ GameObject:
   - component: {fileID: 544221456}
   - component: {fileID: 544221455}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Text_demo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3378,7 +3378,7 @@ GameObject:
   - component: {fileID: 1406449063}
   - component: {fileID: 1406449062}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Text_play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4375,7 +4375,7 @@ GameObject:
   - component: {fileID: 1631127904}
   - component: {fileID: 1631127903}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Text_mainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5236,7 +5236,7 @@ GameObject:
   - component: {fileID: 1946222322}
   - component: {fileID: 1946222321}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Text_credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
