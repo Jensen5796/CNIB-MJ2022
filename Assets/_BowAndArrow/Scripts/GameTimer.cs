@@ -18,17 +18,18 @@ public class GameTimer : MonoBehaviour
     public GameObject Credits;
 
 
-    public static float elapsedTime = 6;
+    public ControllerResponse cResponse;
+
+    public static float elapsedTime = 5;
     // Start is called before the first frame update
    // public HealthBar healthbar;
     void Start()
     {
-
+        timerEnded = GameObject.Find("MenuCredits");
+        MainMenu = GameObject.Find("Main Menu");
         controllerLeft = GameObject.Find("LeftHand Contoller").GetComponent<ActionBasedController>();
         controllerRight = GameObject.Find("RightHand Contoller").GetComponent<ActionBasedController>();
         scene = GameObject.Find("Scene");
-        MainMenu = GameObject.Find("Main Menu");
-        timerEnded = GameObject.Find("MenuCredits");
 
         timerEnded.SetActive(false);
         MainMenu.SetActive(false);
@@ -60,26 +61,25 @@ public class GameTimer : MonoBehaviour
 
         scene.SetActive(false);
         //SceneManager.LoadScene("TimerEnds");
-        MainMenu.SetActive(false);
+
         timerEnded.SetActive(true);
-
+        MainMenu.SetActive(false);
         //char response;
-        //if (controllerLeft.selectInteractionState.active)
-        //{
-
-        //    //Left controller grip button was pressed
-        //    timerEnded.SetActive(false);
-        //    Credits.SetActive(true);
+        if (controllerLeft.selectInteractionState.active)
+        {
+            //Left controller grip button was pressed
+            timerEnded.SetActive(false);
+            Credits.SetActive(true);
    
 
-        //}
-        //else if (controllerRight.selectInteractionState.active)
-        //{
-        //    //Right controller grip button was pressed
-        //    timerEnded.SetActive(false);
-        //    MainMenu.SetActive(true);
+        }
+        else if (controllerRight.selectInteractionState.active)
+        {
+            //Right controller grip button was pressed
+            timerEnded.SetActive(false);
+            MainMenu.SetActive(true);
 
-        //}
+        }
  
         //if (response == 'L')
         //{
