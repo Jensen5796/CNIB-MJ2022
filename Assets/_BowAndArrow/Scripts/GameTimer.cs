@@ -26,13 +26,13 @@ public class GameTimer : MonoBehaviour
 
         controllerLeft = GameObject.Find("LeftHand Contoller").GetComponent<ActionBasedController>();
         controllerRight = GameObject.Find("RightHand Contoller").GetComponent<ActionBasedController>();
-        scene = GameObject.Find("Scene");
-        MainMenu = GameObject.Find("Main Menu");
-        timerEnded = GameObject.Find("MenuCredits");
+        //scene = GameObject.Find("Scene");
+        //MainMenu = GameObject.Find("Main Menu");
+        //timerEnded = GameObject.Find("MenuCredits");
 
         timerEnded.SetActive(false);
         MainMenu.SetActive(false);
-        scene.SetActive(true);
+
 
     }
 
@@ -60,8 +60,8 @@ public class GameTimer : MonoBehaviour
 
         scene.SetActive(false);
         //SceneManager.LoadScene("TimerEnds");
-        MainMenu.SetActive(false);
-        timerEnded.SetActive(true);
+        //MainMenu.SetActive(false);
+        //timerEnded.SetActive(true);
 
         //char response;
         //if (controllerLeft.selectInteractionState.active)
