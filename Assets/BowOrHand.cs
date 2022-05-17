@@ -18,19 +18,31 @@ public class BowOrHand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(menuOption == "R")
-        {
-            bowR.SetActive(true);
-            handR.SetActive(false);
-            bowL.SetActive(false);
-            handL.SetActive(true);
-        }
-        else
-        {
-            bowR.SetActive(false);
-            handR.SetActive(true);
-            bowL.SetActive(true);
-            handL.SetActive(false);
-        }
+
+            if (menuOption == "R")
+            {
+                bowR.SetActive(true);
+                handR.SetActive(false);
+                bowL.SetActive(false);
+                handL.SetActive(true);
+            }
+            else
+            {
+                bowR.SetActive(false);
+                handR.SetActive(true);
+                bowL.SetActive(true);
+                handL.SetActive(false);
+            }
+        //}
+        //else 
+        //{
+
+        //    bowR.SetActive(false);
+        //    handR.SetActive(true);
+        //    bowL.SetActive(false);
+        //    handL.SetActive(true);
+        //}
+
+
     }
 }
