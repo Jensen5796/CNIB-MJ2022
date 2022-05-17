@@ -22,14 +22,14 @@ public class EnableDisableObjects : MonoBehaviour
     // Update is called once per frame
     void disableObject ()
     {
-        //scene.SetActive(false);
+        scene.SetActive(false);
         
 
     }
 
     private void enableObject()
     {
-        //scene.SetActive(true);
+        scene.SetActive(true);
         //make a statement where the skybox will be picked based on the scene/panel
         RenderSettings.skybox = day_skybox;
     }

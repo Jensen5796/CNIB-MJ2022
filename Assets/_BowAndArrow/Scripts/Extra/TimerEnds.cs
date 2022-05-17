@@ -19,10 +19,10 @@ public class TimerEnds : MonoBehaviour
         rightHandInteractor = rightHand.GetComponent<XRDirectInteractor>();
         leftHandInteractor = rightHand.GetComponent<XRDirectInteractor>();
 
-        //if (rightHandInteractor.isSelectActive) 
-        //{
-        //    Main();
-        //}
+        if (rightHandInteractor.isSelectActive) 
+        {
+            Main();
+        }
         
     }
     public void Main() 
