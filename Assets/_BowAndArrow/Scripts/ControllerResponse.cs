@@ -6,8 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class ControllerResponse : MonoBehaviour
 {
 
-    ActionBasedController controllerLeft;
-    ActionBasedController controllerRight;
+    static ActionBasedController controllerLeft;
+    static ActionBasedController controllerRight;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class ControllerResponse : MonoBehaviour
         
     }
 
-    public char getControllerResponse()
+    public static char getControllerResponse()
     {
         //should be called from an update function so user response can be recorded when it is given
             //otherwise, set up a loop to continuously call this function if the response returned is 'N'

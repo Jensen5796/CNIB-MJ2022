@@ -70,10 +70,13 @@ public class GameTimer : MonoBehaviour
         //GameObject LeftHand = GameObject.Find("LeftHand Contoller");
         //controllerL = rightHand.GetComponent<XRDirectInteractor>();
         //controllerR = LeftHand.GetComponent<XRDirectInteractor>();
+
         controllerLeft = GameObject.Find("LeftHand Controller").GetComponent<ActionBasedController>();
         controllerRight = GameObject.Find("RightHand Controller").GetComponent<XRDirectInteractor>();
-        ////char response;
-        if (controllerLeft.selectInteractionState.active)
+        char response;
+
+        response = ControllerResponse.getControllerResponse();
+        if (response == 'L')
         {
 
             //Left controller grip button was pressed
@@ -82,7 +85,7 @@ public class GameTimer : MonoBehaviour
 
 
         }
-        else if (controllerRight.isSelectActive)
+        else if (response == 'R')
         {
             //Right controller grip button was pressed
             timerEnded.SetActive(false);
