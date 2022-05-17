@@ -9,6 +9,8 @@ public class ControllerResponse : MonoBehaviour
     ActionBasedController controllerLeft;
     ActionBasedController controllerRight;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,7 @@ public class ControllerResponse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public char getControllerResponse()
@@ -32,6 +34,7 @@ public class ControllerResponse : MonoBehaviour
         {
             //Left controller grip button was pressed
             response = 'L';
+
         }
         else if (controllerRight.selectInteractionState.active)
         {
