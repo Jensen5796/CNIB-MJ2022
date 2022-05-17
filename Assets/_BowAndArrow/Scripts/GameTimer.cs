@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-    public static float elapsedTime = 180;
+    public static float elapsedTime = 20;
     // Start is called before the first frame update
    // public HealthBar healthbar;
     void Start()
@@ -22,6 +22,15 @@ public class GameTimer : MonoBehaviour
         elapsedTime -= Time.deltaTime;
         SumScore.UpdateCount(elapsedTime);
         //healthbar.Tick(elapsedTime);
+        if (elapsedTime <= 0)
+        {
+            endTimeTest();
+        }
+    }
+
+    void endTimeTest()
+    {
+        GameObject.Find("TestCube").SetActive(false);
     }
 
 }

@@ -10,6 +10,7 @@ public class ControllerTester : MonoBehaviour
     ActionBasedController controllerRight;
     Text test;
     ColorChange testCube;
+    GameTimer gameTime;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,6 +21,7 @@ public class ControllerTester : MonoBehaviour
         test.text = "controller testing";
         testCube = GameObject.Find("TestCube").GetComponent<ColorChange>();
         
+        
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class ControllerTester : MonoBehaviour
     {
         char response = getControllerResponse();
         testCube.changeColor(response);
+        
         
     }
 
@@ -36,19 +39,19 @@ public class ControllerTester : MonoBehaviour
         //otherwise, set up a loop to continuously call this function if the response returned is 'N'
 
         char response = 'N'; // null response before assignment
-        test.text = response.ToString(); 
+        //test.text = response.ToString(); 
         if (controllerLeft.selectInteractionState.active)
         {
             //Left controller grip button was pressed
             
             response = 'L';
-            test.text += response.ToString();
+            //test.text += response.ToString();
         }
         if (controllerRight.selectInteractionState.active)
         {
             //Right controller grip button was pressed
             response = 'R';
-            test.text += response.ToString();
+            //test.text += response.ToString();
         }
         return response;
     }
