@@ -243,7 +243,6 @@ GameObject:
   - component: {fileID: 62355886}
   - component: {fileID: 62355888}
   - component: {fileID: 62355887}
-  - component: {fileID: 62355889}
   m_Layer: 0
   m_Name: MenuCredits
   m_TagString: Untagged
@@ -310,22 +309,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62355885}
-  m_CullTransparentMesh: 0
---- !u!114 &62355889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 62355885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12abe05fb8492ca44816c3d8c42dbc6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MainMenu: {fileID: 767297886}
-  Credits: {fileID: 0}
-  timerEnded: {fileID: 62355885}
+  m_CullTransparentMesh: 1
 --- !u!1 &85813206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,7 +1888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3193,13 +3177,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309054472}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1087267519}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1309054475
 MonoBehaviour:
@@ -3314,20 +3298,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1400535221}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1400535218}
-        m_TargetAssemblyTypeName: UnityEngine.XR.Interaction.Toolkit.Inputs.InputActionManager,
-          Unity.XR.Interaction.Toolkit
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1400535221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3491,7 +3462,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1461517706
 GameObject:
@@ -3933,7 +3904,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1546996867
 PrefabInstance:
@@ -4071,7 +4042,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1585757317 stripped
 Transform:
@@ -4479,7 +4450,6 @@ Transform:
   - {fileID: 322191908}
   - {fileID: 297995618}
   - {fileID: 1773915640}
-  - {fileID: 1724642346}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4496,8 +4466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerEnded: {fileID: 0}
-  scoreBoard: {fileID: 0}
-  timerBar: {fileID: 0}
+  scene: {fileID: 0}
   MainMenu: {fileID: 0}
   Credits: {fileID: 0}
 --- !u!1 &1689598634
@@ -4618,6 +4587,7 @@ GameObject:
   - component: {fileID: 1724642350}
   - component: {fileID: 1724642349}
   - component: {fileID: 1724642348}
+  - component: {fileID: 1724642347}
   m_Layer: 0
   m_Name: TimerEnds
   m_TagString: Untagged
@@ -4637,14 +4607,30 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 62355886}
-  m_Father: {fileID: 1662864911}
-  m_RootOrder: 9
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1724642347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724642345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cda5368cfd5d0e4d885f2f3c142caaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerEnded: {fileID: 62355885}
+  scene: {fileID: 1662864910}
+  MainMenu: {fileID: 767297886}
+  Credits: {fileID: 0}
 --- !u!114 &1724642348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5738,7 +5724,7 @@ RectTransform:
   m_Children:
   - {fileID: 767297887}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

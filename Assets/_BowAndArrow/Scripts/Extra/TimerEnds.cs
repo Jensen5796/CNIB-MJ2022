@@ -28,7 +28,7 @@ public class TimerEnds : MonoBehaviour
     public void Main() 
     {
         timerEnded.SetActive(false);
-        MainMenu.SetActive(true);
+       // MainMenu.SetActive(true);
 
     }
 }

@@ -13,7 +13,6 @@ public class BowOrHand : MonoBehaviour
     public string menuOption;
 
     public static bool enableHands;
-    public static float elapsedTime = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +24,7 @@ public class BowOrHand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        elapsedTime -= Time.deltaTime;
 
-
-        if (elapsedTime > 0)
-        {
             if (menuOption == "R")
             {
                 bowR.SetActive(true);
@@ -44,15 +39,15 @@ public class BowOrHand : MonoBehaviour
                 bowL.SetActive(true);
                 handL.SetActive(false);
             }
-        }
-        else 
-        {
+        //}
+        //else 
+        //{
 
-            bowR.SetActive(false);
-            handR.SetActive(true);
-            bowL.SetActive(false);
-            handL.SetActive(true);
-        }
+        //    bowR.SetActive(false);
+        //    handR.SetActive(true);
+        //    bowL.SetActive(false);
+        //    handL.SetActive(true);
+        //}
 
 
     }
