@@ -1555,42 +1555,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8280ed57f5b0c824d85a4b35abad1b39, type: 3}
---- !u!4 &477008393
+--- !u!4 &477008393 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4615929981493384917, guid: 8280ed57f5b0c824d85a4b35abad1b39,
     type: 3}
   m_PrefabInstance: {fileID: 477008392}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477008394}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 50.125, z: 205.68109}
-  m_LocalScale: {x: 1.3765624, y: 1.3765624, z: 1.3765624}
-  m_Children:
-  - {fileID: 330471704}
-  - {fileID: 1133650871}
-  - {fileID: 2035073657}
-  m_Father: {fileID: 1773915640}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &477008394
+--- !u!1 &477008394 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 8987523396697781914, guid: 8280ed57f5b0c824d85a4b35abad1b39,
     type: 3}
   m_PrefabInstance: {fileID: 477008392}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 477008393}
-  - component: {fileID: 477008395}
-  m_Layer: 0
-  m_Name: health
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!222 &477008395
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1911,6 +1887,40 @@ MonoBehaviour:
   clip_leftLower: {fileID: 8300000, guid: 6547da3babc6e4c43bac412bb2129313, type: 3}
   clip_rightHigher: {fileID: 8300000, guid: 89e907160ce712a43bbe7d76f768caf8, type: 3}
   clip_arrowMissed: {fileID: 8300000, guid: 0d7c6a010baeeb844aff6fd8a6297380, type: 3}
+  clip_loadingArrow: {fileID: 0}
+  clip_tenSec: {fileID: 0}
+  clip_keepTrying: {fileID: 0}
+  clip_10: {fileID: 0}
+  clip_20: {fileID: 0}
+  clip_30: {fileID: 0}
+  clip_40: {fileID: 0}
+  clip_50: {fileID: 0}
+  clip_60: {fileID: 0}
+  clip_70: {fileID: 0}
+  clip_80: {fileID: 0}
+  clip_90: {fileID: 0}
+  clip_100: {fileID: 0}
+  clip_200: {fileID: 0}
+  clip_300: {fileID: 0}
+  clip_400: {fileID: 0}
+  clip_500: {fileID: 0}
+  clip_600: {fileID: 0}
+  clip_700: {fileID: 0}
+  clip_800: {fileID: 0}
+  clip_900: {fileID: 0}
+  clip_1000: {fileID: 0}
+  clip_2000: {fileID: 0}
+  clip_3000: {fileID: 0}
+  clip_4000: {fileID: 0}
+  clip_5000: {fileID: 0}
+  clip_6000: {fileID: 0}
+  clip_7000: {fileID: 0}
+  clip_8000: {fileID: 0}
+  clip_9000: {fileID: 0}
+  clip_10000: {fileID: 0}
+  clip_currentScore: {fileID: 0}
+  clip_totalScore: {fileID: 0}
+  clip_keepPracticing: {fileID: 0}
 --- !u!1 &746476501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2629,7 +2639,7 @@ GameObject:
   - component: {fileID: 979685820}
   - component: {fileID: 979685819}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TestText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3049,9 +3059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376bd8fc008edea41a9ab78aac599a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fill: {fileID: 0}
-  health: 0
-  maxhealth: 180
 --- !u!1001 &1199665428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3197,7 +3204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1221156286
 Transform:
   m_ObjectHideFlags: 0
@@ -3671,7 +3678,6 @@ GameObject:
   - component: {fileID: 1501668597}
   - component: {fileID: 1501668596}
   - component: {fileID: 1501668599}
-  - component: {fileID: 1501668600}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: LeftHand
@@ -3913,20 +3919,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1488236687}
---- !u!114 &1501668600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501668594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4645009129f3246ae87b4cee545734, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testing: {fileID: 0}
-  controller: {fileID: 0}
 --- !u!1 &1519926203
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,9 +4139,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1595864820}
   - component: {fileID: 1595864821}
+  - component: {fileID: 1595864822}
   m_Layer: 0
   m_Name: ControllerTest
-  m_TagString: TestCollider
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4179,10 +4172,22 @@ BoxCollider:
   m_GameObject: {fileID: 1595864819}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 20, y: 10, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1595864822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595864819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141e75cfb5566bf4aa6a1b204dc886a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1603655960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4645,7 +4650,6 @@ GameObject:
   - component: {fileID: 1725198607}
   - component: {fileID: 1725198606}
   - component: {fileID: 1725198609}
-  - component: {fileID: 1725198610}
   m_Layer: 0
   m_Name: RightHand Controller
   m_TagString: RightHand
@@ -4887,20 +4891,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 1603655963}
---- !u!114 &1725198610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1725198604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4645009129f3246ae87b4cee545734, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testing: {fileID: 0}
-  controller: {fileID: 0}
 --- !u!1 &1773915639
 GameObject:
   m_ObjectHideFlags: 0
