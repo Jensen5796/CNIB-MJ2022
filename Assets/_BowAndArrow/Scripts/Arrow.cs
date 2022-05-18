@@ -29,7 +29,7 @@ public class Arrow : XRGrabInteractable
         collider = GetComponent<Collider>();
         rigidbody = GetComponent<Rigidbody>();
         targetAuraLayermask = LayerMask.GetMask("AuraColliders");
-        GameObject go2 = GameObject.Find("Text");
+        GameObject go2 = GameObject.Find("TestText");
         test = go2.GetComponent<Text>();
         soundcue = GetComponent<SoundCues>();
         GetComponent<AudioSource>().PlayOneShot(soundcue.clip_loadingArrow);

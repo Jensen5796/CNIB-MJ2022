@@ -28,7 +28,7 @@ public class TargetManager : MonoBehaviour
         //set up debugging text
         //GameObject go = GameObject.Find("Text2");
         //test = go.GetComponent<Text>();
-        GameObject go2 = GameObject.Find("Text");
+        GameObject go2 = GameObject.Find("TestText");
         test2 = go2.GetComponent<Text>();
         //test.text = "testing";
 
