@@ -9,6 +9,7 @@ public class ConcentricTarget : MonoBehaviour, IArrowHittable
 
     public AudioClip hitTarget;
     public AudioClip celebration;
+   
 
     public void Hit(Arrow arrow)
     {
@@ -17,6 +18,7 @@ public class ConcentricTarget : MonoBehaviour, IArrowHittable
         Debug.Log("You hit the " + name);
         //Debug.Log("Increase score here");
         SumScore.Add(ascore);
+ 
         Debug.Log("Add sound effect/celebration here");
         GetComponent<AudioSource>().PlayOneShot(hitTarget);
         GetComponent<AudioSource>().PlayOneShot(celebration);

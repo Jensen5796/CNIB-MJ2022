@@ -45,6 +45,9 @@ MonoImporter:
   - clip_8000: {fileID: 8300000, guid: ce8b599a16f984d4fbccbf1dce893fc7, type: 3}
   - clip_9000: {fileID: 8300000, guid: e61a2c0ebb843b44b9ecb2dfe1f28b01, type: 3}
   - clip_10000: {fileID: 8300000, guid: dc0c851c4fcd44c4e8a5f3cdae5abfc3, type: 3}
+  - clip_20points: {fileID: 8300000, guid: 23cb133ed9e5c554b9b91be82b6d3467, type: 3}
+  - clip_50points: {fileID: 8300000, guid: ff2b2ef9e985d2a498dabb8c4e8c1620, type: 3}
+  - clip_100points: {fileID: 8300000, guid: ff380077b4bd03944b9d3266c14a7af6, type: 3}
   - clip_currentScore: {fileID: 8300000, guid: 15f90e16c23f6e84f96b95a638355de3, type: 3}
   - clip_totalScore: {fileID: 8300000, guid: b4d58c28d0efc374e8816d11ec75c5af, type: 3}
   - clip_keepPracticing: {fileID: 8300000, guid: 7b9e1d38b6136cc42a2bdeeb1dfe1eb2,
