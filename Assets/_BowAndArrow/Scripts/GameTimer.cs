@@ -9,7 +9,7 @@ public class GameTimer : MonoBehaviour
    // public HealthBar healthbar;
     void Start()
     {
-       
+        GameObject.Find("CanvasManager").SetActive(false);
     }
 
     private void Awake()
@@ -31,6 +31,13 @@ public class GameTimer : MonoBehaviour
     void endTimeTest()
     {
         GameObject.Find("TestCube").SetActive(false);
+        
+
+    }
+
+    public static float getElapsedTime()
+    {
+        return elapsedTime;
     }
 
 }

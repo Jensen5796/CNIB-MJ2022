@@ -25,11 +25,18 @@ public class BowOrHand : MonoBehaviour
             bowL.SetActive(false);
             handL.SetActive(true);
         }
-        else
+        else if (menuOption == "L")
         {
             bowR.SetActive(false);
             handR.SetActive(true);
             bowL.SetActive(true);
+            handL.SetActive(false);
+        }
+        else
+        {
+            bowR.SetActive(false);
+            handR.SetActive(false);
+            bowL.SetActive(false);
             handL.SetActive(false);
         }
     }

@@ -13,6 +13,7 @@ TagManager:
   - LeftHand
   - RightHand
   - TestCollider
+  - TestingText
   layers:
   - Default
   - TransparentFX

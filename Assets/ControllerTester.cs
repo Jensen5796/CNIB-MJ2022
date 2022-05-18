@@ -18,7 +18,7 @@ public class ControllerTester : MonoBehaviour
         controllerLeft = GameObject.Find("LeftHand Controller").GetComponent<ActionBasedController>();
         controllerRight = GameObject.Find("RightHand Controller").GetComponent<ActionBasedController>();
         test = GameObject.Find("TestText").GetComponent<Text>();
-        test.text = "controller testing";
+        //test.text = "controller testing";
         testCube = GameObject.Find("TestCube").GetComponent<ColorChange>();
         
         
