@@ -9,6 +9,9 @@ public class CanvasManager : MonoBehaviour
     RectTransform mainMenu;
     RectTransform credits;
 
+    //Skybox
+    RectTransform skybox;
+
     //GameObject[] testing;
     Text tester;
 
@@ -123,4 +126,23 @@ public class CanvasManager : MonoBehaviour
             return;
         }
     }
+
+    //Day or Night Skybox
+    private void handleSkyboxDN() 
+    {
+        char skyboxDecision = ControllerResponse.getControllerResponse();
+        skybox.gameObject.SetActive(true);
+
+    }
+
+    private void DisableEndGameComponents() 
+    {
+
+    }
+
+    private void GetExecuteSkyboxDecision(char decision) 
+    {
+        
+    }
+
 }
