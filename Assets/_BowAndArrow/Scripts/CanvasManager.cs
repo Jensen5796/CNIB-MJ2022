@@ -22,9 +22,6 @@ public class CanvasManager : MonoBehaviour
     TargetManager tm;
 
     
-
-
-
     // Start is called before the first frame update
     void Awake()
     {
