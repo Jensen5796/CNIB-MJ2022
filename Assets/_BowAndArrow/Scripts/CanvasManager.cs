@@ -7,9 +7,9 @@ public class CanvasManager : MonoBehaviour
 {
     RectTransform gameOver;
     RectTransform mainMenu;
-    
     RectTransform credits;
-    GameObject[] testing;
+
+    //GameObject[] testing;
     Text tester;
 
     Bow leftBow;
@@ -48,8 +48,8 @@ public class CanvasManager : MonoBehaviour
         mainMenu.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
 
-        testing = GameObject.FindGameObjectsWithTag("TestingText");
-        setTestingText("testing");
+        //testing = GameObject.FindGameObjectsWithTag("TestingText");
+        //setTestingText("testing");
     }
 
     // Update is called once per frame
@@ -68,18 +68,18 @@ public class CanvasManager : MonoBehaviour
         
     }
 
-    private void setTestingText(string text)
-    {
-        foreach (GameObject go in testing){
-            go.GetComponent<Text>().text = text;
-        }
-    }
+    //private void setTestingText(string text)
+    //{
+    //    foreach (GameObject go in testing){
+    //        go.GetComponent<Text>().text = text;
+    //    }
+    //}
 
     public void handleGameOver()
     {
         char decision = ControllerResponse.getControllerResponse();
         tester.text = decision.ToString();
-        setTestingText(decision.ToString());
+        //setTestingText(decision.ToString());
         gameOver.gameObject.SetActive(true);
         DisableGameComponents();
         GetExecuteEndGameDecision(decision);
