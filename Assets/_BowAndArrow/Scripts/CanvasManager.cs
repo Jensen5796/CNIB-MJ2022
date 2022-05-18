@@ -9,6 +9,11 @@ public class CanvasManager : MonoBehaviour
     RectTransform mainMenu;
     RectTransform credits;
 
+    //Skybox scene;
+
+    //Skybox
+    RectTransform skyboxOption;
+
     //GameObject[] testing;
     Text tester;
 
@@ -27,6 +32,7 @@ public class CanvasManager : MonoBehaviour
     {
         
         tester = GameObject.Find("TestText").GetComponent<Text>();
+       // scene = GameObject.Find("Scene").GetComponent<Skybox>();
 
         leftBow = GameObject.Find("BowL").GetComponent<Bow>();
         leftHand = GameObject.Find("HandL").GetComponent<Animator>();
@@ -41,10 +47,15 @@ public class CanvasManager : MonoBehaviour
         mainMenu = GameObject.Find("MainMenu").GetComponent<RectTransform>();
         credits = GameObject.Find("Credits").GetComponent<RectTransform>();
 
+        //skybox
+        skyboxOption = GameObject.Find("Skybox Option").GetComponent<RectTransform>();
+
         gameOver.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
 
+        //skybox
+        skyboxOption.gameObject.SetActive(false);
         //testing = GameObject.FindGameObjectsWithTag("TestingText");
         //setTestingText("testing");
     }
@@ -123,4 +134,44 @@ public class CanvasManager : MonoBehaviour
             return;
         }
     }
+
+    //Day or Night Skybox
+    private void handleSkyboxDN() 
+    {
+        DisableLeftRightComponents();
+        skyboxOption.gameObject.SetActive(true);
+        char skyboxDecision = ControllerResponse.getControllerResponse();
+
+        GetExecuteSkyboxDecision(skyboxDecision);
+    }
+
+    private void DisableLeftRightComponents() 
+    {
+        //disable Dat's function for the panel
+    }
+
+    private void GetExecuteSkyboxDecision(char decision) 
+    {
+        if (decision == 'L')
+        {
+            //disable left/right panel
+            //day
+            skyboxOption.gameObject.SetActive(true);
+            RenderSettings.skybox.HasProperty("FluffballDay");
+
+
+        }
+        else if (decision == 'R')
+        {
+            //disable left/right panel
+            //night
+            RenderSettings.skybox.HasProperty("DarkStorm4K");
+            
+        }
+        else
+        {
+            return;
+        }
+    }
+
 }
