@@ -25,6 +25,8 @@ public class CanvasManager : MonoBehaviour
     Quiver quiver;
     Renderer ground;
     TargetManager tm;
+    Canvas scoreboard;
+    Canvas healthbar;
 
     
     // Start is called before the first frame update
@@ -42,6 +44,8 @@ public class CanvasManager : MonoBehaviour
         quiver = GameObject.Find("Quiver").GetComponent<Quiver>();
         ground = GameObject.Find("Ground").GetComponent<Renderer>();
         tm = GameObject.Find("Targets").GetComponent<TargetManager>();
+        scoreboard = GameObject.Find("ScoreBoard").GetComponentInChildren<Canvas>();
+        healthbar = GameObject.Find("TimerCanvas").GetComponent<Canvas>();
 
         gameOver = GameObject.Find("EndGame").GetComponent<RectTransform>();
         mainMenu = GameObject.Find("MainMenu").GetComponent<RectTransform>();
@@ -105,6 +109,8 @@ public class CanvasManager : MonoBehaviour
             quiver.enabled = false;
             ground.enabled = false;
             tm.enabled = false;
+            scoreboard.enabled = false;
+            healthbar.enabled = false;
 
             GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
             foreach (GameObject target in activeTargets)

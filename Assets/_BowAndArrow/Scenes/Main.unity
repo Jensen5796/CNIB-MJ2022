@@ -651,15 +651,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296320287}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -451.41574}
-  m_LocalScale: {x: 90.28315, y: 90.28315, z: 90.28315}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1461517707}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13271.624, y: 902.8315}
+  m_AnchoredPosition: {x: 150.1, y: -0.1}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &296320289
@@ -2325,15 +2325,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784046026}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -451.4157}
-  m_LocalScale: {x: 45.141567, y: 45.141567, z: 90.28314}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1461517707}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1128.538, y: 7448.359}
+  m_AnchoredPosition: {x: -2.5, y: 84.7}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &784046028
@@ -2953,15 +2953,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056448888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -451.41574}
-  m_LocalScale: {x: 90.28315, y: 90.28315, z: 90.28315}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1461517707}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17424.646, y: 1173.6809}
+  m_AnchoredPosition: {x: -132.5, y: 7.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056448890
@@ -3373,6 +3373,18 @@ PrefabInstance:
       propertyPath: Background
       value: 
       objectReference: {fileID: 1133650872}
+    - target: {fileID: 11414030, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
+      propertyPath: clip_20points
+      value: 
+      objectReference: {fileID: 8300000, guid: 23cb133ed9e5c554b9b91be82b6d3467, type: 3}
+    - target: {fileID: 11414030, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
+      propertyPath: clip_50points
+      value: 
+      objectReference: {fileID: 8300000, guid: ff2b2ef9e985d2a498dabb8c4e8c1620, type: 3}
+    - target: {fileID: 11414030, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
+      propertyPath: clip_100points
+      value: 
+      objectReference: {fileID: 8300000, guid: ff380077b4bd03944b9d3266c14a7af6, type: 3}
     - target: {fileID: 11493390, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
       propertyPath: m_Text
       value: 00:00
@@ -5462,7 +5474,7 @@ GameObject:
   - component: {fileID: 1773915642}
   - component: {fileID: 1773915641}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TimerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
