@@ -67,6 +67,7 @@ public class CanvasManager : MonoBehaviour
         if (GameTimer.getElapsedTime() <= 0)
         {
             handleGameOver();
+            //handleSkyboxDN();
         }
         else
         {
@@ -156,7 +157,7 @@ public class CanvasManager : MonoBehaviour
         {
             //disable left/right panel
             //day
-            skyboxOption.gameObject.SetActive(true);
+            skyboxOption.gameObject.SetActive(false);
             RenderSettings.skybox.HasProperty("FluffballDay");
 
 
@@ -165,6 +166,7 @@ public class CanvasManager : MonoBehaviour
         {
             //disable left/right panel
             //night
+            skyboxOption.gameObject.SetActive(false);
             RenderSettings.skybox.HasProperty("DarkStorm4K");
             
         }
