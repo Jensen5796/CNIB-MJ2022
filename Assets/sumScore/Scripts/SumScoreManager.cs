@@ -16,10 +16,6 @@ public class SumScoreManager : MonoBehaviour {
     public Text highScoreField; // Text field displaying high score
     public SoundCues soundcue;
 
-    public AudioClip clip_20points;
-    public AudioClip clip_50points;
-    public AudioClip clip_100points;
-
     public bool thousand = false;
     public bool hundred = false;
     public bool ten = false;
@@ -67,14 +63,6 @@ public class SumScoreManager : MonoBehaviour {
         field.text = SumScore.Score.ToString("0"); // Post new score to text field
 
 
-    }
-
-    public void AnnouncePoint(int ascore)
-    {
-        if (ascore == 20) GetComponent<AudioSource>().PlayOneShot(clip_20points); 
-        else if (ascore == 50) GetComponent<AudioSource>().PlayOneShot(clip_50points);
-        else if (ascore == 100) GetComponent<AudioSource>().PlayOneShot(clip_100points);
-        
     }
 
     /// <summary>Notify this manager of a change in high score</summary>

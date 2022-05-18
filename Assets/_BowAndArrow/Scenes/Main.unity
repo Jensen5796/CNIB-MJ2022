@@ -1444,7 +1444,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 98772315507041741ac5e79cf14cd9d5, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2471,11 +2471,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1689598635}
     m_Modifications:
-    - target: {fileID: 1499342312087700653, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.363
-      objectReference: {fileID: 0}
     - target: {fileID: 2762203773592475860, guid: d2c38afe94b2cdf478c726c122edd9d9,
         type: 3}
       propertyPath: m_Name
@@ -2556,36 +2551,6 @@ PrefabInstance:
       propertyPath: ascore
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 4936920647174788684, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_20points
-      value: 
-      objectReference: {fileID: 8300000, guid: 23cb133ed9e5c554b9b91be82b6d3467, type: 3}
-    - target: {fileID: 4936920647174788684, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_50points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff2b2ef9e985d2a498dabb8c4e8c1620, type: 3}
-    - target: {fileID: 4936920647174788684, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_100points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff380077b4bd03944b9d3266c14a7af6, type: 3}
-    - target: {fileID: 7364536636159023334, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_20points
-      value: 
-      objectReference: {fileID: 8300000, guid: 23cb133ed9e5c554b9b91be82b6d3467, type: 3}
-    - target: {fileID: 7364536636159023334, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_50points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff2b2ef9e985d2a498dabb8c4e8c1620, type: 3}
-    - target: {fileID: 7364536636159023334, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_100points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff380077b4bd03944b9d3266c14a7af6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2c38afe94b2cdf478c726c122edd9d9, type: 3}
 --- !u!4 &889585918 stripped
@@ -3324,18 +3289,6 @@ PrefabInstance:
       propertyPath: Background
       value: 
       objectReference: {fileID: 1133650872}
-    - target: {fileID: 11414030, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
-      propertyPath: clip_20points
-      value: 
-      objectReference: {fileID: 8300000, guid: 23cb133ed9e5c554b9b91be82b6d3467, type: 3}
-    - target: {fileID: 11414030, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
-      propertyPath: clip_50points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff2b2ef9e985d2a498dabb8c4e8c1620, type: 3}
-    - target: {fileID: 11414030, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
-      propertyPath: clip_100points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff380077b4bd03944b9d3266c14a7af6, type: 3}
     - target: {fileID: 11493390, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
       propertyPath: m_Text
       value: 00:00
@@ -4344,11 +4297,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1689598635}
     m_Modifications:
-    - target: {fileID: 1499342312087700653, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.304
-      objectReference: {fileID: 0}
     - target: {fileID: 2762203773592475860, guid: d2c38afe94b2cdf478c726c122edd9d9,
         type: 3}
       propertyPath: m_Name
@@ -4429,36 +4377,6 @@ PrefabInstance:
       propertyPath: ascore
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 4936920647174788684, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_20points
-      value: 
-      objectReference: {fileID: 8300000, guid: 23cb133ed9e5c554b9b91be82b6d3467, type: 3}
-    - target: {fileID: 4936920647174788684, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_50points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff2b2ef9e985d2a498dabb8c4e8c1620, type: 3}
-    - target: {fileID: 4936920647174788684, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_100points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff380077b4bd03944b9d3266c14a7af6, type: 3}
-    - target: {fileID: 7364536636159023334, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_20points
-      value: 
-      objectReference: {fileID: 8300000, guid: 23cb133ed9e5c554b9b91be82b6d3467, type: 3}
-    - target: {fileID: 7364536636159023334, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_50points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff2b2ef9e985d2a498dabb8c4e8c1620, type: 3}
-    - target: {fileID: 7364536636159023334, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_100points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff380077b4bd03944b9d3266c14a7af6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2c38afe94b2cdf478c726c122edd9d9, type: 3}
 --- !u!4 &1546996868 stripped
@@ -5558,7 +5476,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f7b1c7f9ea8558f488d6b8f7c5829d56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9a8e023b5e66b0d478386a07d1627765, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5899,16 +5817,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1499342312087700653, guid: d2c38afe94b2cdf478c726c122edd9d9,
         type: 3}
-      propertyPath: m_Pitch
-      value: 0.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 1499342312087700653, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1499342312087700653, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -5992,36 +5900,6 @@ PrefabInstance:
       propertyPath: ascore
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 4936920647174788684, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_20points
-      value: 
-      objectReference: {fileID: 8300000, guid: 23cb133ed9e5c554b9b91be82b6d3467, type: 3}
-    - target: {fileID: 4936920647174788684, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_50points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff2b2ef9e985d2a498dabb8c4e8c1620, type: 3}
-    - target: {fileID: 4936920647174788684, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_100points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff380077b4bd03944b9d3266c14a7af6, type: 3}
-    - target: {fileID: 7364536636159023334, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_20points
-      value: 
-      objectReference: {fileID: 8300000, guid: 23cb133ed9e5c554b9b91be82b6d3467, type: 3}
-    - target: {fileID: 7364536636159023334, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_50points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff2b2ef9e985d2a498dabb8c4e8c1620, type: 3}
-    - target: {fileID: 7364536636159023334, guid: d2c38afe94b2cdf478c726c122edd9d9,
-        type: 3}
-      propertyPath: clip_100points
-      value: 
-      objectReference: {fileID: 8300000, guid: ff380077b4bd03944b9d3266c14a7af6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2c38afe94b2cdf478c726c122edd9d9, type: 3}
 --- !u!1001 &4017450324904669094

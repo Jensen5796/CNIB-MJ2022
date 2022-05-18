@@ -5,7 +5,6 @@ using UnityEngine;
 public class SoundCues : MonoBehaviour
 {
     [Header("Audio")]
-    
     public AudioClip clip_turnRight;
     public AudioClip clip_turnLeft;
     public AudioClip clip_aimUp;
@@ -51,12 +50,9 @@ public class SoundCues : MonoBehaviour
     public AudioClip clip_8000;
     public AudioClip clip_9000;
     public AudioClip clip_10000;
-    
 
     public AudioClip clip_currentScore;
     public AudioClip clip_totalScore;
     public AudioClip clip_keepPracticing;
 
-
-  
 }
