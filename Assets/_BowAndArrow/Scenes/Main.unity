@@ -4894,7 +4894,7 @@ MonoBehaviour:
   targetPrefab: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
     type: 3}
   yAxisOffset: 0.5
-  targetDistanceFromPlayer: 0
+  timeToDestroyTarget: 1
 --- !u!1 &1691228512 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2589571369817754473, guid: 6c3c0bfa92038bd4aa725e80a43ced1e,

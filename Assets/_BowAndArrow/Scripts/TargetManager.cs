@@ -13,7 +13,7 @@ public class TargetManager : MonoBehaviour
 
     public GameObject targetPrefab;
     public float yAxisOffset = 1.0f;
-    public float targetDistanceFromPlayer;
+    public float timeToDestroyTarget;
 
     private float destroyTargetStartTime = 0;
     private bool destroyingTarget;
@@ -131,7 +131,7 @@ public class TargetManager : MonoBehaviour
         {
             //test.text = "in middle of destroy function; start time is " + destroyTargetStartTime.ToString() + " current time is: "+currentTime.ToString();
             //if current time - start time = 2 sec,
-            if (currentTime - destroyTargetStartTime >= 2)
+            if (currentTime - destroyTargetStartTime >= timeToDestroyTarget)
             {
                 // get rotation for target
                 Quaternion rot = target.transform.rotation;
@@ -239,20 +239,20 @@ public class TargetManager : MonoBehaviour
 
     }
 
-    private Vector3 calculateTargetPosition(int angle)
-    {
-        //old function, was used in previous version
+    //private Vector3 calculateTargetPosition(int angle)
+    //{
+    //    //old function, was used in previous version
 
 
-        Vector3 targetPosition = Vector3.zero;
+    //    Vector3 targetPosition = Vector3.zero;
 
-        float xValue = Mathf.Cos(angle) * targetDistanceFromPlayer;
-        float zValue = Mathf.Sin(angle) * targetDistanceFromPlayer;
+    //    float xValue = Mathf.Cos(angle) * targetDistanceFromPlayer;
+    //    float zValue = Mathf.Sin(angle) * targetDistanceFromPlayer;
 
-        test2.text += "; xValue= " + xValue + "; zValue= " + zValue;
-        targetPosition.Set(xValue, yAxisOffset, zValue);
-        return targetPosition;
-    }
+    //    test2.text += "; xValue= " + xValue + "; zValue= " + zValue;
+    //    targetPosition.Set(xValue, yAxisOffset, zValue);
+    //    return targetPosition;
+    //}
 
     
     private float findYRotationAngle2(float xValue, float zValue)
