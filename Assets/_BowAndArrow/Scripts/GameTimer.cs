@@ -64,6 +64,7 @@ public class GameTimer : MonoBehaviour
     {
 
         timerEnded.SetActive(true);
+        Debug.Log("Time's up!");
         //controllerLeft = GameObject.Find("LeftHand Contoller");
         //controllerRight = GameObject.Find("RightHand Contoller");
         //GameObject rightHand = GameObject.Find("RightHand Controller");
@@ -73,25 +74,27 @@ public class GameTimer : MonoBehaviour
 
         controllerLeft = GameObject.Find("LeftHand Controller").GetComponent<ActionBasedController>();
         controllerRight = GameObject.Find("RightHand Controller").GetComponent<XRDirectInteractor>();
-        char response;
+        //  char response;
 
-        response = ControllerResponse.getControllerResponse();
-        if (response == 'L')
+        // response = ControllerResponse.getControllerResponse();
+
+        if (controllerRight.isActiveAndEnabled)
         {
 
             //Left controller grip button was pressed
             timerEnded.SetActive(false);
             Credits.SetActive(true);
 
-
+            Debug.Log("Left controller is working");
         }
-        else if (response == 'R')
-        {
-            //Right controller grip button was pressed
-            timerEnded.SetActive(false);
-            MainMenu.SetActive(true);
+        //else if (response == 'R')
+        //{
+        //    //Right controller grip button was pressed
+        //    timerEnded.SetActive(false);
+        //    MainMenu.SetActive(true);
 
-        }
+        //    Debug.Log("Right controller is working");
+        //}
 
         //if (response == 'L')
         //{
