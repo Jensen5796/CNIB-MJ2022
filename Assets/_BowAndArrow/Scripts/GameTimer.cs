@@ -24,5 +24,10 @@ public class GameTimer : MonoBehaviour
         //healthbar.Tick(elapsedTime);
     }
 
+    public static float getElapsedTime()
+    {
+        return elapsedTime;
+    }
+
 }
 
