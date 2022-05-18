@@ -22,7 +22,6 @@ public class SumScore {
     public static void Add (int pointsToAdd) {
         Debug.Log(pointsToAdd + " points " + ((pointsToAdd > 0) ? "added" : "removed"));
         Score += pointsToAdd; // Add points to current score
-        mgr.AnnouncePoint(pointsToAdd);
         if (MgrSet()) {
             // Make sure we don't go negative unless we're supposed to
             if (Score < 0 && !mgr.allowNegative)
