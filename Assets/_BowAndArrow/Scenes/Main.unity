@@ -1262,27 +1262,27 @@ PrefabInstance:
     - target: {fileID: 4615929981493384917, guid: 8280ed57f5b0c824d85a4b35abad1b39,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3765624
+      value: 3.376562
       objectReference: {fileID: 0}
     - target: {fileID: 4615929981493384917, guid: 8280ed57f5b0c824d85a4b35abad1b39,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.3765624
+      value: 3.376562
       objectReference: {fileID: 0}
     - target: {fileID: 4615929981493384917, guid: 8280ed57f5b0c824d85a4b35abad1b39,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.3765624
+      value: 3.376562
       objectReference: {fileID: 0}
     - target: {fileID: 4615929981493384917, guid: 8280ed57f5b0c824d85a4b35abad1b39,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -212
       objectReference: {fileID: 0}
     - target: {fileID: 4615929981493384917, guid: 8280ed57f5b0c824d85a4b35abad1b39,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 50.125
+      value: 241
       objectReference: {fileID: 0}
     - target: {fileID: 4615929981493384917, guid: 8280ed57f5b0c824d85a4b35abad1b39,
         type: 3}
@@ -2769,7 +2769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8867924, g: 0.7536653, b: 0.03681021, a: 1}
+  m_Color: {r: 0.9433962, g: 0.79180294, b: 0.04805973, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3025,7 +3025,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1082876712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3463,11 +3463,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22465962, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 201
       objectReference: {fileID: 0}
     - target: {fileID: 22465962, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -5
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 22465962, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5529,7 +5529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -5551,7 +5551,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1263429729}
-  m_PlaneDistance: 10
+  m_PlaneDistance: 30
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
