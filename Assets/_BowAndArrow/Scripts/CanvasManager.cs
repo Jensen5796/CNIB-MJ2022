@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
+    
     RectTransform gameOver;
     RectTransform mainMenu;
     RectTransform credits;
@@ -13,6 +15,8 @@ public class CanvasManager : MonoBehaviour
 
     //Skybox
     RectTransform skyboxOption;
+    public Material daySky;
+    public Material nightSky;
 
     //GameObject[] testing;
     Text tester;
@@ -60,6 +64,8 @@ public class CanvasManager : MonoBehaviour
 
         //skybox
         skyboxOption.gameObject.SetActive(false);
+
+
         //testing = GameObject.FindGameObjectsWithTag("TestingText");
         //setTestingText("testing");
     }
@@ -95,7 +101,8 @@ public class CanvasManager : MonoBehaviour
         //setTestingText(decision.ToString());
         gameOver.gameObject.SetActive(true);
         DisableGameComponents();
-        GetExecuteEndGameDecision(decision);
+        //GetExecuteEndGameDecision(decision);
+        GetExecuteSkyboxDecision(decision);
     }
 
     private void DisableGameComponents()
@@ -143,6 +150,8 @@ public class CanvasManager : MonoBehaviour
     }
 
     //Day or Night Skybox
+
+  
     private void handleSkyboxDN() 
     {
         DisableLeftRightComponents();
@@ -163,23 +172,35 @@ public class CanvasManager : MonoBehaviour
         {
             //disable left/right panel
             //day
-            skyboxOption.gameObject.SetActive(false);
-            RenderSettings.skybox.HasProperty("FluffballDay");
-
+            gameOver.gameObject.SetActive(false);
+            // skyboxOption.gameObject.SetActive(true);
+            //RenderSettings.skybox.HasProperty("FluffballDay");
+            //  daySky = Resources.Load("Assets/SkySeriesFreebie/FluffballDay.mat", typeof(Material)) as Material;
+            //nightSky = Resources.Load<Material>("Assets/SkySeriesFreebie/FreebieHdri/DarkStorm4K.hdr");
+            //RenderSettings.skybox = nightSky;
+            //DynamicGI.UpdateEnvironment();
+            Color dark = new Color(31, 31, 31, 128);
+            RenderSettings.skybox.SetColor("_Tint", dark);
 
         }
         else if (decision == 'R')
         {
             //disable left/right panel
             //night
-            skyboxOption.gameObject.SetActive(false);
-            RenderSettings.skybox.HasProperty("DarkStorm4K");
-            
+            gameOver.gameObject.SetActive(false);
+            //skyboxOption.gameObject.SetActive(false);
+            //daySky = Resources.Load("Assets/SkySeriesFreebie/FluffballDay.mat", typeof(Material)) as Material;
+            //  nightSky = Resources.Load<Material>("Assets/SkySeriesFreebie/FluffballDay.mat");
+            //RenderSettings.skybox.HasProperty("DarkStorm4K");
+            //RenderSettings.skybox = daySky;
+            ////RenderSettings.skybox.CopyPropertiesFromMaterial(nightSky);
+            //DynamicGI.UpdateEnvironment();
         }
         else
         {
             return;
         }
+
     }
 
 }

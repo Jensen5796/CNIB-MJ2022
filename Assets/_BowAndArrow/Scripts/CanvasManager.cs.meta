@@ -3,7 +3,9 @@ guid: b5e1c22a066345647b5945af2b0c5dbb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - daySky: {fileID: 2100000, guid: 20d4f77b9022eab48b4d94599ed4bf82, type: 2}
+  - nightSky: {fileID: 8900000, guid: 762f22ba43541df4e95e0e7126e8d96c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

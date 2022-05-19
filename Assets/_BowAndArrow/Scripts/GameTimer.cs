@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-    public static float elapsedTime = 180;
+    public static float elapsedTime = 10;
     // Start is called before the first frame update
    // public HealthBar healthbar;
     void Start()
