@@ -172,6 +172,7 @@ public class CanvasManager : MonoBehaviour
             }
             else
             {
+                gameStateInitiated[1] = false; //no option selected
                 return;
             }
         }
@@ -217,6 +218,7 @@ public class CanvasManager : MonoBehaviour
             }
             else
             {
+                gameStateInitiated[2] = false; //no option selected yet
                 return;
             }
         }
@@ -261,6 +263,7 @@ public class CanvasManager : MonoBehaviour
             }
             else
             {
+                gameStateInitiated[3] = false; //nothing actually got changed
                 return;
             }
         }
@@ -366,6 +369,7 @@ public class CanvasManager : MonoBehaviour
             }
             else
             {
+                gameStateInitiated[4] = false; //nothing actually got changed
                 return;
             }
         }
@@ -462,6 +466,7 @@ public class CanvasManager : MonoBehaviour
         }
         else
         {
+            gameStateInitiated[7] = false; //nothing actually got changed
             return;
         }
     }
@@ -510,7 +515,7 @@ public class CanvasManager : MonoBehaviour
     {
         //creditsPanel.gameObject.SetActive(true);
         char creditsDecision = ControllerResponse.getControllerResponse();
-        if (creditsDecision != null) //if any char has been assigned meaning a button has been pressed
+        if (creditsDecision == 'L' || creditsDecision == 'R') //if any char has been assigned meaning a button has been pressed
         {
             //main menu
             gameState = 1;
