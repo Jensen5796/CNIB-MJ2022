@@ -5,11 +5,13 @@ using UnityEngine;
 public class GameTimer : MonoBehaviour
 {
     public static float elapsedTime = 180;
+    //public static float durationOfRound = 180;
+
     // Start is called before the first frame update
-   // public HealthBar healthbar;
+    // public HealthBar healthbar;
     void Start()
     {
-       
+       //elapsedTime = durationOfRound;
     }
 
     private void Awake()
@@ -28,6 +30,10 @@ public class GameTimer : MonoBehaviour
     {
         return elapsedTime;
     }
+    //public static float getDurationOfRound()
+    //{
+    //    return durationOfRound;
+    //}
 
 }
 

@@ -171,8 +171,10 @@ public class CanvasManager : MonoBehaviour
 
     public void handleHandSelection()
     {
+        //DisableGameComponents()
         //handSelection.gameObject.SetActive(true);
         char decision = ControllerResponse.getControllerResponse();
+
         ExecuteHandSelectionDecision(decision);
     }
     private void ExecuteHandSelectionDecision(char decision)
@@ -258,7 +260,9 @@ public class CanvasManager : MonoBehaviour
 
     public void handleTargetColSelection()
     {
-        if (isDayModeSelected) //day m ode
+        //existing targets should already be destroyed from Disabling game components at beginning of hand selection step
+
+        if (isDayModeSelected) //day mode
         {
             //show panel for daytime target options
             //targetColSelection1.gameObject.SetActive(true);
@@ -280,7 +284,7 @@ public class CanvasManager : MonoBehaviour
             gameStateInitiated[4] = true;
             if (decision == 'L') //target col choice 1
             {
-                //make setting change for L:  **make check for day or night mode**
+                //make setting change for L:  **make check for day or night mode** and changes need to be made to prefab
 
 
                 //change game state
@@ -310,7 +314,7 @@ public class CanvasManager : MonoBehaviour
             }
             else if (decision == 'R') //target col choice 2
             {
-                //make setting change for R: **make check for day or night mode**
+                //make setting change for R: **make check for day or night mode** changes need to be made to prefab
 
                 //change game state
                 if (isDemoModeSelected)
@@ -347,42 +351,49 @@ public class CanvasManager : MonoBehaviour
     
     private void InitiateDemoMode()
     {
-        //show singleton target, ground, skybox, enable quiver, set BowOrQuiver script to LRHandSelection
-        //hide healthbar and scoreboard
-        //disable target manager, game timer, ?others
+        if (!gameStateInitiated[5])
+        {
+            gameStateInitiated[5] = true;
+            //show singleton target, ground, skybox, enable quiver, set BowOrQuiver script to LRHandSelection
+            //hide healthbar and scoreboard
+            //disable target manager, game timer, ?others
 
-        //***** handling sound cues to guide user, based on single target?
+            //***** handling sound cues to guide user, based on single target?
             // if target not hit (no child 'Arrow')
-                //play directions to load and shoot arrow
-                //play directions to turn body to find target
+            //play directions to load and shoot arrow
+            //play directions to turn body to find target
             //when player hits target (coin sound)
-                //tell player the score value for each target ring
-                //in Play Mode the target will disappear and need to find new target
-                //tell player how long the round is 
-                //tell player to shoot straight up above them to access settings in game, or to leave demo now
-        //need to add collider for above player w/ script that checks this one for demo mode
+            //tell player the score value for each target ring
+            //in Play Mode the target will disappear and need to find new target
+            //tell player how long the round is 
+            //tell player to shoot straight up above them to access settings in game, or to leave demo now
+            //need to add collider for above player w/ script that checks this one for demo mode
             //if demo mode
-                //change game state to main menu,
-                //set isDemoModeSelected to false?
-                //remove singleton target
-                
-            //if play mode then then pause game timer script change game state to l/r hand setting
-                //(suggestion - get health bar script to look at elapsed time in game timer script rather than have internal timing)
+            //change game state to main menu,
+            //set isDemoModeSelected to false, and set gameStateInstantiated[5] = false
+            //remove singleton target
 
+            //if play mode then then pause game timer script change game state to l/r hand setting
+            //(suggestion - get health bar script to look at elapsed time in game timer script rather than have internal timing)
+        }
     }
 
     private void InitiateGameMode()
     {
-        //start TargetManagerScript
-        //show scoreboard, healthbar
-        //start gameTimer script
-        //enable ground, skybox, enable quiver,
-        //set BowOrHand script to LRHandSelection
-
+        if (!gameStateInitiated[6])
+        {
+            gameStateInitiated[6] = true;
+            //start TargetManagerScript
+            //show scoreboard, healthbar
+            //start gameTimer script
+            //enable ground, skybox, enable quiver,
+            //set BowOrHand script to LRHandSelection
+        }
     }
 
     public void handleGameOver()
     {
+        gameStateInitiated[6] = false; //turn off gameState at end of round, not during settings
         char decision = ControllerResponse.getControllerResponse();
         //tester.text = decision.ToString();
         //setTestingText(decision.ToString());
