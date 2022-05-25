@@ -23,6 +23,11 @@ public class GameTimer : MonoBehaviour
     {
         elapsedTime -= Time.deltaTime;
         SumScore.UpdateCount(elapsedTime);
+        if (elapsedTime <= 0 && CanvasManager.gameStateInitiated[6])
+        {
+            CanvasManager.gameState = 7;
+        }
+        
         //healthbar.Tick(elapsedTime);
     }
 
