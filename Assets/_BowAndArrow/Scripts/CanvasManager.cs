@@ -30,6 +30,7 @@ public class CanvasManager : MonoBehaviour
     TargetManager tm;
     Canvas scoreboard;
     Canvas healthbar;
+    GameTimer gameTimer;
 
     //Int to hold state of the game (which elements should be visible at particular time)
         //1 = Main menu (game start) - Demo or Play
@@ -41,7 +42,7 @@ public class CanvasManager : MonoBehaviour
         //7 = Round end - Main Menu or Credits
         //8 = Credits (any button returns to Main Menu)
     public static int gameState = 1; //start at main menu
-    public static bool[] gameStateInitiated = new bool[9]; //leave zero index blank
+    
     private bool isDemoModeSelected = false; //whether user has chosen demo or not
     private bool isDayModeSelected = true;
     private char LRHandSelection = 'N';
@@ -65,6 +66,7 @@ public class CanvasManager : MonoBehaviour
         tm = GameObject.Find("Targets").GetComponent<TargetManager>();
         scoreboard = GameObject.Find("ScoreBoard").GetComponentInChildren<Canvas>();
         healthbar = GameObject.Find("TimerCanvas").GetComponent<Canvas>();
+        gameTimer = GameObject.Find("Scene").GetComponent<GameTimer>();
 
         gameOver = GameObject.Find("EndGame").GetComponent<RectTransform>();
         mainMenu = GameObject.Find("MainMenu").GetComponent<RectTransform>();
@@ -86,6 +88,7 @@ public class CanvasManager : MonoBehaviour
         skyboxOption.gameObject.SetActive(false);
         //testing = GameObject.FindGameObjectsWithTag("TestingText");
         //setTestingText("testing");
+        DisableGameComponents();
     }
 
     // Update is called once per frame
@@ -136,6 +139,7 @@ public class CanvasManager : MonoBehaviour
 
     public void handleMainMenu()
     {
+        DisableGameComponents();
         mainMenu.gameObject.SetActive(true);
         char decision = ControllerResponse.getControllerResponse();
         ExecuteMainMenuDecision(decision);
@@ -143,9 +147,8 @@ public class CanvasManager : MonoBehaviour
 
     private void ExecuteMainMenuDecision(char decision)
     {
-        if (!gameStateInitiated[1])
-        {
-            gameStateInitiated[1] = true;
+        tester.text = "In Main Menu Selection";
+        
             if (decision == 'L') //Demo
             {
                 isDemoModeSelected = true;
@@ -155,8 +158,7 @@ public class CanvasManager : MonoBehaviour
                 
                 //change game state
                 gameState = 5;
-                //set this game state initiated back to false
-                gameStateInitiated[1] = false;
+                
                 
             }
             else if (decision == 'R') //Play --> proceed thru settings
@@ -166,22 +168,21 @@ public class CanvasManager : MonoBehaviour
                 
                 //change game state
                 gameState = 2;
-                //set this game state initiated back to false
-                gameStateInitiated[1] = false;
+                
                 
             }
             else
             {
-                gameStateInitiated[1] = false; //no option selected
+                
                 return;
             }
-        }
+        
         
     }
 
     public void handleHandSelection()
     {
-        DisableGameComponents();
+        DisableGameComponents(); //done in Main Menu, but also needs done here in case settings is called within game
         handSelection.gameObject.SetActive(true);
         char decision = ControllerResponse.getControllerResponse();
 
@@ -189,9 +190,8 @@ public class CanvasManager : MonoBehaviour
     }
     private void ExecuteHandSelectionDecision(char decision)
     {
-        if (!gameStateInitiated[2])
-        {
-            gameStateInitiated[2] = true;
+        tester.text += " In Hand Selection";
+        
             if (decision == 'L') //set left hand
             {
                 //make setting change for L:
@@ -199,8 +199,7 @@ public class CanvasManager : MonoBehaviour
 
                 //change game state
                 gameState = 3;
-                //set this game state initiated back to false
-                gameStateInitiated[2] = false;
+                
                 //hide menu
                 handSelection.gameObject.SetActive(false);
             }
@@ -211,17 +210,16 @@ public class CanvasManager : MonoBehaviour
 
                 //change game state
                 gameState = 3;
-                //set this game state initiated back to false
-                gameStateInitiated[2] = false;
+                
                 //hide menu
                 handSelection.gameObject.SetActive(false);
             }
             else
             {
-                gameStateInitiated[2] = false; //no option selected yet
+                
                 return;
             }
-        }
+        
 
     }
 
@@ -233,9 +231,8 @@ public class CanvasManager : MonoBehaviour
     }
     private void ExecuteEnvSelectionDecision(char decision)
     {
-        if (!gameStateInitiated[3])
-        {
-            gameStateInitiated[3] = true;
+        tester.text += " In Skybox Selection";
+        
             if (decision == 'L') //set night mode
             {
                 isDayModeSelected = false;
@@ -244,8 +241,7 @@ public class CanvasManager : MonoBehaviour
 
                 //change game state
                 gameState = 4;
-                //set this game state initiated back to false
-                gameStateInitiated[3] = false;
+                
                 //hide menu
                 skyboxOption.gameObject.SetActive(false);
             }
@@ -256,17 +252,16 @@ public class CanvasManager : MonoBehaviour
 
                 //change game state
                 gameState = 4;
-                //set this game state initiated back to false
-                gameStateInitiated[3] = false;
+                
                 //hide menu
                 skyboxOption.gameObject.SetActive(false);
             }
             else
             {
-                gameStateInitiated[3] = false; //nothing actually got changed
+                
                 return;
             }
-        }
+        
 
     }
 
@@ -290,10 +285,8 @@ public class CanvasManager : MonoBehaviour
     }
     private void ExecuteTargetColSelectionDecision(char decision)
     {
-
-        if (!gameStateInitiated[4])
-        {
-            gameStateInitiated[4] = true;
+        tester.text += " In Target color Selection";
+        
             if (decision == 'L') //target col choice 1
             {
                 //make setting change for L:  **make check for day or night mode** and changes need to be made to prefab
@@ -316,8 +309,7 @@ public class CanvasManager : MonoBehaviour
                     gameState = 6;
                 }
                 
-                //set this game state initiated back to false
-                gameStateInitiated[4] = false;
+                
 
                 //hide menu
                 if (isDayModeSelected) //day mode
@@ -352,8 +344,7 @@ public class CanvasManager : MonoBehaviour
                 {
                     gameState = 6;
                 }
-                //set this game state initiated back to false
-                gameStateInitiated[4] = false;
+                
 
                 //hide menu
                 if (isDayModeSelected) //day mode
@@ -369,19 +360,18 @@ public class CanvasManager : MonoBehaviour
             }
             else
             {
-                gameStateInitiated[4] = false; //nothing actually got changed
+                
                 return;
             }
-        }
+        
 
     }
 
     
     private void InitiateDemoMode()
     {
-        if (!gameStateInitiated[5])
-        {
-            gameStateInitiated[5] = true;
+        tester.text += " In Demo Mode";
+        
             //show singleton target, ground, skybox, enable quiver, set BowOrQuiver script to LRHandSelection
             //hide healthbar and scoreboard
             //disable target manager, game timer, ?others
@@ -403,25 +393,24 @@ public class CanvasManager : MonoBehaviour
 
             //if play mode then then pause game timer script change game state to l/r hand setting
             //(suggestion - get health bar script to look at elapsed time in game timer script rather than have internal timing)
-        }
+        
     }
 
     private void InitiateGameMode()
     {
-        if (!gameStateInitiated[6])
-        {
-            gameStateInitiated[6] = true;
+        tester.text += " In Game Mode";
+       
             //start TargetManagerScript
             //show scoreboard, healthbar
             //start gameTimer script
             //enable ground, skybox, enable quiver,
             //set BowOrHand script to LRHandSelection
-        }
+        
     }
 
     public void handleGameOver()
     {
-        gameStateInitiated[6] = false; //turn off gameState at end of round, not during settings
+        
         char decision = ControllerResponse.getControllerResponse();
         //tester.text = decision.ToString();
         //setTestingText(decision.ToString());
@@ -436,12 +425,14 @@ public class CanvasManager : MonoBehaviour
         {
                         
             bowHandScript.menuOption = "N"; // should disable bows and hands
+            gameTimer.enabled = false;
             quiver.enabled = false;
             ground.enabled = false;
             tm.enabled = false;
             scoreboard.enabled = false;
             healthbar.enabled = false;
 
+            
             GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
             foreach (GameObject target in activeTargets)
             {
@@ -453,7 +444,7 @@ public class CanvasManager : MonoBehaviour
 
     private void GetExecuteEndGameDecision(char decision)
     {
-
+        tester.text += " In End Game Selection";
         if (decision == 'L')
         {
             gameState = 8; //credits
@@ -466,7 +457,7 @@ public class CanvasManager : MonoBehaviour
         }
         else
         {
-            gameStateInitiated[7] = false; //nothing actually got changed
+            
             return;
         }
     }
@@ -513,6 +504,7 @@ public class CanvasManager : MonoBehaviour
 
     private void ShowCredits()
     {
+        tester.text += " In Credits";
         //creditsPanel.gameObject.SetActive(true);
         char creditsDecision = ControllerResponse.getControllerResponse();
         if (creditsDecision == 'L' || creditsDecision == 'R') //if any char has been assigned meaning a button has been pressed
