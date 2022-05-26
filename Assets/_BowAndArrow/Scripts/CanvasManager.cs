@@ -179,9 +179,9 @@ public class CanvasManager : MonoBehaviour
             //nightSky = Resources.Load<Material>("Assets/SkySeriesFreebie/FreebieHdri/DarkStorm4K.hdr");
             //RenderSettings.skybox = nightSky;
             //DynamicGI.UpdateEnvironment();
-            Color dark = new Color(31, 31, 31, 128);
-            RenderSettings.skybox.SetColor("_Tint", dark);
-
+            //Color dark = new Color(31, 31, 31, 128);
+            RenderSettings.skybox.SetFloat("_Exposure",.17f);
+            //deafault .95
         }
         else if (decision == 'R')
         {
