@@ -38,11 +38,13 @@ public static class ControllerResponse
         {
             //Left controller grip button was pressed
             response = 'L';
+            
         }
         else if (controllerRight.selectInteractionState.active)
         {
             //Right controller grip button was pressed
             response = 'R';
+            
         }
         return response;
     }

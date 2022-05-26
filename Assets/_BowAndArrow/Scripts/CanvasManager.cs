@@ -1,62 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    RectTransform gameOver;
-    RectTransform mainMenu;
-    RectTransform credits;
-    RectTransform targetColSelectionDay;
-    RectTransform targetColSelectionNight;
-    RectTransform handSelection;
+    private RectTransform gameOver;
+    private RectTransform mainMenu;
+    private RectTransform credits;
+    private RectTransform targetColSelectionDay;
+    private RectTransform targetColSelectionNight;
+    private RectTransform handSelection;
 
     //Skybox scene;
 
     //Skybox
-    RectTransform skyboxOption;
+    private RectTransform skyboxOption;
 
     //GameObject[] testing;
-    Text tester;
+    private Text tester;
 
-    Bow leftBow;
-    Animator leftHand;
-    Bow rightBow;
-    Animator rightHand;
-    BowOrHand bowHandScript;
-    Quiver quiver;
-    Renderer ground;
-    TargetManager tm;
-    Canvas scoreboard;
-    Canvas healthbar;
-    GameTimer gameTimer;
+    private Bow leftBow;
+    private Animator leftHand;
+    private Bow rightBow;
+    private Animator rightHand;
+    private BowOrHand bowHandScript;
+    private Quiver quiver;
+    private Renderer ground;
+    private TargetManager tm;
+    private Canvas scoreboard;
+    private Canvas healthbar;
+    private GameTimer gameTimer;
 
     //Int to hold state of the game (which elements should be visible at particular time)
-        //1 = Main menu (game start) - Demo or Play
-        //2 = Hand selection (setting option) - Right or Left
-        //3 = Environment selection (setting option) - Day or Night
-        //4 = Target colors (setting option) - Set 1 or Set 2
-        //5 = Demo mode (shoot arrow up to leave demo)
-        //6 = Game play mode (shoot arrow up to access settings, or timer ends
-        //7 = Round end - Main Menu or Credits
-        //8 = Credits (any button returns to Main Menu)
+    //1 = Main menu (game start) - Demo or Play
+    //2 = Hand selection (setting option) - Right or Left
+    //3 = Environment selection (setting option) - Day or Night
+    //4 = Target colors (setting option) - Set 1 or Set 2
+    //5 = Demo mode (shoot arrow up to leave demo)
+    //6 = Game play mode (shoot arrow up to access settings, or timer ends
+    //7 = Round end - Main Menu or Credits
+    //8 = Credits (any button returns to Main Menu)
     public static int gameState = 1; //start at main menu
-    
+
     private bool isDemoModeSelected = false; //whether user has chosen demo or not
     private bool isDayModeSelected = true;
     private char LRHandSelection = 'N';
-    private float forcedDelayStartTime;
-    private bool inForcedDelayState;
-
-
+    private char prevButtonState = 'N';
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
-        
         tester = GameObject.Find("TestText").GetComponent<Text>();
-       // scene = GameObject.Find("Scene").GetComponent<Skybox>();
+        // scene = GameObject.Find("Scene").GetComponent<Skybox>();
 
         leftBow = GameObject.Find("BowL").GetComponent<Bow>();
         leftHand = GameObject.Find("HandL").GetComponent<Animator>();
@@ -80,7 +74,7 @@ public class CanvasManager : MonoBehaviour
         skyboxOption = GameObject.Find("Skybox Option").GetComponent<RectTransform>();
 
         gameOver.gameObject.SetActive(false);
-        mainMenu.gameObject.SetActive(false);
+
         credits.gameObject.SetActive(false);
         targetColSelectionDay.gameObject.SetActive(false);
         targetColSelectionNight.gameObject.SetActive(false);
@@ -91,55 +85,67 @@ public class CanvasManager : MonoBehaviour
         //testing = GameObject.FindGameObjectsWithTag("TestingText");
         //setTestingText("testing");
         DisableGameComponents();
+        mainMenu.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         //check gameState in switch statement, execute appropriate function
 
-        if (!inForcedDelayState)
+        char checkState = ControllerResponse.getControllerResponse();
+        if (prevButtonState == 'N' && checkState != 'N')
         {
+            prevButtonState = checkState;
             switch (gameState)
             {
                 case 1:
                     handleMainMenu();
                     return;
+
                 case 2:
                     handleHandSelection();
                     return;
+
                 case 3:
                     handleEnvSelection();
                     return;
+
                 case 4:
                     handleTargetColSelection();
                     return;
+
                 case 5:
                     InitiateDemoMode();
                     return;
+
                 case 6:
                     InitiateGameMode();
                     return;
+
                 case 7:
                     handleGameOver();
                     return;
+
                 case 8:
                     ShowCredits();
                     return;
+
                 default:
                     //if gameState is not set currently
                     return;
             }
         }
-        
-
+        else
+        {
+            prevButtonState = checkState;
+        }
 
         //if (GameTimer.getElapsedTime() <= 0)  // find where this happens and trigger the game state from that code
         //{
         //    handleGameOver();
         //    //handleSkyboxDN();
         //}
-               
     }
 
     public void handleMainMenu()
@@ -153,226 +159,231 @@ public class CanvasManager : MonoBehaviour
     private void ExecuteMainMenuDecision(char decision)
     {
         tester.text = "In Main Menu Selection";
-        
-            if (decision == 'L') //Demo
-            {
-                isDemoModeSelected = true;
 
-                //hide menu screen
-                mainMenu.gameObject.SetActive(false);
-                
-                //change game state
-                gameState = 5;
-                
-                
-            }
-            else if (decision == 'R') //Play --> proceed thru settings
-            {
-                //hide menu screen
-                mainMenu.gameObject.SetActive(false);
-                
-                //change game state
-                gameState = 2;
-                
-                
-            }
-            else
-            {
-                
-                return;
-            }
-        ForcedSelectionDelay();
-        
+        if (decision == 'L') //Demo
+        {
+            isDemoModeSelected = true;
+
+            //hide menu screen
+            mainMenu.gameObject.SetActive(false);
+
+            //change game state
+            gameState = 2;
+            handSelection.gameObject.SetActive(true);
+        }
+        else if (decision == 'R') //Play --> proceed thru settings
+        {
+            //hide menu screen
+            mainMenu.gameObject.SetActive(false);
+
+            //change game state
+            gameState = 2;
+            handSelection.gameObject.SetActive(true);
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void handleHandSelection()
     {
         DisableGameComponents(); //done in Main Menu, but also needs done here in case settings is called within game
-        handSelection.gameObject.SetActive(true);
+                                 //handSelection.gameObject.SetActive(true);
         char decision = ControllerResponse.getControllerResponse();
 
         ExecuteHandSelectionDecision(decision);
     }
+
     private void ExecuteHandSelectionDecision(char decision)
     {
         tester.text += " In Hand Selection";
-        
-            if (decision == 'L') //set left hand
-            {
-                //make setting change for L:
-                LRHandSelection = 'L';
 
-                //change game state
-                gameState = 3;
-                
-                //hide menu
-                handSelection.gameObject.SetActive(false);
-            }
-            else if (decision == 'R') //set right hand
-            {
-                //make setting change for R:
-                LRHandSelection = 'R';
+        if (decision == 'L') //set left hand
+        {
+            //make setting change for L:
+            LRHandSelection = 'L';
 
-                //change game state
-                gameState = 3;
-                
-                //hide menu
-                handSelection.gameObject.SetActive(false);
-            }
-            else
-            {
-                
-                return;
-            }
-        ForcedSelectionDelay();
+            //change game state
+            gameState = 3;
 
+            //hide menu
+            handSelection.gameObject.SetActive(false);
+            skyboxOption.gameObject.SetActive(true);
+        }
+        else if (decision == 'R') //set right hand
+        {
+            //make setting change for R:
+            LRHandSelection = 'R';
+
+            //change game state
+            gameState = 3;
+
+            //hide menu
+            handSelection.gameObject.SetActive(false);
+            skyboxOption.gameObject.SetActive(true);
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void handleEnvSelection()
     {
-        skyboxOption.gameObject.SetActive(true);
+        //skyboxOption.gameObject.SetActive(true);
         char decision = ControllerResponse.getControllerResponse();
         ExecuteEnvSelectionDecision(decision);
     }
+
     private void ExecuteEnvSelectionDecision(char decision)
     {
         tester.text += " In Skybox Selection";
-        
-            if (decision == 'L') //set night mode
+
+        if (decision == 'L') //set night mode
+        {
+            isDayModeSelected = false;
+            //make setting change for L:
+
+            //change game state
+            gameState = 4;
+
+            //hide menu
+            skyboxOption.gameObject.SetActive(false);
+            if (isDayModeSelected) //day mode
             {
-                isDayModeSelected = false;
-                //make setting change for L:
-
-
-                //change game state
-                gameState = 4;
-                
-                //hide menu
-                skyboxOption.gameObject.SetActive(false);
-            }
-            else if (decision == 'R') //set day mode
-            {
-                isDayModeSelected = true;
-                //make setting change for R:
-
-                //change game state
-                gameState = 4;
-                
-                //hide menu
-                skyboxOption.gameObject.SetActive(false);
+                //show panel for daytime target options
+                targetColSelectionDay.gameObject.SetActive(true);
             }
             else
             {
-                
-                return;
+                //show panel for nighttime target options
+                targetColSelectionNight.gameObject.SetActive(true);
             }
-        ForcedSelectionDelay();
+        }
+        else if (decision == 'R') //set day mode
+        {
+            isDayModeSelected = true;
+            //make setting change for R:
 
+            //change game state
+            gameState = 4;
+
+            //hide menu
+            skyboxOption.gameObject.SetActive(false);
+            if (isDayModeSelected) //day mode
+            {
+                //show panel for daytime target options
+                targetColSelectionDay.gameObject.SetActive(true);
+            }
+            else
+            {
+                //show panel for nighttime target options
+                targetColSelectionNight.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void handleTargetColSelection()
     {
         //existing targets should already be destroyed from Disabling game components at beginning of hand selection step
 
-        if (isDayModeSelected) //day mode
-        {
-            //show panel for daytime target options
-            targetColSelectionDay.gameObject.SetActive(true);
-        }
-        else
-        {
-            //show panel for nighttime target options
-            targetColSelectionNight.gameObject.SetActive(true);
-        }
+        //if (isDayModeSelected) //day mode
+        //{
+        //    //show panel for daytime target options
+        //    targetColSelectionDay.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    //show panel for nighttime target options
+        //    targetColSelectionNight.gameObject.SetActive(true);
+        //}
 
         char decision = ControllerResponse.getControllerResponse();
         ExecuteTargetColSelectionDecision(decision);
     }
+
     private void ExecuteTargetColSelectionDecision(char decision)
     {
         tester.text += " In Target color Selection";
-        
-            if (decision == 'L') //target col choice 1
+
+        if (decision == 'L') //target col choice 1
+        {
+            //make setting change for L:  **make check for day or night mode** and changes need to be made to prefab
+            if (isDayModeSelected)
             {
-                //make setting change for L:  **make check for day or night mode** and changes need to be made to prefab
-                if (isDayModeSelected)
-                {
-
-                }
-                else
-                {
-
-                }
-
-                //change game state
-                if (isDemoModeSelected)
-                {
-                    gameState = 5;
-                }
-                else
-                {
-                    gameState = 6;
-                }
-                
-                
-
-                //hide menu
-                if (isDayModeSelected) //day mode
-                {
-                    //hide panel for daytime target options
-                    targetColSelectionDay.gameObject.SetActive(false);
-                }
-                else
-                {
-                    //hide panel for nighttime target options
-                    targetColSelectionNight.gameObject.SetActive(false);
-                }
-            }
-            else if (decision == 'R') //target col choice 2
-            {
-                //make setting change for R: **make check for day or night mode** changes need to be made to prefab
-                if (isDayModeSelected)
-                {
-
-                }
-                else
-                {
-
-                }
-
-                //change game state
-                if (isDemoModeSelected)
-                {
-                    gameState = 5;
-                }
-                else
-                {
-                    gameState = 6;
-                }
-                
-
-                //hide menu
-                if (isDayModeSelected) //day mode
-                {
-                    //hide panel for daytime target options
-                    targetColSelectionDay.gameObject.SetActive(false);
-                }
-                else
-                {
-                    //hide panel for nighttime target options
-                    targetColSelectionNight.gameObject.SetActive(false);
-                }
             }
             else
             {
-                
-                return;
             }
 
-        ForcedSelectionDelay();
+            //change game state
+            if (isDemoModeSelected)
+            {
+                gameState = 5;
+                InitiateDemoMode();
+            }
+            else
+            {
+                gameState = 6;
+                InitiateGameMode();
+            }
+
+            //hide menu
+            if (isDayModeSelected) //day mode
+            {
+                //hide panel for daytime target options
+                targetColSelectionDay.gameObject.SetActive(false);
+            }
+            else
+            {
+                //hide panel for nighttime target options
+                targetColSelectionNight.gameObject.SetActive(false);
+            }
+        }
+        else if (decision == 'R') //target col choice 2
+        {
+            //make setting change for R: **make check for day or night mode** changes need to be made to prefab
+            if (isDayModeSelected)
+            {
+            }
+            else
+            {
+            }
+
+            //hide menu
+            if (isDayModeSelected) //day mode
+            {
+                //hide panel for daytime target options
+                targetColSelectionDay.gameObject.SetActive(false);
+            }
+            else
+            {
+                //hide panel for nighttime target options
+                targetColSelectionNight.gameObject.SetActive(false);
+            }
+            //change game state
+            if (isDemoModeSelected)
+            {
+                gameState = 5;
+                InitiateDemoMode();
+            }
+            else
+            {
+                gameState = 6;
+                InitiateGameMode();
+            }
+        }
+        else
+        {
+            return;
+        }
     }
 
-    
     private void InitiateDemoMode()
     {
         tester.text += " In Demo Mode";
@@ -388,7 +399,7 @@ public class CanvasManager : MonoBehaviour
         //when player hits target (coin sound)
         //tell player the score value for each target ring
         //in Play Mode the target will disappear and need to find new target
-        //tell player how long the round is 
+        //tell player how long the round is
         //tell player to shoot straight up above them to access settings in game, or to leave demo now
         //need to add collider for above player w/ script that checks this one for demo mode
         //if demo mode
@@ -398,7 +409,6 @@ public class CanvasManager : MonoBehaviour
 
         //if play mode then then pause game timer script change game state to l/r hand setting
         //(suggestion - get health bar script to look at elapsed time in game timer script rather than have internal timing)
-        ForcedSelectionDelay();
     }
 
     private void InitiateGameMode()
@@ -410,16 +420,17 @@ public class CanvasManager : MonoBehaviour
         //start gameTimer script
         //enable ground, skybox, enable quiver,
         //set BowOrHand script to LRHandSelection
-        ForcedSelectionDelay();
     }
 
     public void handleGameOver()
     {
-        
+        //will need to call this function from the GameTimer script somehow
+
+        gameOver.gameObject.SetActive(true);
         char decision = ControllerResponse.getControllerResponse();
         //tester.text = decision.ToString();
         //setTestingText(decision.ToString());
-        gameOver.gameObject.SetActive(true);
+
         DisableGameComponents();
         GetExecuteEndGameDecision(decision);
     }
@@ -428,7 +439,6 @@ public class CanvasManager : MonoBehaviour
     {
         if (bowHandScript.menuOption != "N")
         {
-                        
             bowHandScript.menuOption = "N"; // should disable bows and hands
             gameTimer.enabled = false;
             quiver.enabled = false;
@@ -437,14 +447,12 @@ public class CanvasManager : MonoBehaviour
             scoreboard.enabled = false;
             healthbar.enabled = false;
 
-            
             GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
             foreach (GameObject target in activeTargets)
             {
                 Destroy(target);
             }
         }
-        
     }
 
     private void GetExecuteEndGameDecision(char decision)
@@ -454,22 +462,22 @@ public class CanvasManager : MonoBehaviour
         {
             gameState = 8; //credits
             gameOver.gameObject.SetActive(false);
+            credits.gameObject.SetActive(true);
         }
         else if (decision == 'R')
         {
             gameState = 1; //main menu
             gameOver.gameObject.SetActive(false);
+            mainMenu.gameObject.SetActive(true);
         }
         else
         {
-            
             return;
         }
-        ForcedSelectionDelay();
     }
 
     //Day or Night Skybox
-    private void handleSkyboxDN() 
+    private void handleSkyboxDN()
     {
         //DisableLeftRightComponents(); - won't need this, it will be handled before this function is called
         skyboxOption.gameObject.SetActive(true);
@@ -478,12 +486,12 @@ public class CanvasManager : MonoBehaviour
         GetExecuteSkyboxDecision(skyboxDecision);
     }
 
-    private void DisableLeftRightComponents() 
+    private void DisableLeftRightComponents()
     {
         //disable Dat's function for the panel
     }
 
-    private void GetExecuteSkyboxDecision(char decision) 
+    private void GetExecuteSkyboxDecision(char decision)
     {
         if (decision == 'L')
         {
@@ -491,8 +499,6 @@ public class CanvasManager : MonoBehaviour
             //day
             skyboxOption.gameObject.SetActive(false);
             RenderSettings.skybox.HasProperty("FluffballDay");
-
-
         }
         else if (decision == 'R')
         {
@@ -500,7 +506,6 @@ public class CanvasManager : MonoBehaviour
             //night
             skyboxOption.gameObject.SetActive(false);
             RenderSettings.skybox.HasProperty("DarkStorm4K");
-            
         }
         else
         {
@@ -511,33 +516,13 @@ public class CanvasManager : MonoBehaviour
     private void ShowCredits()
     {
         tester.text += " In Credits";
-        //creditsPanel.gameObject.SetActive(true);
+
+        //credits.gameObject.SetActive(true);
         char creditsDecision = ControllerResponse.getControllerResponse();
         if (creditsDecision == 'L' || creditsDecision == 'R') //if any char has been assigned meaning a button has been pressed
         {
             //main menu
             gameState = 1;
         }
-        ForcedSelectionDelay();
     }
-
-    private void ForcedSelectionDelay()
-    {
-        float currentTime = Time.fixedTime;
-        if (forcedDelayStartTime == 0)
-        {
-            forcedDelayStartTime = Time.fixedTime;
-            inForcedDelayState = true;
-        }
-        if (inForcedDelayState)
-        {
-            if (forcedDelayStartTime - currentTime >= 2)
-            {
-                inForcedDelayState = false;
-                forcedDelayStartTime = 0;
-            }
-        }
-
-    }
-
 }
