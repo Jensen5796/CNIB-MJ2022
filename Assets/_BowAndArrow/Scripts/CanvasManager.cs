@@ -46,6 +46,8 @@ public class CanvasManager : MonoBehaviour
     private bool isDemoModeSelected = false; //whether user has chosen demo or not
     private bool isDayModeSelected = true;
     private char LRHandSelection = 'N';
+    private float forcedDelayStartTime;
+    private bool inForcedDelayState;
 
 
 
@@ -96,37 +98,40 @@ public class CanvasManager : MonoBehaviour
     {
         //check gameState in switch statement, execute appropriate function
 
-
-        switch (gameState)
+        if (!inForcedDelayState)
         {
-            case 1:
-                handleMainMenu();
-                return;
-            case 2:
-                handleHandSelection();
-                return;
-            case 3:
-                handleEnvSelection();
-                return;
-            case 4:
-                handleTargetColSelection();
-                return;
-            case 5:
-                InitiateDemoMode();
-                return;
-            case 6:
-                InitiateGameMode();
-                return;
-            case 7:
-                handleGameOver();
-                return;
-            case 8:
-                ShowCredits();
-                return;
-            default:
-                //if gameState is not set currently
-                return;
+            switch (gameState)
+            {
+                case 1:
+                    handleMainMenu();
+                    return;
+                case 2:
+                    handleHandSelection();
+                    return;
+                case 3:
+                    handleEnvSelection();
+                    return;
+                case 4:
+                    handleTargetColSelection();
+                    return;
+                case 5:
+                    InitiateDemoMode();
+                    return;
+                case 6:
+                    InitiateGameMode();
+                    return;
+                case 7:
+                    handleGameOver();
+                    return;
+                case 8:
+                    ShowCredits();
+                    return;
+                default:
+                    //if gameState is not set currently
+                    return;
+            }
         }
+        
 
 
         //if (GameTimer.getElapsedTime() <= 0)  // find where this happens and trigger the game state from that code
@@ -176,7 +181,7 @@ public class CanvasManager : MonoBehaviour
                 
                 return;
             }
-        
+        ForcedSelectionDelay();
         
     }
 
@@ -219,7 +224,7 @@ public class CanvasManager : MonoBehaviour
                 
                 return;
             }
-        
+        ForcedSelectionDelay();
 
     }
 
@@ -261,7 +266,7 @@ public class CanvasManager : MonoBehaviour
                 
                 return;
             }
-        
+        ForcedSelectionDelay();
 
     }
 
@@ -363,49 +368,49 @@ public class CanvasManager : MonoBehaviour
                 
                 return;
             }
-        
 
+        ForcedSelectionDelay();
     }
 
     
     private void InitiateDemoMode()
     {
         tester.text += " In Demo Mode";
-        
-            //show singleton target, ground, skybox, enable quiver, set BowOrQuiver script to LRHandSelection
-            //hide healthbar and scoreboard
-            //disable target manager, game timer, ?others
 
-            //***** handling sound cues to guide user, based on single target?
-            // if target not hit (no child 'Arrow')
-            //play directions to load and shoot arrow
-            //play directions to turn body to find target
-            //when player hits target (coin sound)
-            //tell player the score value for each target ring
-            //in Play Mode the target will disappear and need to find new target
-            //tell player how long the round is 
-            //tell player to shoot straight up above them to access settings in game, or to leave demo now
-            //need to add collider for above player w/ script that checks this one for demo mode
-            //if demo mode
-            //change game state to main menu,
-            //set isDemoModeSelected to false, and set gameStateInstantiated[5] = false
-            //remove singleton target
+        //show singleton target, ground, skybox, enable quiver, set BowOrQuiver script to LRHandSelection
+        //hide healthbar and scoreboard
+        //disable target manager, game timer, ?others
 
-            //if play mode then then pause game timer script change game state to l/r hand setting
-            //(suggestion - get health bar script to look at elapsed time in game timer script rather than have internal timing)
-        
+        //***** handling sound cues to guide user, based on single target?
+        // if target not hit (no child 'Arrow')
+        //play directions to load and shoot arrow
+        //play directions to turn body to find target
+        //when player hits target (coin sound)
+        //tell player the score value for each target ring
+        //in Play Mode the target will disappear and need to find new target
+        //tell player how long the round is 
+        //tell player to shoot straight up above them to access settings in game, or to leave demo now
+        //need to add collider for above player w/ script that checks this one for demo mode
+        //if demo mode
+        //change game state to main menu,
+        //set isDemoModeSelected to false, and set gameStateInstantiated[5] = false
+        //remove singleton target
+
+        //if play mode then then pause game timer script change game state to l/r hand setting
+        //(suggestion - get health bar script to look at elapsed time in game timer script rather than have internal timing)
+        ForcedSelectionDelay();
     }
 
     private void InitiateGameMode()
     {
         tester.text += " In Game Mode";
-       
-            //start TargetManagerScript
-            //show scoreboard, healthbar
-            //start gameTimer script
-            //enable ground, skybox, enable quiver,
-            //set BowOrHand script to LRHandSelection
-        
+
+        //start TargetManagerScript
+        //show scoreboard, healthbar
+        //start gameTimer script
+        //enable ground, skybox, enable quiver,
+        //set BowOrHand script to LRHandSelection
+        ForcedSelectionDelay();
     }
 
     public void handleGameOver()
@@ -460,6 +465,7 @@ public class CanvasManager : MonoBehaviour
             
             return;
         }
+        ForcedSelectionDelay();
     }
 
     //Day or Night Skybox
@@ -512,6 +518,26 @@ public class CanvasManager : MonoBehaviour
             //main menu
             gameState = 1;
         }
+        ForcedSelectionDelay();
+    }
+
+    private void ForcedSelectionDelay()
+    {
+        float currentTime = Time.fixedTime;
+        if (forcedDelayStartTime == 0)
+        {
+            forcedDelayStartTime = Time.fixedTime;
+            inForcedDelayState = true;
+        }
+        if (inForcedDelayState)
+        {
+            if (forcedDelayStartTime - currentTime >= 2)
+            {
+                inForcedDelayState = false;
+                forcedDelayStartTime = 0;
+            }
+        }
+
     }
 
 }
