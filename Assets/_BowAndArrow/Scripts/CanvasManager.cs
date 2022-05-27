@@ -44,10 +44,18 @@ public class CanvasManager : MonoBehaviour
     //8 = Credits (any button returns to Main Menu)
     public static int gameState = 1; //start at main menu
 
-    private bool isDemoModeSelected = false; //whether user has chosen demo or not
+    private static bool isDemoModeSelected = false; //whether user has chosen demo or not
     private bool isDayModeSelected = true;
-    private char LRHandSelection = 'N';
+    private string LRHandSelection = "N";
     private char prevButtonState = 'N';
+    private static GameObject targetSelection;
+    public static bool showMainMenuPanel;
+    public static bool showEndGamePanel;
+    public static bool showHandSelection;
+    public static bool disableGameComponents;
+    public static bool inGameMode = false;
+    public static bool inDemoMode = false;
+    public static bool inSettingsDuringGame = false;
 
     // Start is called before the first frame update
     private void Awake()
@@ -102,6 +110,22 @@ public class CanvasManager : MonoBehaviour
     private void Update()
     {
         //check gameState in switch statement, execute appropriate function
+        if (showMainMenuPanel)
+        {
+            mainMenu.gameObject.SetActive(true);
+        }
+        if (showEndGamePanel)
+        {
+            gameOver.gameObject.SetActive(true);
+        }
+        if (showHandSelection)
+        {
+            handSelection.gameObject.SetActive(true);
+        }
+        if (disableGameComponents)
+        {
+            DisableGameComponents();
+        }
 
         char checkState = ControllerResponse.getControllerResponse();
         if (prevButtonState == 'N' && checkState != 'N')
@@ -160,6 +184,7 @@ public class CanvasManager : MonoBehaviour
 
     public void handleMainMenu()
     {
+        showMainMenuPanel = false;
         DisableGameComponents();
         mainMenu.gameObject.SetActive(true);
         char decision = ControllerResponse.getControllerResponse();
@@ -198,6 +223,7 @@ public class CanvasManager : MonoBehaviour
 
     public void handleHandSelection()
     {
+        showHandSelection = false; // bool used in CeilingSettings script - panel will still show during this function
         DisableGameComponents(); //done in Main Menu, but also needs done here in case settings is called within game
                                  //handSelection.gameObject.SetActive(true);
         char decision = ControllerResponse.getControllerResponse();
@@ -212,7 +238,7 @@ public class CanvasManager : MonoBehaviour
         if (decision == 'L') //set left hand
         {
             //make setting change for L:
-            LRHandSelection = 'L';
+            LRHandSelection = "L";
 
             //change game state
             gameState = 3;
@@ -224,7 +250,7 @@ public class CanvasManager : MonoBehaviour
         else if (decision == 'R') //set right hand
         {
             //make setting change for R:
-            LRHandSelection = 'R';
+            LRHandSelection = "R";
 
             //change game state
             gameState = 3;
@@ -254,6 +280,7 @@ public class CanvasManager : MonoBehaviour
         {
             isDayModeSelected = false;
             //make setting change for L:
+            RenderSettings.skybox.SetFloat("_Exposure", .17f);
 
             //change game state
             gameState = 4;
@@ -275,6 +302,7 @@ public class CanvasManager : MonoBehaviour
         {
             isDayModeSelected = true;
             //make setting change for R:
+            RenderSettings.skybox.SetFloat("_Exposure", .95f);
 
             //change game state
             gameState = 4;
@@ -302,16 +330,6 @@ public class CanvasManager : MonoBehaviour
     {
         //existing targets should already be destroyed from Disabling game components at beginning of hand selection step
 
-        //if (isDayModeSelected) //day mode
-        //{
-        //    //show panel for daytime target options
-        //    targetColSelectionDay.gameObject.SetActive(true);
-        //}
-        //else
-        //{
-        //    //show panel for nighttime target options
-        //    targetColSelectionNight.gameObject.SetActive(true);
-        //}
 
         char decision = ControllerResponse.getControllerResponse();
         ExecuteTargetColSelectionDecision(decision);
@@ -324,11 +342,19 @@ public class CanvasManager : MonoBehaviour
         if (decision == 'L') //target col choice 1
         {
             //make setting change for L:  **make check for day or night mode** and changes need to be made to prefab
+            //** make a script to hold the prefab options - need to drag them into inspector, cannot reference from script
+            //** then select prefab from holder script
             if (isDayModeSelected)
             {
+                //left + day = yellow/black target
+                targetSelection = TargetPrefabHolder.getLeftDayTarget();
+                targetColSelectionDay.gameObject.SetActive(false);
             }
             else
             {
+                //left + night = white/red target
+                targetSelection = TargetPrefabHolder.getLeftNightTarget();
+                targetColSelectionNight.gameObject.SetActive(false);
             }
 
             //change game state
@@ -340,42 +366,35 @@ public class CanvasManager : MonoBehaviour
             else
             {
                 gameState = 6;
-                InitiateGameMode();
+                if (inSettingsDuringGame)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    InitiateGameMode();
+                }
             }
 
-            //hide menu
-            if (isDayModeSelected) //day mode
-            {
-                //hide panel for daytime target options
-                targetColSelectionDay.gameObject.SetActive(false);
-            }
-            else
-            {
-                //hide panel for nighttime target options
-                targetColSelectionNight.gameObject.SetActive(false);
-            }
+            
         }
         else if (decision == 'R') //target col choice 2
         {
             //make setting change for R: **make check for day or night mode** changes need to be made to prefab
             if (isDayModeSelected)
             {
-            }
-            else
-            {
-            }
-
-            //hide menu
-            if (isDayModeSelected) //day mode
-            {
-                //hide panel for daytime target options
+                //right + day = green/pink target
+                targetSelection = TargetPrefabHolder.getRightDayTarget();
                 targetColSelectionDay.gameObject.SetActive(false);
             }
             else
             {
-                //hide panel for nighttime target options
+                //right + night = green/pink target
+                targetSelection = TargetPrefabHolder.getRightNightTarget();
                 targetColSelectionNight.gameObject.SetActive(false);
             }
+
+            
             //change game state
             if (isDemoModeSelected)
             {
@@ -385,7 +404,15 @@ public class CanvasManager : MonoBehaviour
             else
             {
                 gameState = 6;
-                InitiateGameMode();
+                if (inSettingsDuringGame)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    InitiateGameMode();
+                }
+                
             }
         }
         else
@@ -424,63 +451,106 @@ public class CanvasManager : MonoBehaviour
     //}
     private void InitiateDemoMode()
     {
-        tester.text += " In Demo Mode";
+        if (!inDemoMode)
+        {
+            inDemoMode = true;
+            tester.text += " In Demo Mode";
 
 
-        ground.enabled = true;
+            ground.enabled = true;
 
-        //enable quiver
-        quiver.enabled = true;
-
-
-        //enable skybox (day/night) - doesn't have to deal with this since the skybox will stay on 
+            //enable quiver
+            quiver.enabled = true;
 
 
-        //enable target for demo
-        demoTarget.gameObject.SetActive(true);
+            //enable skybox (day/night) - doesn't have to deal with this since the skybox will stay on 
 
-        //enable bow and arrow
-        bowHandScript.menuOption = "L";
 
-        /**enable sound cues:**/
-        /*You are in Demo Mode. To exit shoot upward - this will return the player to the main menu*/
+            //enable target for demo
+            //thought - will need a separate demo target script (short - just instantiate target in one position)
+            // -- only way to make the target in demo be the color they selected in settings
+            demoTarget.gameObject.SetActive(true);
 
-        /*
-         * **Left Handed**
-         * As a left handed the bow should be on your right
-         * 
-         * You can stretch the string by pressing left grip while pulling back
-         * 
-         * To load or reload the arrow onto the bow, press the right grip
-         */
-        /**-----**/
-        /*
-         * Righ Handed
-         * As a left handed the bow should be on your right
-         * 
-         * To load or reload the arrow onto the bow, press the left grip
-         * 
-         * Try to aim the target: inner target is 100pts, middle target is 50%, and the outer target is 20%
-         * 
-         * 
-         */
+            //enable bow and arrow
+            //bowHandScript.menuOption = "L";
+            bowHandScript.menuOption = LRHandSelection;
+
+            /**enable sound cues:**/
+            /*You are in Demo Mode. To exit shoot upward - this will return the player to the main menu*/
+
+            /*
+             * **Left Handed**
+             * As a left handed the bow should be on your right
+             * 
+             * You can stretch the string by pressing left grip while pulling back
+             * 
+             * To load or reload the arrow onto the bow, press the right grip
+             */
+            /**-----**/
+            /*
+             * Righ Handed
+             * As a left handed the bow should be on your right
+             * 
+             * To load or reload the arrow onto the bow, press the left grip
+             * 
+             * Try to aim the target: inner target is 100pts, middle target is 50%, and the outer target is 20%
+             * 
+             * 
+             */
+        }
+
     }
 
     private void InitiateGameMode()
     {
-        tester.text += " In Game Mode";
+        if (!inGameMode)
+        {
+            inGameMode = true;
+            tester.text += " In Game Mode";
 
-        //start TargetManagerScript
-        //show scoreboard, healthbar
-        //start gameTimer script
-        //enable ground, skybox, enable quiver,
-        //set BowOrHand script to LRHandSelection
+            tm.enabled = true;
+            TargetManager.RestartTargetManager();
+            //tester.text += targetSelection.gameObject.name;
+
+            scoreboard.enabled = true;
+            healthbar.enabled = true;
+            gameTimer.enabled = true;
+            GameTimer.resetElapsedTime();
+
+            // will I need to start the health bar (connected to game timer now, might be something more to do here)
+
+            ground.enabled = true;
+            quiver.enabled = true;
+            bowHandScript.menuOption = LRHandSelection;
+        }
+        
+        
+    }
+    private void ResumeGame()
+    {
+        if (inSettingsDuringGame)
+        {
+            inSettingsDuringGame = false;
+
+            tm.enabled = true;
+            TargetManager.RestartTargetManager();
+
+            scoreboard.enabled = true;
+            healthbar.enabled = true;
+            GameTimer.isPaused = false;
+
+            ground.enabled = true;
+            quiver.enabled = true;
+            bowHandScript.menuOption = LRHandSelection;
+
+        }
     }
 
     public void handleGameOver()
     {
+        inGameMode = false;
         //will need to call this function from the GameTimer script somehow
-
+        showEndGamePanel = false; //bool used with GameTimer script to trigger panel to show in first place - the panel will still be showing in this function even if this is false
         gameOver.gameObject.SetActive(true);
         char decision = ControllerResponse.getControllerResponse();
         //tester.text = decision.ToString();
@@ -492,20 +562,27 @@ public class CanvasManager : MonoBehaviour
 
     private void DisableGameComponents()
     {
+        disableGameComponents = false;
         if (bowHandScript.menuOption != "N")
         {
             bowHandScript.menuOption = "N"; // should disable bows and hands
-            gameTimer.enabled = false;
+            
             quiver.enabled = false;
             ground.enabled = false;
             tm.enabled = false;
             scoreboard.enabled = false;
             healthbar.enabled = false;
+            
 
             GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
             foreach (GameObject target in activeTargets)
             {
                 Destroy(target);
+            }
+
+            if (!inSettingsDuringGame)
+            {
+                gameTimer.enabled = false;
             }
         }
     }
@@ -578,6 +655,23 @@ public class CanvasManager : MonoBehaviour
         {
             //main menu
             gameState = 1;
+            credits.gameObject.SetActive(false);
+            mainMenu.gameObject.SetActive(true);
         }
     }
+
+    public static GameObject getTargetSelection()
+    {
+        return targetSelection;
+    }
+
+    public static bool getIsDemoModeSelected()
+    {
+        return isDemoModeSelected;
+    }
+    public static void DisableGameComponentsWrapper()
+    {
+        disableGameComponents = true;
+    }
+    
 }

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-    public static float elapsedTime = 180;
-    //public static float durationOfRound = 180;
+    public static bool isPaused = false;
+    public static float elapsedTime;
+    public static float durationOfRound = 180;
 
     // Start is called before the first frame update
     // public HealthBar healthbar;
     void Start()
     {
-       //elapsedTime = durationOfRound;
+       elapsedTime = durationOfRound;
     }
 
     private void Awake()
@@ -21,12 +22,19 @@ public class GameTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        elapsedTime -= Time.deltaTime;
-        SumScore.UpdateCount(elapsedTime);
-        if (elapsedTime <= 0)
+        if (!isPaused)
         {
-            CanvasManager.gameState = 7;
+            elapsedTime -= Time.deltaTime;
+            SumScore.UpdateCount(elapsedTime);
+            if (elapsedTime <= 0)
+            {
+                CanvasManager.gameState = 7;
+                CanvasManager.showEndGamePanel = true;
+                CanvasManager.disableGameComponents = true;
+                //CanvasManager.inGameMode = false;
+            }
         }
+        
         
         //healthbar.Tick(elapsedTime);
     }
@@ -35,10 +43,14 @@ public class GameTimer : MonoBehaviour
     {
         return elapsedTime;
     }
-    //public static float getDurationOfRound()
-    //{
-    //    return durationOfRound;
-    //}
+    public static float getDurationOfRound()
+    {
+        return durationOfRound;
+    }
+    public static void resetElapsedTime()
+    {
+        elapsedTime = durationOfRound;
+    }
 
 }
 

@@ -22,9 +22,11 @@ public class TargetManager : MonoBehaviour
     private Text test;
     private Text test2;
     private bool[] targetsInQuadrants;
+    public static bool restartTargetManager;
 
     private void Awake()
     {
+        restartTargetManager = false;
         //set up debugging text
         //GameObject go = GameObject.Find("Text2");
         //test = go.GetComponent<Text>();
@@ -35,6 +37,9 @@ public class TargetManager : MonoBehaviour
         //boolean array to track which quadrants have targets
         //using positions 1-4 to match with quadrants (0 will be false or empty)
         targetsInQuadrants = new bool[5] { false, false, false, false, false };
+        targetPrefab = CanvasManager.getTargetSelection();
+        //test2.text = targetPrefab.name;
+        Start();
 
         
     }
@@ -55,6 +60,11 @@ public class TargetManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (restartTargetManager)
+        {
+            Awake();
+            return;
+        }
         //check to see if targets are hit
         GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
         foreach (GameObject target in activeTargets)
@@ -337,5 +347,10 @@ public class TargetManager : MonoBehaviour
         
         //test.text += "; q=" + quadrant + "; angle="+angle;
         return angle;
+    }
+
+    public static void RestartTargetManager()
+    {
+        restartTargetManager = true;
     }
 }

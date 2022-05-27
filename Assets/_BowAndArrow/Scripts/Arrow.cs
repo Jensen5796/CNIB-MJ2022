@@ -186,7 +186,9 @@ public class Arrow : XRGrabInteractable
 
         // If we find a valid component, call whatever functionality it has
         if (hittable != null)       
-            hittable.Hit(this);       
+            hittable.Hit(this);
+
+        Destroy(this, 1); //?may need to remove this
        
     }
 
