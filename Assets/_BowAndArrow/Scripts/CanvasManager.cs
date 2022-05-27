@@ -240,7 +240,7 @@ public class CanvasManager : MonoBehaviour
     {
         tester.text += " In Skybox Selection";
 
-        if (decision == 'L') //set night mode
+        if (decision == 'R') //set night mode
         {
             isDayModeSelected = false;
             //make setting change for L:
@@ -261,7 +261,7 @@ public class CanvasManager : MonoBehaviour
                 targetColSelectionNight.gameObject.SetActive(true);
             }
         }
-        else if (decision == 'R') //set day mode
+        else if (decision == 'L') //set day mode
         {
             isDayModeSelected = true;
             //make setting change for R:
