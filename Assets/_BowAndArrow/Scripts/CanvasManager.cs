@@ -49,6 +49,10 @@ public class CanvasManager : MonoBehaviour
     private char LRHandSelection = 'N';
     private char prevButtonState = 'N';
 
+
+    //sound cue
+    gameFlowCue gameCue;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -536,6 +540,9 @@ public class CanvasManager : MonoBehaviour
     {
         //DisableLeftRightComponents(); - won't need this, it will be handled before this function is called
         skyboxOption.gameObject.SetActive(true);
+        GetComponent<AudioSource>().PlayOneShot(gameCue.dayNight);
+        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().PlayOneShot(gameCue.chooseDNMode);
         char skyboxDecision = ControllerResponse.getControllerResponse();
 
         GetExecuteSkyboxDecision(skyboxDecision);
