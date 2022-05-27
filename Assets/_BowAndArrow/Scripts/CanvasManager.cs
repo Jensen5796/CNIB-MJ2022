@@ -181,7 +181,7 @@ public class CanvasManager : MonoBehaviour
             //DynamicGI.UpdateEnvironment();
             //Color dark = new Color(31, 31, 31, 128);
             RenderSettings.skybox.SetFloat("_Exposure",.17f);
-            //deafault .95
+            //default .95
         }
         else if (decision == 'R')
         {
