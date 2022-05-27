@@ -90,10 +90,10 @@ public class CanvasManager : MonoBehaviour
 
         //demo mode
         //Target for Demo Mode
-        //demoTarget = GameObject.Find("DemoMode_SphericalTarget").GetComponent<Transform>();
+        demoTarget = GameObject.Find("DemoMode_SphericalTarget").GetComponent<Transform>();
 
         //Target for Demo Mode
-        //demoTarget.gameObject.SetActive(false);
+        demoTarget.gameObject.SetActive(false);
 
         gameOver.gameObject.SetActive(false);
 
@@ -457,12 +457,9 @@ public class CanvasManager : MonoBehaviour
     {
         if (!inDemoMode)
         {
-            isDemoModeSelected = false;
             inDemoMode = true;
             tester.text += " In Demo Mode";
 
-            tm.enabled = true;
-            TargetManager.RestartTargetManager();
 
             ground.enabled = true;
 
@@ -476,10 +473,7 @@ public class CanvasManager : MonoBehaviour
             //enable target for demo
             //thought - will need a separate demo target script (short - just instantiate target in one position)
             // -- only way to make the target in demo be the color they selected in settings
-            //demoTarget.gameObject.SetActive(true);
-            // .....> have rewired the target manager to check if demo setting and generate one target of specified preset if in demo mode, will not destroy target if in demo mode
-            tm.enabled = true;
-            TargetManager.RestartTargetManager();
+            demoTarget.gameObject.SetActive(true);
 
             //enable bow and arrow
             //bowHandScript.menuOption = "L";
@@ -512,7 +506,6 @@ public class CanvasManager : MonoBehaviour
             //tester.text += targetSelection.gameObject.name;
 
             scoreboard.enabled = true;
-            SumScore.Reset();
             healthbar.enabled = true;
             gameTimer.enabled = true;
             GameTimer.resetElapsedTime();
@@ -661,7 +654,6 @@ public class CanvasManager : MonoBehaviour
             credits.gameObject.SetActive(false);
             mainMenu.gameObject.SetActive(true);
         }
-
     }
 
     public static GameObject getTargetSelection()

@@ -36,7 +36,6 @@ public class TargetManager : MonoBehaviour
 
         //boolean array to track which quadrants have targets
         //using positions 1-4 to match with quadrants (0 will be false or empty)
-        numberTargetsCurrent = 0;
         targetsInQuadrants = new bool[5] { false, false, false, false, false };
         targetPrefab = CanvasManager.getTargetSelection();
         //test2.text = targetPrefab.name;
@@ -47,20 +46,11 @@ public class TargetManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (CanvasManager.inDemoMode)
+        //generate desired number of targets
+        for (int i = 0; i < numberTargetsDesired; i++)
         {
-            generateDemoTarget();
+            generateTarget();
         }
-        else
-        {
-            //in game mode:
-            //generate desired number of targets
-            for (int i = 0; i < numberTargetsDesired; i++)
-            {
-                generateTarget();
-            }
-        }
-        
 
         //debugging function to see what rotation the targets are generated in
         //testTargetPos();
@@ -72,41 +62,28 @@ public class TargetManager : MonoBehaviour
     {
         if (restartTargetManager)
         {
-            restartTargetManager = false;
-
             Awake();
             return;
         }
-
-
-        if (CanvasManager.inDemoMode) 
+        //check to see if targets are hit
+        GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
+        foreach (GameObject target in activeTargets)
         {
-            return;
-        }
-        else
-        {
-            //check to see if targets are hit
-            GameObject[] activeTargets = GameObject.FindGameObjectsWithTag("Target");
-            foreach (GameObject target in activeTargets)
+
+            Arrow[] arrows = target.GetComponentsInChildren<Arrow>();
+            if (arrows.Length > 0)
             {
-
-                Arrow[] arrows = target.GetComponentsInChildren<Arrow>();
-                if (arrows.Length > 0)
-                {
-                    //if any arrows are found as children of target, destroy target in 2 seconds
-
-                    destroyTarget(target);
-
-                }
-            }
-            //if less than desired number, generate a target
-            if (numberTargetsCurrent < numberTargetsDesired)
-            {
-                generateTarget();
+                //if any arrows are found as children of target, destroy target in 2 seconds
+                
+                destroyTarget(target);
+                
             }
         }
-
-        
+        //if less than desired number, generate a target
+        if (numberTargetsCurrent < numberTargetsDesired)
+        {
+            generateTarget();
+        }
     }
 
     //debugging function
@@ -147,21 +124,6 @@ public class TargetManager : MonoBehaviour
         //testTargetPos();
 
         return targetCreatedSuccessfully;
-    }
-
-    private void generateDemoTarget()
-    {
-        
-        int angle = 0;
-
-        //set target to zero position and rotate it by angle
-        Vector3 startPosition = Vector3.zero;
-        startPosition.Set(0, yAxisOffset, 0);
-
-        // Instantiate target
-        Instantiate(targetPrefab, startPosition, Quaternion.Euler(0, angle, 0));
-                
-        //testTargetPos();
     }
 
     private void destroyTarget(GameObject target)
