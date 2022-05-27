@@ -32,7 +32,7 @@ public class CanvasManager : MonoBehaviour
 
     //demo mode object
     private Transform demoTarget;
-    public static string exitingDemo;
+
     //Int to hold state of the game (which elements should be visible at particular time)
     //1 = Main menu (game start) - Demo or Play
     //2 = Hand selection (setting option) - Right or Left
@@ -479,21 +479,32 @@ public class CanvasManager : MonoBehaviour
             //bowHandScript.menuOption = "L";
             bowHandScript.menuOption = LRHandSelection;
 
-            if (exitingDemo == "return") 
-            {
-                handleMainMenu();
-            }
+            /**enable sound cues:**/
+            /*You are in Demo Mode. To exit shoot upward - this will return the player to the main menu*/
+
+            /*
+             * **Left Handed**
+             * As a left handed the bow should be on your right
+             * 
+             * You can stretch the string by pressing left grip while pulling back
+             * 
+             * To load or reload the arrow onto the bow, press the right grip
+             */
+            /**-----**/
+            /*
+             * Righ Handed
+             * As a left handed the bow should be on your right
+             * 
+             * To load or reload the arrow onto the bow, press the left grip
+             * 
+             * Try to aim the target: inner target is 100pts, middle target is 50%, and the outer target is 20%
+             * 
+             * 
+             */
         }
 
     }
-    public static void exitDemo(string returntoMain) 
-    {
-        if (returntoMain == "return") 
-        {
-            exitingDemo = returntoMain;
-        }
-        
-    }
+
     private void InitiateGameMode()
     {
         if (!inGameMode)
