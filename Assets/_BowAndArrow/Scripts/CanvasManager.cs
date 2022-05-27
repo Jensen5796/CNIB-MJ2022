@@ -57,6 +57,10 @@ public class CanvasManager : MonoBehaviour
     public static bool inDemoMode = false;
     public static bool inSettingsDuringGame = false;
 
+
+    //sound cue
+    gameFlowCue gameCue;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -613,6 +617,9 @@ public class CanvasManager : MonoBehaviour
     {
         //DisableLeftRightComponents(); - won't need this, it will be handled before this function is called
         skyboxOption.gameObject.SetActive(true);
+        GetComponent<AudioSource>().PlayOneShot(gameCue.dayNight);
+        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().PlayOneShot(gameCue.chooseDNMode);
         char skyboxDecision = ControllerResponse.getControllerResponse();
 
         GetExecuteSkyboxDecision(skyboxDecision);
@@ -628,15 +635,15 @@ public class CanvasManager : MonoBehaviour
         if (decision == 'L')
         {
             //disable left/right panel
-            //night
-            RenderSettings.skybox.SetFloat("_Exposure", .17f);
+            //day
+            RenderSettings.skybox.SetFloat("_Exposure", .95f);
             
         }
         else if (decision == 'R')
         {
             //disable left/right panel
-            //day
-            RenderSettings.skybox.SetFloat("_Exposure", .95f);
+            //night
+            RenderSettings.skybox.SetFloat("_Exposure", .17f);
      
         }
         else
