@@ -29,7 +29,7 @@ public class CanvasManager : MonoBehaviour
     private Canvas scoreboard;
     private Canvas healthbar;
     private GameTimer gameTimer;
-    private TargetManager demoTarget;
+    private Transform demoTarget;
 
     //Int to hold state of the game (which elements should be visible at particular time)
     //1 = Main menu (game start) - Demo or Play
@@ -75,7 +75,7 @@ public class CanvasManager : MonoBehaviour
         skyboxOption = GameObject.Find("Skybox Option").GetComponent<RectTransform>();
 
         //Target for Demo Mode
-        demoTarget = GameObject.Find("DemoMode_SphericalTarget").GetComponent<TargetManager>();
+        demoTarget = GameObject.Find("DemoMode_SphericalTarget").GetComponent<Transform>();
 
         gameOver.gameObject.SetActive(false);
 
