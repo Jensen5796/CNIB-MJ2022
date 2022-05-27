@@ -551,16 +551,16 @@ public class CanvasManager : MonoBehaviour
         if (decision == 'L')
         {
             //disable left/right panel
-            //day
-            skyboxOption.gameObject.SetActive(false);
-            RenderSettings.skybox.HasProperty("FluffballDay");
+            //night
+            RenderSettings.skybox.SetFloat("_Exposure", .17f);
+            
         }
         else if (decision == 'R')
         {
             //disable left/right panel
-            //night
-            skyboxOption.gameObject.SetActive(false);
-            RenderSettings.skybox.HasProperty("DarkStorm4K");
+            //day
+            RenderSettings.skybox.SetFloat("_Exposure", .95f);
+     
         }
         else
         {
