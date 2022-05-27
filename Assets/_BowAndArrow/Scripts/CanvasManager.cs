@@ -461,9 +461,6 @@ public class CanvasManager : MonoBehaviour
             inDemoMode = true;
             tester.text += " In Demo Mode";
 
-            tm.enabled = true;
-            TargetManager.RestartTargetManager();
-
             ground.enabled = true;
 
             //enable quiver
