@@ -9,7 +9,7 @@ public class CanvasManager : MonoBehaviour
     private RectTransform targetColSelectionDay;
     private RectTransform targetColSelectionNight;
     private RectTransform handSelection;
-    private RectTransform demoTarget;
+
     //Skybox scene;
 
     //Skybox
@@ -29,6 +29,7 @@ public class CanvasManager : MonoBehaviour
     private Canvas scoreboard;
     private Canvas healthbar;
     private GameTimer gameTimer;
+    private TargetManager demoTarget;
 
     //Int to hold state of the game (which elements should be visible at particular time)
     //1 = Main menu (game start) - Demo or Play
@@ -74,7 +75,7 @@ public class CanvasManager : MonoBehaviour
         skyboxOption = GameObject.Find("Skybox Option").GetComponent<RectTransform>();
 
         //Target for Demo Mode
-        demoTarget = GameObject.Find("DemoMode_SphericalTarget").GetComponent<RectTransform>();
+        demoTarget = GameObject.Find("DemoMode_SphericalTarget").GetComponent<TargetManager>();
 
         gameOver.gameObject.SetActive(false);
 
@@ -420,10 +421,10 @@ public class CanvasManager : MonoBehaviour
         tester.text += " In Demo Mode";
 
         //enable ground
-        ground.enabled = false;
+        ground.enabled = true;
 
         //enable quiver
-        quiver.enabled = false;
+        quiver.enabled = true;
 
 
         //enable skybox (day/night) - doesn't have to deal with this since the skybox will stay on 
