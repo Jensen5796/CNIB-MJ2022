@@ -558,15 +558,15 @@ public class CanvasManager : MonoBehaviour
         if (decision == 'L')
         {
             //disable left/right panel
-            //night
-            RenderSettings.skybox.SetFloat("_Exposure", .17f);
+            //day
+            RenderSettings.skybox.SetFloat("_Exposure", .95f);
             
         }
         else if (decision == 'R')
         {
             //disable left/right panel
-            //day
-            RenderSettings.skybox.SetFloat("_Exposure", .95f);
+            //night
+            RenderSettings.skybox.SetFloat("_Exposure", .17f);
      
         }
         else
