@@ -30,6 +30,9 @@ public class CanvasManager : MonoBehaviour
     private Canvas healthbar;
     private GameTimer gameTimer;
 
+    //demo mode object
+    private Transform demoTarget;
+
     //Int to hold state of the game (which elements should be visible at particular time)
     //1 = Main menu (game start) - Demo or Play
     //2 = Hand selection (setting option) - Right or Left
@@ -72,6 +75,13 @@ public class CanvasManager : MonoBehaviour
         handSelection = GameObject.Find("LeftRight Option").GetComponent<RectTransform>();
         //skybox
         skyboxOption = GameObject.Find("Skybox Option").GetComponent<RectTransform>();
+
+        //demo mode
+        //Target for Demo Mode
+        demoTarget = GameObject.Find("DemoMode_SphericalTarget").GetComponent<Transform>();
+
+        //Target for Demo Mode
+        demoTarget.gameObject.SetActive(false);
 
         gameOver.gameObject.SetActive(false);
 
@@ -384,31 +394,76 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    //private void InitiateDemoMode()
+    //{
+    //    tester.text += " In Demo Mode";
+
+    //    //show singleton target, ground, skybox, enable quiver, set BowOrQuiver script to LRHandSelection
+    //    //hide healthbar and scoreboard
+    //    //disable target manager, game timer, ?others
+
+    //    //***** handling sound cues to guide user, based on single target?
+    //    // if target not hit (no child 'Arrow')
+    //    //play directions to load and shoot arrow
+    //    //play directions to turn body to find target
+    //    //when player hits target (coin sound)
+    //    //tell player the score value for each target ring
+    //    //in Play Mode the target will disappear and need to find new target
+    //    //tell player how long the round is
+    //    //tell player to shoot straight up above them to access settings in game, or to leave demo now
+    //    //need to add collider for above player w/ script that checks this one for demo mode
+    //    //if demo mode
+    //    //change game state to main menu,
+    //    //set isDemoModeSelected to false, and set gameStateInstantiated[5] = false
+    //    //remove singleton target
+
+    //    //if play mode then then pause game timer script change game state to l/r hand setting
+    //    //(suggestion - get health bar script to look at elapsed time in game timer script rather than have internal timing)
+    //    //enable ground
+
+    //}
     private void InitiateDemoMode()
     {
         tester.text += " In Demo Mode";
 
-        //show singleton target, ground, skybox, enable quiver, set BowOrQuiver script to LRHandSelection
-        //hide healthbar and scoreboard
-        //disable target manager, game timer, ?others
 
-        //***** handling sound cues to guide user, based on single target?
-        // if target not hit (no child 'Arrow')
-        //play directions to load and shoot arrow
-        //play directions to turn body to find target
-        //when player hits target (coin sound)
-        //tell player the score value for each target ring
-        //in Play Mode the target will disappear and need to find new target
-        //tell player how long the round is
-        //tell player to shoot straight up above them to access settings in game, or to leave demo now
-        //need to add collider for above player w/ script that checks this one for demo mode
-        //if demo mode
-        //change game state to main menu,
-        //set isDemoModeSelected to false, and set gameStateInstantiated[5] = false
-        //remove singleton target
+        ground.enabled = true;
 
-        //if play mode then then pause game timer script change game state to l/r hand setting
-        //(suggestion - get health bar script to look at elapsed time in game timer script rather than have internal timing)
+        //enable quiver
+        quiver.enabled = true;
+
+
+        //enable skybox (day/night) - doesn't have to deal with this since the skybox will stay on 
+
+
+        //enable target for demo
+        demoTarget.gameObject.SetActive(true);
+
+        //enable bow and arrow
+        bowHandScript.menuOption = "L";
+
+        /**enable sound cues:**/
+        /*You are in Demo Mode. To exit shoot upward - this will return the player to the main menu*/
+
+        /*
+         * **Left Handed**
+         * As a left handed the bow should be on your right
+         * 
+         * You can stretch the string by pressing left grip while pulling back
+         * 
+         * To load or reload the arrow onto the bow, press the right grip
+         */
+        /**-----**/
+        /*
+         * Righ Handed
+         * As a left handed the bow should be on your right
+         * 
+         * To load or reload the arrow onto the bow, press the left grip
+         * 
+         * Try to aim the target: inner target is 100pts, middle target is 50%, and the outer target is 20%
+         * 
+         * 
+         */
     }
 
     private void InitiateGameMode()
