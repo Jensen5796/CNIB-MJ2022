@@ -195,6 +195,7 @@ public class CanvasManager : MonoBehaviour
             //RenderSettings.skybox = daySky;
             ////RenderSettings.skybox.CopyPropertiesFromMaterial(nightSky);
             //DynamicGI.UpdateEnvironment();
+            RenderSettings.skybox.SetFloat("_Exposure", .95f);
         }
         else
         {
