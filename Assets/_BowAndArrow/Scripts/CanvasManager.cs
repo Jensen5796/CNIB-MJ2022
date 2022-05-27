@@ -434,7 +434,7 @@ public class CanvasManager : MonoBehaviour
         demoTarget.gameObject.SetActive(true);
 
         //enable bow and arrow
-        bowHandScript.menuOption = "N";
+        bowHandScript.menuOption = "L";
 
         /**enable sound cues:**/
         /*You are in Demo Mode. To exit shoot upward - this will return the player to the main menu*/
