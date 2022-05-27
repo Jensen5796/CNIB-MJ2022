@@ -1,0 +1,34 @@
+fileFormatVersion: 2
+guid: 566ebfce23001a3408449f441299ed93
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameMode_DemoMode: {fileID: 8300000, guid: ee3f80b7529e5bb4986b2ea16f227730, type: 3}
+  - welcomeToMainMenu: {fileID: 8300000, guid: 4e948f2a39d615a4cab3249f30253d27, type: 3}
+  - LRHanded: {fileID: 8300000, guid: 98124324b9eb0b240bfe67a29bd7752b, type: 3}
+  - LRSelection: {fileID: 8300000, guid: a4f5e252ab435eb4da6069c80e7ae81d, type: 3}
+  - chooseDNMode: {fileID: 8300000, guid: ca3a5c135f33b8f4a8ed3999bd8b51d1, type: 3}
+  - dayNight: {fileID: 8300000, guid: 5654a98f85b9518458735d246d11a526, type: 3}
+  - BYorPGdayMode: {fileID: 8300000, guid: 9b3d7e76167a0c2469b55440a36e0f60, type: 3}
+  - WRorPGnightMode: {fileID: 8300000, guid: 0ba228de605a58d48b327788dab5586e, type: 3}
+  - chooseTargetColors: {fileID: 8300000, guid: 64dbb776db4c17d42848762812e43d64,
+      type: 3}
+  - enteringDemoMode: {fileID: 8300000, guid: ee8adb4b585cb5549884754028864eb9, type: 3}
+  - enteringGameMode: {fileID: 8300000, guid: 59044bad4393ad34f9c053054e006b4c, type: 3}
+  - demoMode: {fileID: 8300000, guid: 1f2519199042f354bafc7fc91f94e9fb, type: 3}
+  - leftHandedBow: {fileID: 8300000, guid: 66224066078b436488c4f75fbd18b03c, type: 3}
+  - rightHandedBow: {fileID: 8300000, guid: a99b3c6d19209044486879994f2ac8b5, type: 3}
+  - RHloadorReload: {fileID: 8300000, guid: bfa30e8d70fa3984c944d3870a55693b, type: 3}
+  - LHloadorReload: {fileID: 8300000, guid: 661a67f3b1ac94e4da96a18007d67360, type: 3}
+  - targetScores: {fileID: 8300000, guid: c30e18174c8331b4c9902dffa251e255, type: 3}
+  - targetSoundCue: {fileID: 8300000, guid: 0bc646804ff91e04b93be3761aca49ec, type: 3}
+  - thirtySecsLeft: {fileID: 8300000, guid: c81189e5c0ffaaf47a68ecb1f5fd78ae, type: 3}
+  - creditsorMainMenu: {fileID: 8300000, guid: 185886a7be0cb3b4ba3310a2222bf173, type: 3}
+  - wellDone: {fileID: 8300000, guid: c8ba128326eabd4419189bfc95b44a59, type: 3}
+  - credits: {fileID: 8300000, guid: c309c3a0908f21d45ba6eaeaa83df05a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
