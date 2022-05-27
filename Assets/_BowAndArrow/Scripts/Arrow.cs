@@ -442,4 +442,21 @@ public class Arrow : XRGrabInteractable
             
         }
     }
+    public void ExitDemo(RaycastHit targetHit)
+    {
+        // get name of collider
+        string colliderName = targetHit.collider.gameObject.name;
+        string exit = "exitDemo";
+        string returntoMain = "return";
+        // check tag for InnerTarget
+        if (colliderName == exit)
+        {
+            CanvasManager.exitDemo(returntoMain);
+
+
+        }
+
+
+
+    }
 }
