@@ -7,16 +7,22 @@ public class HealthBar : MonoBehaviour
 {
 
 	Image fill;
-	float health, maxhealth = 180f;
+	//float health, maxhealth = 180f;
+    float health, maxhealth;
 
-	public void Start()
+    public void Awake()
+    {
+        maxhealth = GameTimer.getDurationOfRound();
+    }
+    public void Start()
     {
 		health = maxhealth;
 		fill = GetComponent<Image>();
     }
 	public void Update()
 	{
-		health -= Time.deltaTime;
+		//health -= Time.deltaTime;
+		health = GameTimer.getElapsedTime();
 		fill.fillAmount = health / maxhealth;
 		if (health < 0) health = 0;
 	}
