@@ -4,7 +4,7 @@ public class ConcentricTarget : MonoBehaviour, IArrowHittable
 {
     public float forceAmount = 1.0f;
     public Material otherMaterial = null;
-    public int ascore;
+    public int ascore; // Track points based on region hit by arrow
     //TODO: make other material if going to change target colour when hit
 
     public AudioClip hitTarget;

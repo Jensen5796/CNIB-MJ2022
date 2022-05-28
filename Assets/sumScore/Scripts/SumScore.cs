@@ -31,7 +31,7 @@ public class SumScore {
         }
     }
 
-    public static void UpdateCount(float elapsed)
+    public static void UpdateTime(float elapsed)
     {       
         mgr.UpdatedHS(elapsed);
 
