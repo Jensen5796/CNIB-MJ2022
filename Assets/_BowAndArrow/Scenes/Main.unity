@@ -6323,11 +6323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca099e5f0c3cc064ba9e29dc00598090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftDayTarget: {fileID: 2762203773592475860, guid: ccdfcc46a8db8ad4eb6b2146d0aaa68b,
+  LeftDayTarget: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
     type: 3}
   RightDayTarget: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
     type: 3}
-  LeftNightTarget: {fileID: 2762203773592475860, guid: 5f240f377cfb60641bd842b8ae0569fa,
+  LeftNightTarget: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
     type: 3}
   RightNightTarget: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
     type: 3}
