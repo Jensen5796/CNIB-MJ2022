@@ -238,6 +238,7 @@ public class CanvasManager : MonoBehaviour
             //change game state
             gameState = 2;
             handSelection.gameObject.SetActive(true);
+            StartCoroutine(PlayAudioSequence(handSettingCues));
         }
         else if (decision == 'R') //Play --> proceed thru settings
         {
@@ -312,8 +313,38 @@ public class CanvasManager : MonoBehaviour
         tester.text += " In Skybox Selection";
         //Color nightGroundColor = new Color(96, 98, 97, 255);
         //Color dayGroundColor = new Color(255, 255, 255, 255);
-        if (decision == 'R') //set night mode
+        if (decision == 'R') //set day mode
         {
+            //day mode
+            isDayModeSelected = true;
+            //make setting change for R:
+            //ground.material.SetColor("_Color", dayGroundColor);
+            ground.material.SetColor("_BaseColor", Color.white);
+            RenderSettings.skybox.SetFloat("_Exposure", .95f);
+
+            //change game state
+            gameState = 4;
+
+            //hide menu
+            skyboxOption.gameObject.SetActive(false);
+            if (isDayModeSelected) //day mode
+            {
+                //show panel for daytime target options
+                targetColSelectionDay.gameObject.SetActive(true);
+
+                StartCoroutine(PlayAudioSequence(dayTargetCues));
+            }
+            else
+            {
+                //show panel for nighttime target options
+                targetColSelectionNight.gameObject.SetActive(true);
+                StartCoroutine(PlayAudioSequence(nightTargetCues));
+            }
+            
+        }
+        else if (decision == 'L') //set night mode
+        {
+            //night mode
             isDayModeSelected = false;
             //make setting change for L:
 
@@ -331,33 +362,6 @@ public class CanvasManager : MonoBehaviour
             {
                 //show panel for daytime target options
                 targetColSelectionDay.gameObject.SetActive(true);
-                StartCoroutine(PlayAudioSequence(dayTargetCues));
-            }
-            else
-            {
-                //show panel for nighttime target options
-                targetColSelectionNight.gameObject.SetActive(true);
-                StartCoroutine(PlayAudioSequence(nightTargetCues));
-            }
-        }
-        else if (decision == 'L') //set day mode
-        {
-            isDayModeSelected = true;
-            //make setting change for R:
-            //ground.material.SetColor("_Color", dayGroundColor);
-            ground.material.SetColor("_BaseColor", Color.white);
-            RenderSettings.skybox.SetFloat("_Exposure", .95f);
-
-            //change game state
-            gameState = 4;
-
-            //hide menu
-            skyboxOption.gameObject.SetActive(false);
-            if (isDayModeSelected) //day mode
-            {
-                //show panel for daytime target options
-                targetColSelectionDay.gameObject.SetActive(true);
-                
                 StartCoroutine(PlayAudioSequence(dayTargetCues));
             }
             else
