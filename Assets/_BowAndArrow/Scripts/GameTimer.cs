@@ -20,8 +20,8 @@ public class GameTimer : MonoBehaviour
     void Update()
     {
         elapsedTime -= Time.deltaTime;
-        SumScore.UpdateCount(elapsedTime);
-        //healthbar.Tick(elapsedTime);
+        SumScore.UpdateTime(elapsedTime);
+        
     }
 
     public static float getElapsedTime()
