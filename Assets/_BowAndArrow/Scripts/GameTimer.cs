@@ -25,7 +25,7 @@ public class GameTimer : MonoBehaviour
         if (!isPaused)
         {
             elapsedTime -= Time.deltaTime;
-            SumScore.UpdateCount(elapsedTime);
+            SumScore.UpdateTime(elapsedTime);
             if (elapsedTime <= 0)
             {
                 CanvasManager.gameState = 7;
