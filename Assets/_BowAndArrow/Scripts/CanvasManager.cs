@@ -121,8 +121,8 @@ public class CanvasManager : MonoBehaviour
         dayTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.BYorPGdayMode };
         nightTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.WRorPGnightMode };
         endGameCues = new AudioClip[] { soundcues.wellDone, soundcues.creditsorMainMenu };
-        //leftDemoCues = new AudioClip[] { };
-        //rightDemoCues = new AudioClip[] { };
+        leftDemoCues = new AudioClip[] { soundcues.demoMode,soundcues.leftHandedBow, soundcues.LHloadorReload};
+        rightDemoCues = new AudioClip[] { soundcues.demoMode, soundcues.rightHandedBow, soundcues.RHloadorReload };
         //skybox
         skyboxOption.gameObject.SetActive(false);
         //testing = GameObject.FindGameObjectsWithTag("TestingText");
@@ -491,6 +491,14 @@ public class CanvasManager : MonoBehaviour
     {
         if (!inDemoMode)
         {
+            if (LRHandSelection == "R")
+            {
+                StartCoroutine(PlayAudioSequence(rightDemoCues));
+            }
+            else if (LRHandSelection == "L") 
+            {
+                StartCoroutine(PlayAudioSequence(leftDemoCues));
+            }
             inDemoMode = true;
             tester.text += " In Demo Mode";
 
