@@ -310,11 +310,16 @@ public class CanvasManager : MonoBehaviour
     private void ExecuteEnvSelectionDecision(char decision)
     {
         tester.text += " In Skybox Selection";
-
+        //Color nightGroundColor = new Color(96, 98, 97, 255);
+        //Color dayGroundColor = new Color(255, 255, 255, 255);
         if (decision == 'R') //set night mode
         {
             isDayModeSelected = false;
             //make setting change for L:
+
+            //ground.material.SetColor("_Color", nightGroundColor);
+
+            ground.material.SetColor("_BaseColor", Color.gray);
             RenderSettings.skybox.SetFloat("_Exposure", .17f);
 
             //change game state
@@ -339,6 +344,8 @@ public class CanvasManager : MonoBehaviour
         {
             isDayModeSelected = true;
             //make setting change for R:
+            //ground.material.SetColor("_Color", dayGroundColor);
+            ground.material.SetColor("_BaseColor", Color.white);
             RenderSettings.skybox.SetFloat("_Exposure", .95f);
 
             //change game state
@@ -350,6 +357,7 @@ public class CanvasManager : MonoBehaviour
             {
                 //show panel for daytime target options
                 targetColSelectionDay.gameObject.SetActive(true);
+                
                 StartCoroutine(PlayAudioSequence(dayTargetCues));
             }
             else
