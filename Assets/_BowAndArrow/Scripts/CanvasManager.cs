@@ -48,7 +48,7 @@ public class CanvasManager : MonoBehaviour
 
     private static bool isDemoModeSelected = false; //whether user has chosen demo or not
     private bool isDayModeSelected = true;
-    private string LRHandSelection = "N";
+    public static string LRHandSelection = "N";
     private char prevButtonState = 'N';
     private static GameObject targetSelection;
     public static bool showMainMenuPanel;
@@ -142,16 +142,19 @@ public class CanvasManager : MonoBehaviour
         {
             mainMenu.gameObject.SetActive(true);
             StartCoroutine(PlayAudioSequence(mainMenuCues));
+            showMainMenuPanel = false;
         }
         if (showEndGamePanel)
         {
             gameOver.gameObject.SetActive(true);
             StartCoroutine(PlayAudioSequence(endGameCues));
+            showEndGamePanel = false;
         }
         if (showHandSelection)
         {
             handSelection.gameObject.SetActive(true);
             StartCoroutine(PlayAudioSequence(handSettingCues));
+            showHandSelection = false;
         }
         if (disableGameComponents)
         {
@@ -215,7 +218,7 @@ public class CanvasManager : MonoBehaviour
 
     public void handleMainMenu()
     {
-        showMainMenuPanel = false;
+        
 
         DisableGameComponents();
         mainMenu.gameObject.SetActive(true);
@@ -281,6 +284,7 @@ public class CanvasManager : MonoBehaviour
             //hide menu
             handSelection.gameObject.SetActive(false);
             skyboxOption.gameObject.SetActive(true);
+            StartCoroutine(PlayAudioSequence(skyboxSettingCues));
         }
         else if (decision == 'R') //set right hand
         {
@@ -411,7 +415,7 @@ public class CanvasManager : MonoBehaviour
             if (isDemoModeSelected)
             {
                 gameState = 5;
-                GetComponent<AudioSource>().PlayOneShot(soundcues.enteringDemoMode);
+                //GetComponent<AudioSource>().PlayOneShot(soundcues.enteringDemoMode);
                 InitiateDemoMode();
             }
             else
@@ -448,7 +452,7 @@ public class CanvasManager : MonoBehaviour
             if (isDemoModeSelected)
             {
                 gameState = 5;
-                GetComponent<AudioSource>().PlayOneShot(soundcues.enteringDemoMode);
+                //GetComponent<AudioSource>().PlayOneShot(soundcues.enteringDemoMode);
                 InitiateDemoMode();
             }
             else
@@ -715,7 +719,8 @@ public class CanvasManager : MonoBehaviour
             //main menu
             gameState = 1;
             credits.gameObject.SetActive(false);
-            mainMenu.gameObject.SetActive(true);
+            //mainMenu.gameObject.SetActive(true);
+            showMainMenuPanel = true;
         }
     }
 

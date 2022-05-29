@@ -2274,6 +2274,7 @@ MonoBehaviour:
   clip_arrowMissed: {fileID: 8300000, guid: 0d7c6a010baeeb844aff6fd8a6297380, type: 3}
   clip_loadingArrow: {fileID: 8300000, guid: 98ba879eb233b6c40beacacd07ab5db9, type: 3}
   clip_tenSec: {fileID: 8300000, guid: a1ccaa5a25f310f4191c8424de179a3d, type: 3}
+  clip_30sec: {fileID: 8300000, guid: c81189e5c0ffaaf47a68ecb1f5fd78ae, type: 3}
   clip_keepTrying: {fileID: 8300000, guid: 0f955f1960b285c4fbbda6e3ff41be27, type: 3}
   clip_10: {fileID: 8300000, guid: 1a4b54e0e4bebbe4690bf38a2efee889, type: 3}
   clip_20: {fileID: 8300000, guid: 1aa9583c919c7aa4d86a207e04a38c7a, type: 3}

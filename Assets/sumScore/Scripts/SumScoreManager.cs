@@ -96,6 +96,7 @@ public class SumScoreManager : MonoBehaviour {
         yTimer = (int)elapsed / 60;
         highScoreField.text = yTimer.ToString("00") + ":"+ xTimer.ToString("00");
 
+        //10 sec cue
         if (yTimer == 0 && xTimer == 10) 
         {
             if (!GetComponent<AudioSource>().isPlaying)
@@ -103,6 +104,18 @@ public class SumScoreManager : MonoBehaviour {
                 if (!countdown)
                 {
                     GetComponent<AudioSource>().PlayOneShot(soundcue.clip_tenSec);
+                    countdown = true;
+                }
+            }
+        }
+        //30 second cue
+        if (yTimer == 0 && xTimer == 30)
+        {
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                if (!countdown)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_30sec);
                     countdown = true;
                 }
             }
@@ -213,6 +226,8 @@ public class SumScoreManager : MonoBehaviour {
 
             }
         }
+
+        
 
         //10 sec
         else if (yTimer == 0 && xTimer == 4)
