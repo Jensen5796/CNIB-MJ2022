@@ -3,7 +3,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Bow : XRGrabInteractable
 {
-
+    public static bool isArrowLoaded;
     private Notch notch = null;
     public GameObject arrowPrefab = null;
 

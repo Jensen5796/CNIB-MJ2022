@@ -436,6 +436,7 @@ public class Arrow : XRGrabInteractable
         {
             if (!launched)
             {
+                Bow.isArrowLoaded = false;
                 //arrow is on ground, and it was not launched (it dropped)
                 Destroy(this.gameObject, 2);
             }
