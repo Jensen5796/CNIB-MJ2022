@@ -116,8 +116,8 @@ public class CanvasManager : MonoBehaviour
         soundcues = this.GetComponent<gameFlowCue>();
 
         mainMenuCues = new AudioClip[] { soundcues.welcomeToMainMenu, soundcues.gameMode_DemoMode };
-        handSettingCues = new AudioClip[] { soundcues.LRHanded, soundcues.LRSelection };
-        skyboxSettingCues = new AudioClip[] { soundcues.chooseDNMode, soundcues.dayNight };
+        handSettingCues = new AudioClip[] { soundcues.LRSelection, soundcues.LRHanded  };
+        skyboxSettingCues = new AudioClip[] { soundcues.dayNight, soundcues.chooseDNMode  };
         dayTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.BYorPGdayMode };
         nightTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.WRorPGnightMode };
         endGameCues = new AudioClip[] { soundcues.wellDone, soundcues.creditsorMainMenu };

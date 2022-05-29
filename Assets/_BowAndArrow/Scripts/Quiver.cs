@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
 
 public class Quiver : XRBaseInteractable
 {
     public GameObject arrowPrefab = null;
+    private Text testing;
 
     protected override void OnEnable()
     {
         base.OnEnable();
         selectEntered.AddListener(CreateAndSelectArrow);
+        GameObject go2 = GameObject.Find("TestText");
+        testing = go2.GetComponent<Text>();
     }
 
     protected override void OnDisable()
@@ -19,9 +23,26 @@ public class Quiver : XRBaseInteractable
 
     private void CreateAndSelectArrow(SelectEnterEventArgs args)
     {
-        // Create arrow, force into interacting hand
-        Arrow arrow = CreateArrow(args.interactor.transform);
-        interactionManager.ForceSelect(args.interactor, arrow);
+        if (!Bow.isArrowLoaded)
+        {
+            // Create arrow, force into interacting hand
+            testing.text = args.interactor.name;
+            if (CanvasManager.LRHandSelection == "R" && args.interactor.name == "RightHand Controller")
+            {
+                Arrow arrow = CreateArrow(args.interactor.transform);
+                interactionManager.ForceSelect(args.interactor, arrow);
+                Bow.isArrowLoaded = true;
+            }
+            else if (CanvasManager.LRHandSelection == "L" && args.interactor.name == "LeftHand Controller")
+            {
+                Arrow arrow = CreateArrow(args.interactor.transform);
+                interactionManager.ForceSelect(args.interactor, arrow);
+                Bow.isArrowLoaded = true;
+            }
+        }
+        
+        
+        
     }
 
     private Arrow CreateArrow(Transform orientation)
@@ -29,5 +50,6 @@ public class Quiver : XRBaseInteractable
         // Create arrow, and get arrow component
         GameObject arrowObject = Instantiate(arrowPrefab, orientation.position, orientation.rotation);
         return arrowObject.GetComponent<Arrow>();
+
     }
 }
