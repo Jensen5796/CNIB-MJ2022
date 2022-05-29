@@ -19,6 +19,7 @@ public class PullMeasurer : XRBaseInteractable
     private XRBaseInteractor pullingInteractor = null;
 
     private XRDirectInteractor rightHandInteractor;
+    private XRDirectInteractor leftHandInteractor;
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
@@ -29,9 +30,19 @@ public class PullMeasurer : XRBaseInteractable
         // Set interactor for measurement
         pullingInteractor = args.interactor;
 
-        GameObject rightHand = GameObject.Find("RightHand Controller");
-        rightHandInteractor = rightHand.GetComponent<XRDirectInteractor>();
-        rightHandInteractor.playHapticsOnSelectEntered = true;
+        if (CanvasManager.LRHandSelection == "R")
+        {
+            GameObject rightHand = GameObject.Find("RightHand Controller");
+            rightHandInteractor = rightHand.GetComponent<XRDirectInteractor>();
+            rightHandInteractor.playHapticsOnSelectEntered = true;
+        }
+        else if (CanvasManager.LRHandSelection == "L")
+        {
+            GameObject leftHand = GameObject.Find("LeftHand Controller");
+            leftHandInteractor = leftHand.GetComponent<XRDirectInteractor>();
+            leftHandInteractor.playHapticsOnSelectEntered = true;
+        }
+        
 
         Haptics();
  
@@ -41,7 +52,16 @@ public class PullMeasurer : XRBaseInteractable
     private void Haptics()
     {
         hapticDuration += hapticPullAmount;
-        rightHandInteractor.hapticSelectEnterDuration = hapticDuration;
+
+        if (CanvasManager.LRHandSelection == "R")
+        {
+            rightHandInteractor.hapticSelectEnterDuration = hapticDuration;
+        }
+        else if (CanvasManager.LRHandSelection == "L")
+        {
+            leftHandInteractor.hapticSelectEnterDuration = hapticDuration;
+        }
+        
 
 
     }
@@ -54,8 +74,18 @@ public class PullMeasurer : XRBaseInteractable
         // Clear interactor, and reset pull amount for animation
         pullingInteractor = null;
 
-        rightHandInteractor.playHapticsOnSelectExited = true;
-        rightHandInteractor.hapticSelectExitDuration = .01f;
+        if (CanvasManager.LRHandSelection == "R")
+        {
+            rightHandInteractor.playHapticsOnSelectExited = true;
+            rightHandInteractor.hapticSelectExitDuration = .01f;
+        }
+        else if (CanvasManager.LRHandSelection == "L")
+        {
+            leftHandInteractor.playHapticsOnSelectExited = true;
+            leftHandInteractor.hapticSelectExitDuration = .01f;
+        }
+
+        
 
         hapticDuration = 0;
 
@@ -96,7 +126,15 @@ public class PullMeasurer : XRBaseInteractable
 
         //haptic
 
-        rightHandInteractor.hapticSelectEnterIntensity = newPullAmount;
+        if (CanvasManager.LRHandSelection == "R")
+        {
+            rightHandInteractor.hapticSelectEnterIntensity = newPullAmount;
+        }
+        else if (CanvasManager.LRHandSelection == "L")
+        {
+            leftHandInteractor.hapticSelectEnterIntensity = newPullAmount;
+        }
+        
 
         // rightHandInteractor.hapticSelectEnterDuration += newPullAmount;
         hapticPullAmount = newPullAmount;
