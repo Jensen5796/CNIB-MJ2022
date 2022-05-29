@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 178320261}
   - component: {fileID: 178320260}
   m_Layer: 5
-  m_Name: RightLabel_night
+  m_Name: RightLabel_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -514,7 +514,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Right Grip: Night mode
+  m_Text: 'Right Grip: day mode
 
 '
 --- !u!222 &178320261
@@ -2319,7 +2319,7 @@ GameObject:
   - component: {fileID: 728908101}
   - component: {fileID: 728908100}
   m_Layer: 5
-  m_Name: LeftLabel_day
+  m_Name: LeftLabel_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2377,7 +2377,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Left Grip: day mode'
+  m_Text: 'Left Grip: night mode'
 --- !u!222 &728908101
 CanvasRenderer:
   m_ObjectHideFlags: 0
