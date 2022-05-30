@@ -101,10 +101,10 @@ public class CanvasManager : MonoBehaviour
 
         //demo mode
         //Target for Demo Mode
-        demoTarget = GameObject.Find("DemoMode_SphericalTarget").GetComponent<Transform>();
+        //demoTarget = GameObject.Find("DemoMode_SphericalTarget").GetComponent<Transform>();
 
         //Target for Demo Mode
-        demoTarget.gameObject.SetActive(false);
+        //demoTarget.gameObject.SetActive(false);
 
         gameOver.gameObject.SetActive(false);
 
@@ -531,7 +531,9 @@ public class CanvasManager : MonoBehaviour
             //enable target for demo
             //thought - will need a separate demo target script (short - just instantiate target in one position)
             // -- only way to make the target in demo be the color they selected in settings
-            demoTarget.gameObject.SetActive(true);
+            //demoTarget.gameObject.SetActive(true);
+            tm.enabled = true;
+            TargetManager.RestartTargetManager();
 
             //enable bow and arrow
             //bowHandScript.menuOption = "L";

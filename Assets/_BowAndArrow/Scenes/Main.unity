@@ -3344,7 +3344,7 @@ PrefabInstance:
     - target: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2762203773592475861, guid: 11cfed391e2938c40a46c17339f5e1f0,
         type: 3}
@@ -6328,7 +6328,7 @@ MonoBehaviour:
     type: 3}
   RightDayTarget: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
     type: 3}
-  LeftNightTarget: {fileID: 8009874825659133968, guid: 1668d1104b4d58c40ac8dae975252938,
+  LeftNightTarget: {fileID: 8009874825659133968, guid: 8776aab0a62a02d4780ae834a1c4983f,
     type: 3}
   RightNightTarget: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
     type: 3}

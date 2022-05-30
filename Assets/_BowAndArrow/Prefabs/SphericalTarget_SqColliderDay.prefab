@@ -11,6 +11,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SphericalTarget_SqColliderNight
+      value: SphericalTarget_SqColliderDay
       objectReference: {fileID: 0}
     - target: {fileID: 2762203773592475861, guid: 11cfed391e2938c40a46c17339f5e1f0,
         type: 3}
@@ -72,15 +73,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1aa1bfca638ca394a82bf7e5544731e7, type: 2}
+      objectReference: {fileID: 2100000, guid: 02d837e0eff8c774294326886cdf091e, type: 2}
     - target: {fileID: 4485088024214343140, guid: 11cfed391e2938c40a46c17339f5e1f0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e9edad6beda74154999f7bbd86491d19, type: 2}
+      objectReference: {fileID: 2100000, guid: fca6a85f2cb9a5c469487f6c4a950a8a, type: 2}
     - target: {fileID: 4485088024214343166, guid: 11cfed391e2938c40a46c17339f5e1f0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e9edad6beda74154999f7bbd86491d19, type: 2}
+      objectReference: {fileID: 2100000, guid: fca6a85f2cb9a5c469487f6c4a950a8a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11cfed391e2938c40a46c17339f5e1f0, type: 3}
