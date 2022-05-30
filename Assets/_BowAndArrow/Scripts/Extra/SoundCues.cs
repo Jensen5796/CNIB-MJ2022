@@ -17,8 +17,9 @@ public class SoundCues : MonoBehaviour
     public AudioClip clip_arrowMissed;
     public AudioClip clip_loadingArrow;
 
-    //ten second countdown
+    //near end of round signals
     public AudioClip clip_tenSec;
+    public AudioClip clip_30sec;
 
     //scoring
     public AudioClip clip_keepTrying;

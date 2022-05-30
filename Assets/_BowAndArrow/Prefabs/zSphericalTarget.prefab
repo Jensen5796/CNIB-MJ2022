@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2762203773592475861}
   m_Layer: 0
-  m_Name: SphericalTarget
+  m_Name: zSphericalTarget
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

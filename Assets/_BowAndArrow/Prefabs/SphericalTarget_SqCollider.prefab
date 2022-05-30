@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 792776767830652840}
   m_Layer: 11
   m_Name: DirCollider_Up
-  m_TagString: Untagged
+  m_TagString: AuraCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6227044720123455553}
   m_Layer: 11
   m_Name: DirCollider_Down
-  m_TagString: Untagged
+  m_TagString: AuraCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 7755438746661970706}
   m_Layer: 11
   m_Name: DirCollider_Left
-  m_TagString: Untagged
+  m_TagString: AuraCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -862,7 +862,7 @@ GameObject:
   - component: {fileID: 6471919598858886822}
   m_Layer: 11
   m_Name: DirCollider_Right
-  m_TagString: Untagged
+  m_TagString: AuraCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

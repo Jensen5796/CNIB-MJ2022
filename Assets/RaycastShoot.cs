@@ -22,8 +22,8 @@ public class RaycastShoot : MonoBehaviour
     void Start()
     {
         laserLine = GetComponent<LineRenderer>();
-        laserLine.startWidth = 0.1f;
-        laserLine.endWidth = 0.1f;
+        laserLine.startWidth = 0.05f;
+        laserLine.endWidth = 0.05f;
         //gunAudio = GetComponent<AudioSource>();
         //fpsCam = GetComponentInParent<Camera>(); //search for camera in the obj it attached to then each obj in the parent hierachy
 

@@ -45,6 +45,7 @@ public class Notch : XRSocketInteractor
         if (selectTarget is Arrow && PullMeasurer.PullAmount > releaseThreshold)
         {
             CustomManager.ForceDeselect(this);
+            Bow.isArrowLoaded = false;
         }
     }
 

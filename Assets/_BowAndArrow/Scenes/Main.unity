@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 178320261}
   - component: {fileID: 178320260}
   m_Layer: 5
-  m_Name: RightLabel_night
+  m_Name: RightLabel_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -514,7 +514,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Right Grip: Night mode
+  m_Text: 'Right Grip: day mode
 
 '
 --- !u!222 &178320261
@@ -2274,6 +2274,7 @@ MonoBehaviour:
   clip_arrowMissed: {fileID: 8300000, guid: 0d7c6a010baeeb844aff6fd8a6297380, type: 3}
   clip_loadingArrow: {fileID: 8300000, guid: 98ba879eb233b6c40beacacd07ab5db9, type: 3}
   clip_tenSec: {fileID: 8300000, guid: a1ccaa5a25f310f4191c8424de179a3d, type: 3}
+  clip_30sec: {fileID: 8300000, guid: c81189e5c0ffaaf47a68ecb1f5fd78ae, type: 3}
   clip_keepTrying: {fileID: 8300000, guid: 0f955f1960b285c4fbbda6e3ff41be27, type: 3}
   clip_10: {fileID: 8300000, guid: 1a4b54e0e4bebbe4690bf38a2efee889, type: 3}
   clip_20: {fileID: 8300000, guid: 1aa9583c919c7aa4d86a207e04a38c7a, type: 3}
@@ -2318,7 +2319,7 @@ GameObject:
   - component: {fileID: 728908101}
   - component: {fileID: 728908100}
   m_Layer: 5
-  m_Name: LeftLabel_day
+  m_Name: LeftLabel_night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2376,7 +2377,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Left Grip: day mode'
+  m_Text: 'Left Grip: night mode'
 --- !u!222 &728908101
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3343,7 +3344,7 @@ PrefabInstance:
     - target: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2762203773592475861, guid: 11cfed391e2938c40a46c17339f5e1f0,
         type: 3}
@@ -6323,11 +6324,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca099e5f0c3cc064ba9e29dc00598090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftDayTarget: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
+  LeftDayTarget: {fileID: 8009874825659133968, guid: f70b037138f31fb4aac3864d126242c1,
     type: 3}
   RightDayTarget: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
     type: 3}
-  LeftNightTarget: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
+  LeftNightTarget: {fileID: 8009874825659133968, guid: 8776aab0a62a02d4780ae834a1c4983f,
     type: 3}
   RightNightTarget: {fileID: 2762203773592475860, guid: 11cfed391e2938c40a46c17339f5e1f0,
     type: 3}

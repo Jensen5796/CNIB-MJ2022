@@ -15,7 +15,7 @@ MonoImporter:
   - chooseTargetColors: {fileID: 8300000, guid: 64dbb776db4c17d42848762812e43d64,
       type: 3}
   - enteringDemoMode: {fileID: 8300000, guid: ee8adb4b585cb5549884754028864eb9, type: 3}
-  - enteringGameMode: {fileID: 8300000, guid: 59044bad4393ad34f9c053054e006b4c, type: 3}
+  - enteringGameMode: {fileID: 8300000, guid: 2abb13386a7afb14cbc6dfb3e6327476, type: 3}
   - demoMode: {fileID: 8300000, guid: 1f2519199042f354bafc7fc91f94e9fb, type: 3}
   - leftHandedBow: {fileID: 8300000, guid: 66224066078b436488c4f75fbd18b03c, type: 3}
   - rightHandedBow: {fileID: 8300000, guid: a99b3c6d19209044486879994f2ac8b5, type: 3}
