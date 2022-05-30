@@ -65,6 +65,8 @@ public class CeilingSettings : MonoBehaviour
         CanvasManager.DisableGameComponentsWrapper(); //should also destroy demo target because it has "Target" tag
         CanvasManager.gameState = 1;
         CanvasManager.showMainMenuPanel = true;
+        CanvasManager.inDemoMode = false;
+        
 
     }
     private void showInGameSettings()

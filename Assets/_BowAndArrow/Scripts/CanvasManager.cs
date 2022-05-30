@@ -143,6 +143,7 @@ public class CanvasManager : MonoBehaviour
             mainMenu.gameObject.SetActive(true);
             StartCoroutine(PlayAudioSequence(mainMenuCues));
             showMainMenuPanel = false;
+            //isDemoModeSelected = false;
         }
         if (showEndGamePanel)
         {
