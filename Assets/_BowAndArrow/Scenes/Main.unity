@@ -560,7 +560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: -122.939995}
+  m_AnchoredPosition: {x: 160.04, y: -61}
   m_SizeDelta: {x: 320.09, y: 81.977}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &190610718
@@ -596,7 +596,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Right Grip
+  m_Text: "Right Grip: \nDay"
 --- !u!222 &190610719
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -898,7 +898,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161.12001, y: -122.939995}
+  m_AnchoredPosition: {x: -160.96, y: -61.008}
   m_SizeDelta: {x: 318.09, y: 81.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &281715004
@@ -934,7 +934,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Left Grip
+  m_Text: "Left Grip: \nNight"
 --- !u!222 &281715005
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2419,7 +2419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727256743}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -171, y: -21, z: -62.5}
+  m_LocalPosition: {x: -121, y: -22, z: -128}
   m_LocalScale: {x: 23.9239, y: 23.9239, z: 47.8478}
   m_Children: []
   m_Father: {fileID: 230481209}
