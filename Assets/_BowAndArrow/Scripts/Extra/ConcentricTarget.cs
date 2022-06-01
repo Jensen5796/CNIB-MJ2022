@@ -19,7 +19,7 @@ public class ConcentricTarget : MonoBehaviour, IArrowHittable
         SumScore.Add(ascore);
         Debug.Log("Add sound effect/celebration here");
         GetComponent<AudioSource>().PlayOneShot(hitTarget);
-        GetComponent<AudioSource>().PlayOneShot(celebration);
+       // GetComponent<AudioSource>().PlayOneShot(celebration);
         ApplyForce(arrow.transform.forward);
 
     }
