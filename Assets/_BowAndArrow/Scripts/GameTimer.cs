@@ -6,7 +6,7 @@ public class GameTimer : MonoBehaviour
 {
     public static bool isPaused = false;
     public static float elapsedTime;
-    public static float durationOfRound = 180;
+    public static float durationOfRound = 10;
 
     // Start is called before the first frame update
     // public HealthBar healthbar;
