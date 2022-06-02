@@ -750,6 +750,8 @@ public class CanvasManager : MonoBehaviour
 
     private void GetExecuteEndGameDecision(char decision)
     {
+        Text scoreText = GameObject.Find("TotalScore").GetComponent<Text>();
+        scoreText.text = SumScore.Score.ToString();
         tester.text += " In End Game Selection";
         if (decision == 'L')
         {
