@@ -71,10 +71,10 @@ public class CeilingSettings : MonoBehaviour
     }
     private void showInGameSettings()
     {
-        CanvasManager.inSettingsDuringGame = true;
-        GameTimer.isPaused = true;
         CanvasManager.DisableGameComponentsWrapper();
         CanvasManager.gameState = 2;
+        CanvasManager.inSettingsDuringGame = true;
+        GameTimer.isPaused = true;
         CanvasManager.showHandSelection = true;
         
     }

@@ -10,6 +10,7 @@ public class CanvasManager : MonoBehaviour
     private RectTransform targetColSelectionDay;
     private RectTransform targetColSelectionNight;
     private RectTransform handSelection;
+    private RectTransform demoPanel;
 
     //Skybox scene;
 
@@ -68,6 +69,8 @@ public class CanvasManager : MonoBehaviour
     private AudioClip[] endGameCues;
     private AudioClip[] leftDemoCues;
     private AudioClip[] rightDemoCues;
+    private bool[] haveCuesPlayedForThisState;
+    private int cuesTrackingPrevState = 0;
 
     //sound cue
     private gameFlowCue gameCue;
@@ -96,6 +99,7 @@ public class CanvasManager : MonoBehaviour
         targetColSelectionDay = GameObject.Find("TargetColorsDay").GetComponent<RectTransform>();
         targetColSelectionNight = GameObject.Find("TargetColorsNight").GetComponent<RectTransform>();
         handSelection = GameObject.Find("LeftRight Option").GetComponent<RectTransform>();
+        demoPanel = GameObject.Find("Demo").GetComponent<RectTransform>();
         //skybox
         skyboxOption = GameObject.Find("Skybox Option").GetComponent<RectTransform>();
 
@@ -112,24 +116,27 @@ public class CanvasManager : MonoBehaviour
         targetColSelectionDay.gameObject.SetActive(false);
         targetColSelectionNight.gameObject.SetActive(false);
         handSelection.gameObject.SetActive(false);
-
+        demoPanel.gameObject.SetActive(false);
         soundcues = this.GetComponent<gameFlowCue>();
 
-        mainMenuCues = new AudioClip[] { soundcues.welcomeToMainMenu, soundcues.gameMode_DemoMode };
-        handSettingCues = new AudioClip[] { soundcues.LRSelection, soundcues.LRHanded  };
-        skyboxSettingCues = new AudioClip[] { soundcues.dayNight, soundcues.chooseDNMode  };
-        dayTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.BYorPGdayMode };
-        nightTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.WRorPGnightMode };
-        endGameCues = new AudioClip[] { soundcues.wellDone, soundcues.creditsorMainMenu };
-        leftDemoCues = new AudioClip[] { soundcues.leftHandedBow, soundcues.LHloadorReload};
-        rightDemoCues = new AudioClip[] { soundcues.rightHandedBow, soundcues.RHloadorReload };
+        mainMenuCues = new AudioClip[] { soundcues.welcomeToMainMenu, soundcues.gameMode_DemoMode }; //1
+        handSettingCues = new AudioClip[] { soundcues.LRSelection, soundcues.LRHanded  }; //2
+        skyboxSettingCues = new AudioClip[] { soundcues.dayNight, soundcues.chooseDNMode  }; //3
+        dayTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.BYorPGdayMode }; //4
+        nightTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.WRorPGnightMode }; //5
+         endGameCues = new AudioClip[] { soundcues.wellDone, soundcues.creditsorMainMenu }; //6
+        leftDemoCues = new AudioClip[] { soundcues.enteringDemoMode, soundcues.leftHandedBow, soundcues.LHloadorReload}; //7
+        rightDemoCues = new AudioClip[] { soundcues.enteringDemoMode, soundcues.rightHandedBow, soundcues.RHloadorReload }; //8
+        //creditsCues //9
+        haveCuesPlayedForThisState = new bool[10] { false, false, false, false, false, false, false, false, false, false };
+
         //skybox
         skyboxOption.gameObject.SetActive(false);
         //testing = GameObject.FindGameObjectsWithTag("TestingText");
         //setTestingText("testing");
         DisableGameComponents();
         mainMenu.gameObject.SetActive(true);
-        StartCoroutine(PlayAudioSequence(mainMenuCues));
+        StartCoroutine(PlayAudioSequence(mainMenuCues, mainMenu));
         
         
     }
@@ -141,20 +148,23 @@ public class CanvasManager : MonoBehaviour
         if (showMainMenuPanel)
         {
             mainMenu.gameObject.SetActive(true);
-            StartCoroutine(PlayAudioSequence(mainMenuCues));
+            
+            StartCoroutine(PlayAudioSequence(mainMenuCues, mainMenu));
             showMainMenuPanel = false;
-            //isDemoModeSelected = false;
+            demoPanel.gameObject.SetActive(false);
+            
         }
         if (showEndGamePanel)
         {
             gameOver.gameObject.SetActive(true);
-            StartCoroutine(PlayAudioSequence(endGameCues));
+            StartCoroutine(PlayAudioSequence(endGameCues, gameOver));
             showEndGamePanel = false;
         }
         if (showHandSelection)
         {
             handSelection.gameObject.SetActive(true);
-            StartCoroutine(PlayAudioSequence(handSettingCues));
+            
+            StartCoroutine(PlayAudioSequence(handSettingCues, handSelection));
             showHandSelection = false;
         }
         if (disableGameComponents)
@@ -169,35 +179,48 @@ public class CanvasManager : MonoBehaviour
             switch (gameState)
             {
                 case 1:
+                    haveCuesPlayedForThisState[1] = false;
                     handleMainMenu();
                     return;
 
                 case 2:
+                    haveCuesPlayedForThisState[2] = false;
                     handleHandSelection();
                     return;
 
                 case 3:
+                    haveCuesPlayedForThisState[3] = false;
                     handleEnvSelection();
                     return;
 
                 case 4:
-                    handleTargetColSelection();
+                    haveCuesPlayedForThisState[4] = false;
+                    handleTargetColSelectionDay();
                     return;
 
                 case 5:
+                    haveCuesPlayedForThisState[5] = false;
                     InitiateDemoMode();
                     return;
 
                 case 6:
+                    haveCuesPlayedForThisState[6] = false;
                     InitiateGameMode();
                     return;
 
                 case 7:
+                    haveCuesPlayedForThisState[7] = false;
                     handleGameOver();
                     return;
 
                 case 8:
+                    haveCuesPlayedForThisState[8] = false;
                     ShowCredits();
+                    return;
+
+                case 9:
+                    haveCuesPlayedForThisState[9] = false;
+                    handleTargetColSelectionNight();
                     return;
 
                 default:
@@ -223,7 +246,7 @@ public class CanvasManager : MonoBehaviour
 
         DisableGameComponents();
         mainMenu.gameObject.SetActive(true);
-
+        StartCoroutine(PlayAudioSequence(mainMenuCues, mainMenu));
         char decision = ControllerResponse.getControllerResponse();
         ExecuteMainMenuDecision(decision);
     }
@@ -242,7 +265,7 @@ public class CanvasManager : MonoBehaviour
             //change game state
             gameState = 2;
             handSelection.gameObject.SetActive(true);
-            StartCoroutine(PlayAudioSequence(handSettingCues));
+            StartCoroutine(PlayAudioSequence(handSettingCues, handSelection));
         }
         else if (decision == 'R') //Play --> proceed thru settings
         {
@@ -252,7 +275,7 @@ public class CanvasManager : MonoBehaviour
             //change game state
             gameState = 2;
             handSelection.gameObject.SetActive(true);
-            StartCoroutine(PlayAudioSequence(handSettingCues));
+            StartCoroutine(PlayAudioSequence(handSettingCues, handSelection));
         }
         else
         {
@@ -263,6 +286,7 @@ public class CanvasManager : MonoBehaviour
     public void handleHandSelection()
     {
         showHandSelection = false; // bool used in CeilingSettings script - panel will still show during this function
+        StartCoroutine(PlayAudioSequence(handSettingCues, handSelection));
         DisableGameComponents(); //done in Main Menu, but also needs done here in case settings is called within game
                                  //handSelection.gameObject.SetActive(true);
         char decision = ControllerResponse.getControllerResponse();
@@ -285,7 +309,7 @@ public class CanvasManager : MonoBehaviour
             //hide menu
             handSelection.gameObject.SetActive(false);
             skyboxOption.gameObject.SetActive(true);
-            StartCoroutine(PlayAudioSequence(skyboxSettingCues));
+            StartCoroutine(PlayAudioSequence(skyboxSettingCues, skyboxOption));
         }
         else if (decision == 'R') //set right hand
         {
@@ -298,7 +322,7 @@ public class CanvasManager : MonoBehaviour
             //hide menu
             handSelection.gameObject.SetActive(false);
             skyboxOption.gameObject.SetActive(true);
-            StartCoroutine(PlayAudioSequence(skyboxSettingCues));
+            StartCoroutine(PlayAudioSequence(skyboxSettingCues, skyboxOption));
         }
         else
         {
@@ -327,23 +351,23 @@ public class CanvasManager : MonoBehaviour
             ground.material.SetColor("_BaseColor", Color.white);
             RenderSettings.skybox.SetFloat("_Exposure", .95f);
 
-            //change game state
-            gameState = 4;
+            
 
             //hide menu
             skyboxOption.gameObject.SetActive(false);
             if (isDayModeSelected) //day mode
             {
+                gameState = 4;
                 //show panel for daytime target options
                 targetColSelectionDay.gameObject.SetActive(true);
-
-                StartCoroutine(PlayAudioSequence(dayTargetCues));
+                StartCoroutine(PlayAudioSequence(dayTargetCues, targetColSelectionDay));
             }
             else
             {
+                gameState = 9;
                 //show panel for nighttime target options
                 targetColSelectionNight.gameObject.SetActive(true);
-                StartCoroutine(PlayAudioSequence(nightTargetCues));
+                StartCoroutine(PlayAudioSequence(nightTargetCues, targetColSelectionNight));
             }
             
         }
@@ -358,23 +382,25 @@ public class CanvasManager : MonoBehaviour
             ground.material.SetColor("_BaseColor", Color.gray);
             RenderSettings.skybox.SetFloat("_Exposure", .17f);
 
-            //change game state
-            gameState = 4;
+            
+            
 
             //hide menu
             skyboxOption.gameObject.SetActive(false);
             if (isDayModeSelected) //day mode
             {
+                gameState = 4;
                 //show panel for daytime target options
                 targetColSelectionDay.gameObject.SetActive(true);
                 
-                StartCoroutine(PlayAudioSequence(dayTargetCues));
+                StartCoroutine(PlayAudioSequence(dayTargetCues, targetColSelectionDay));
             }
             else
             {
+                gameState = 9;
                 //show panel for nighttime target options
                 targetColSelectionNight.gameObject.SetActive(true);
-                StartCoroutine(PlayAudioSequence(nightTargetCues));
+                StartCoroutine(PlayAudioSequence(nightTargetCues, targetColSelectionNight));
             }
         }
         else
@@ -383,15 +409,15 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    public void handleTargetColSelection()
+    public void handleTargetColSelectionDay()
     {
         //existing targets should already be destroyed from Disabling game components at beginning of hand selection step
 
         char decision = ControllerResponse.getControllerResponse();
-        ExecuteTargetColSelectionDecision(decision);
+        ExecuteTargetColSelectionDecisionDay(decision);
     }
 
-    private void ExecuteTargetColSelectionDecision(char decision)
+    private void ExecuteTargetColSelectionDecisionDay(char decision)
     {
         tester.text += " In Target color Selection";
 
@@ -400,24 +426,18 @@ public class CanvasManager : MonoBehaviour
             //make setting change for L:  **make check for day or night mode** and changes need to be made to prefab
             //** make a script to hold the prefab options - need to drag them into inspector, cannot reference from script
             //** then select prefab from holder script
-            if (isDayModeSelected)
-            {
+            
                 //left + day = yellow/black target
                 targetSelection = TargetPrefabHolder.getLeftDayTarget();
                 targetColSelectionDay.gameObject.SetActive(false);
-            }
-            else
-            {
-                //left + night = white/red target
-                targetSelection = TargetPrefabHolder.getLeftNightTarget();
-                targetColSelectionNight.gameObject.SetActive(false);
-            }
+            
 
             //change game state
             if (isDemoModeSelected)
             {
                 gameState = 5;
-                GetComponent<AudioSource>().PlayOneShot(soundcues.enteringDemoMode);
+                //GetComponent<AudioSource>().PlayOneShot(soundcues.enteringDemoMode);
+                demoPanel.gameObject.SetActive(true);
                 InitiateDemoMode();
             }
             else
@@ -437,24 +457,101 @@ public class CanvasManager : MonoBehaviour
         else if (decision == 'R') //target col choice 2
         {
             //make setting change for R: **make check for day or night mode** changes need to be made to prefab
-            if (isDayModeSelected)
-            {
+            
                 //right + day = green/pink target
                 targetSelection = TargetPrefabHolder.getRightDayTarget();
                 targetColSelectionDay.gameObject.SetActive(false);
-            }
-            else
-            {
-                //right + night = green/pink target
-                targetSelection = TargetPrefabHolder.getRightNightTarget();
-                targetColSelectionNight.gameObject.SetActive(false);
-            }
+            
 
             //change game state
             if (isDemoModeSelected)
             {
                 gameState = 5;
                 //GetComponent<AudioSource>().PlayOneShot(soundcues.enteringDemoMode);
+                demoPanel.gameObject.SetActive(true);
+                InitiateDemoMode();
+                
+            }
+            else
+            {
+                gameState = 6;
+                if (inSettingsDuringGame)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    GetComponent<AudioSource>().PlayOneShot(soundcues.enteringGameMode);
+                    InitiateGameMode();
+                }
+            }
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    public void handleTargetColSelectionNight()
+    {
+        //existing targets should already be destroyed from Disabling game components at beginning of hand selection step
+
+        char decision = ControllerResponse.getControllerResponse();
+        ExecuteTargetColSelectionDecisionNight(decision);
+    }
+
+    private void ExecuteTargetColSelectionDecisionNight(char decision)
+    {
+        tester.text += " In Target color Selection";
+
+        if (decision == 'L') //target col choice 1
+        {
+            //make setting change for L:  **make check for day or night mode** and changes need to be made to prefab
+            //** make a script to hold the prefab options - need to drag them into inspector, cannot reference from script
+            //** then select prefab from holder script
+            
+            //left + night = white/red target
+            targetSelection = TargetPrefabHolder.getLeftNightTarget();
+            targetColSelectionNight.gameObject.SetActive(false);
+            
+
+            //change game state
+            if (isDemoModeSelected)
+            {
+                gameState = 5;
+                //GetComponent<AudioSource>().PlayOneShot(soundcues.enteringDemoMode);
+                demoPanel.gameObject.SetActive(true);
+                InitiateDemoMode();
+            }
+            else
+            {
+                gameState = 6;
+                if (inSettingsDuringGame)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    GetComponent<AudioSource>().PlayOneShot(soundcues.enteringGameMode);
+                    InitiateGameMode();
+                }
+            }
+        }
+        else if (decision == 'R') //target col choice 2
+        {
+            
+            
+            //right + night = green/pink target
+            targetSelection = TargetPrefabHolder.getRightNightTarget();
+            targetColSelectionNight.gameObject.SetActive(false);
+            
+
+            //change game state
+            if (isDemoModeSelected)
+            {
+                gameState = 5;
+                //GetComponent<AudioSource>().PlayOneShot(soundcues.enteringDemoMode);
+                demoPanel.gameObject.SetActive(true);
                 InitiateDemoMode();
             }
             else
@@ -512,11 +609,11 @@ public class CanvasManager : MonoBehaviour
             isDemoModeSelected = false;
             if (LRHandSelection == "R")
             {
-                StartCoroutine(PlayAudioSequence(rightDemoCues));
+                StartCoroutine(PlayAudioSequence(rightDemoCues, demoPanel));
             }
             else if (LRHandSelection == "L") 
             {
-                StartCoroutine(PlayAudioSequence(leftDemoCues));
+                StartCoroutine(PlayAudioSequence(leftDemoCues, demoPanel));
             }
             inDemoMode = true;
             tester.text += " In Demo Mode";
@@ -576,6 +673,7 @@ public class CanvasManager : MonoBehaviour
             TargetManager.RestartTargetManager();
             //tester.text += targetSelection.gameObject.name;
 
+            SumScore.Reset();
             scoreboard.enabled = true;
             healthbar.enabled = true;
             gameTimer.enabled = true;
@@ -663,7 +761,7 @@ public class CanvasManager : MonoBehaviour
             gameState = 1; //main menu
             gameOver.gameObject.SetActive(false);
             mainMenu.gameObject.SetActive(true);
-            StartCoroutine(PlayAudioSequence(mainMenuCues));
+            StartCoroutine(PlayAudioSequence(mainMenuCues, mainMenu));
         }
         else
         {
@@ -740,7 +838,41 @@ public class CanvasManager : MonoBehaviour
         disableGameComponents = true;
     }
 
-   IEnumerator PlayAudioSequence(AudioClip[] sequence)
+   IEnumerator PlayAudioSequence(AudioClip[] sequence, RectTransform panel)
+    {
+        if (!haveCuesPlayedForThisState[gameState])
+        {
+            haveCuesPlayedForThisState[gameState] = true;
+            int count = 0;
+            while (count < sequence.Length && panel.gameObject.activeInHierarchy)
+            {
+                if (!panel.gameObject.GetComponent<AudioSource>().isPlaying)
+                {
+                    panel.gameObject.GetComponent<AudioSource>().PlayOneShot(sequence[count]);
+                    count++;
+                }
+                yield return null;
+            }
+
+            //reset the array
+            for (int i = 0; i < haveCuesPlayedForThisState.Length; i++)
+            {
+                if (!(i == gameState))
+                {
+                    haveCuesPlayedForThisState[i] = false;
+                }
+            }
+            //haveCuesPlayedForThisState[cuesTrackingPrevState] = false;
+            //cuesTrackingPrevState = gameState;
+        }
+        else
+        {
+            yield return null;
+        }
+        
+        
+    }
+    IEnumerator PlayAudioSequence(AudioClip[] sequence)
     {
         if (!isAudioPlaying)
         {
@@ -761,7 +893,7 @@ public class CanvasManager : MonoBehaviour
         {
             yield return null;
         }
-        
-        
+
+
     }
 }

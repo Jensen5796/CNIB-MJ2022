@@ -62,9 +62,8 @@ public class PullMeasurer : XRBaseInteractable
             leftHandInteractor.hapticSelectEnterDuration = hapticDuration;
         }
         
-
-
     }
+
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
 
