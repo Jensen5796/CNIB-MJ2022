@@ -69,6 +69,7 @@ public class CanvasManager : MonoBehaviour
     private AudioClip[] endGameCues;
     private AudioClip[] leftDemoCues;
     private AudioClip[] rightDemoCues;
+    private AudioClip[] creditsCues;
     private bool[] haveCuesPlayedForThisState;
     private int cuesTrackingPrevState = 0;
 
@@ -124,9 +125,10 @@ public class CanvasManager : MonoBehaviour
         skyboxSettingCues = new AudioClip[] { soundcues.dayNight, soundcues.chooseDNMode  }; //3
         dayTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.BYorPGdayMode }; //4
         nightTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.WRorPGnightMode }; //5
-         endGameCues = new AudioClip[] { soundcues.wellDone, soundcues.creditsorMainMenu }; //6
+        endGameCues = new AudioClip[] { soundcues.wellDone, soundcues.creditsorMainMenu }; //6
         leftDemoCues = new AudioClip[] { soundcues.enteringDemoMode, soundcues.leftHandedBow, soundcues.LHloadorReload}; //7
         rightDemoCues = new AudioClip[] { soundcues.enteringDemoMode, soundcues.rightHandedBow, soundcues.RHloadorReload }; //8
+        creditsCues = new AudioClip[] { soundcues.credits };
         //creditsCues //9
         haveCuesPlayedForThisState = new bool[10] { false, false, false, false, false, false, false, false, false, false };
 
@@ -754,7 +756,7 @@ public class CanvasManager : MonoBehaviour
             gameState = 8; //credits
             gameOver.gameObject.SetActive(false);
             credits.gameObject.SetActive(true);
-            GetComponent<AudioSource>().PlayOneShot(soundcues.credits);
+            StartCoroutine(PlayAudioSequence(creditsCues, credits));
         }
         else if (decision == 'R')
         {
