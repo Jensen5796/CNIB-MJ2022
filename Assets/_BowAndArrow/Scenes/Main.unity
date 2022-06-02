@@ -5185,6 +5185,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: 'Time:'
       objectReference: {fileID: 0}
+    - target: {fileID: 11408550, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11414030, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
       propertyPath: fill
       value: 
@@ -5284,6 +5288,10 @@ PrefabInstance:
     - target: {fileID: 11493390, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
       propertyPath: m_Text
       value: 00:00
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493390, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22418022, guid: 69002a90feac05341ba09f7949d7b90e, type: 3}
       propertyPath: m_SizeDelta.x
