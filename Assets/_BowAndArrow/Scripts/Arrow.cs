@@ -22,6 +22,8 @@ public class Arrow : XRGrabInteractable
     public LayerMask targetAuraLayermask;
     public SoundCues soundcue;
 
+    
+
 
     protected override void Awake()
     {
@@ -230,64 +232,69 @@ public class Arrow : XRGrabInteractable
 
     public void GivePlayerFeedback(RaycastHit targetHit)
     {
-        // get name of collider
-        string colliderName = targetHit.collider.gameObject.name;
-        string up = "DirCollider_Up";
-        string down = "DirCollider_Down";
-        string left = "DirCollider_Left";
-        string right = "DirCollider_Right";
+        if (CanvasManager.shouldArrowGiveFeedback)
+        { 
+            // get name of collider
+            string colliderName = targetHit.collider.gameObject.name;
+            string up = "DirCollider_Up";
+            string down = "DirCollider_Down";
+            string left = "DirCollider_Left";
+            string right = "DirCollider_Right";
 
-        // check tag for InnerTarget
-        if (targetHit.collider.gameObject.CompareTag("InnerTarget"))
-        {
-            // the actual target was detected
-            // give feedback to shoot the arrow
-            test.text = "Shoot the arrow";
-            //audio: shoot the arrow,
-            if (!GetComponent<AudioSource>().isPlaying)
+
+            // check tag for InnerTarget
+            if (targetHit.collider.gameObject.CompareTag("InnerTarget"))
             {
-                GetComponent<AudioSource>().panStereo = 0;
-                GetComponent<AudioSource>().PlayOneShot(soundcue.clip_shootArrow);
+                // the actual target was detected
+                // give feedback to shoot the arrow
+                test.text = "Shoot the arrow";
+                //audio: shoot the arrow,
+                if (!GetComponent<AudioSource>().isPlaying)
+                {
+                    GetComponent<AudioSource>().panStereo = 0;
+                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_shootArrow);
+                }
             }
+
+            // else give feedback for each direction
+            else
+            {
+                // actual target not detected, detected one of the box colliders
+                if (colliderName == up)
+                {
+                    if (!GetComponent<AudioSource>().isPlaying)
+                    {
+                        GetComponent<AudioSource>().panStereo = 0;
+                        GetComponent<AudioSource>().PlayOneShot(soundcue.clip_aimUp);
+                    }
+                }
+                else if (colliderName == down)
+                {
+                    if (!GetComponent<AudioSource>().isPlaying)
+                    {
+                        GetComponent<AudioSource>().panStereo = 0;
+                        GetComponent<AudioSource>().PlayOneShot(soundcue.clip_aimDown);
+                    }
+                }
+                else if (colliderName == left)
+                {
+                    if (!GetComponent<AudioSource>().isPlaying)
+                    {
+                        GetComponent<AudioSource>().panStereo = -1;
+                        GetComponent<AudioSource>().PlayOneShot(soundcue.clip_turnLeft);
+                    }
+                }
+                else if (colliderName == right)
+                {
+                    if (!GetComponent<AudioSource>().isPlaying)
+                    {
+                        GetComponent<AudioSource>().panStereo = 1;
+                        GetComponent<AudioSource>().PlayOneShot(soundcue.clip_turnRight);
+                    }
+                }
+            }
+
         }
-
-        // else give feedback for each direction
-        else
-        {
-            // actual target not detected, detected one of the box colliders
-            if (colliderName == up)
-            {
-                if (!GetComponent<AudioSource>().isPlaying)
-                {
-                    GetComponent<AudioSource>().panStereo = 0;
-                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_aimUp);
-                }
-            }
-            else if (colliderName == down)
-            {
-                if (!GetComponent<AudioSource>().isPlaying)
-                {
-                    GetComponent<AudioSource>().panStereo = 0;
-                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_aimDown);
-                }
-            }
-            else if (colliderName == left)
-            {
-                if (!GetComponent<AudioSource>().isPlaying)
-                {
-                    GetComponent<AudioSource>().panStereo = -1;
-                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_turnLeft);
-                }
-            }
-            else if (colliderName == right)
-            {
-                if (!GetComponent<AudioSource>().isPlaying)
-                {
-                    GetComponent<AudioSource>().panStereo = 1;
-                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_turnRight);
-                }
-            }
-        } 
 
     }
 

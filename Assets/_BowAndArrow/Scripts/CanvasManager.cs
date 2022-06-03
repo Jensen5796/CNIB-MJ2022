@@ -70,11 +70,12 @@ public class CanvasManager : MonoBehaviour
     private AudioClip[] leftDemoCues;
     private AudioClip[] rightDemoCues;
     private AudioClip[] creditsCues;
-    private bool[] haveCuesPlayedForThisState;
-    private int cuesTrackingPrevState = 0;
+    public static bool[] haveCuesPlayedForThisState;
+    public static bool shouldArrowGiveFeedback;
 
     //sound cue
     private gameFlowCue gameCue;
+    private Text scoreText;
 
     // Start is called before the first frame update
     private void Awake()
@@ -103,6 +104,7 @@ public class CanvasManager : MonoBehaviour
         demoPanel = GameObject.Find("Demo").GetComponent<RectTransform>();
         //skybox
         skyboxOption = GameObject.Find("Skybox Option").GetComponent<RectTransform>();
+        scoreText = GameObject.Find("ScoreDisplay").GetComponent<Text>();
 
         //demo mode
         //Target for Demo Mode
@@ -158,6 +160,9 @@ public class CanvasManager : MonoBehaviour
         }
         if (showEndGamePanel)
         {
+            
+            //scoreText.text = "Reached this";
+            scoreText.text = "Score: "+SumScore.Score.ToString();
             gameOver.gameObject.SetActive(true);
             StartCoroutine(PlayAudioSequence(endGameCues, gameOver));
             showEndGamePanel = false;
@@ -248,7 +253,7 @@ public class CanvasManager : MonoBehaviour
 
         DisableGameComponents();
         mainMenu.gameObject.SetActive(true);
-        StartCoroutine(PlayAudioSequence(mainMenuCues, mainMenu));
+        //StartCoroutine(PlayAudioSequence(mainMenuCues, mainMenu));
         char decision = ControllerResponse.getControllerResponse();
         ExecuteMainMenuDecision(decision);
     }
@@ -606,8 +611,10 @@ public class CanvasManager : MonoBehaviour
     //}
     private void InitiateDemoMode()
     {
+        shouldArrowGiveFeedback = false;
         if (!inDemoMode)
         {
+            
             isDemoModeSelected = false;
             if (LRHandSelection == "R")
             {
@@ -618,6 +625,7 @@ public class CanvasManager : MonoBehaviour
                 StartCoroutine(PlayAudioSequence(leftDemoCues, demoPanel));
             }
             inDemoMode = true;
+            
             tester.text += " In Demo Mode";
 
 
@@ -638,7 +646,7 @@ public class CanvasManager : MonoBehaviour
             //enable bow and arrow
             //bowHandScript.menuOption = "L";
             bowHandScript.menuOption = LRHandSelection;
-
+            
             /**enable sound cues:**/
             /*You are in Demo Mode. To exit shoot upward - this will return the player to the main menu*/
 
@@ -668,8 +676,10 @@ public class CanvasManager : MonoBehaviour
     {
         if (!inGameMode)
         {
+            shouldArrowGiveFeedback = true;
             inGameMode = true;
             tester.text += " In Game Mode";
+            
 
             tm.enabled = true;
             TargetManager.RestartTargetManager();
@@ -711,6 +721,8 @@ public class CanvasManager : MonoBehaviour
     public void handleGameOver()
     {
         inGameMode = false;
+        Text scoreText = GameObject.Find("ScoreDisplay").GetComponent<Text>();
+        scoreText.text = SumScore.Score.ToString();
         //will need to call this function from the GameTimer script somehow
         showEndGamePanel = false; //bool used with GameTimer script to trigger panel to show in first place - the panel will still be showing in this function even if this is false
         gameOver.gameObject.SetActive(true);
@@ -750,8 +762,7 @@ public class CanvasManager : MonoBehaviour
 
     private void GetExecuteEndGameDecision(char decision)
     {
-        Text scoreText = GameObject.Find("TotalScore").GetComponent<Text>();
-        scoreText.text = SumScore.Score.ToString();
+        
         tester.text += " In End Game Selection";
         if (decision == 'L')
         {
@@ -846,7 +857,7 @@ public class CanvasManager : MonoBehaviour
     {
         if (!haveCuesPlayedForThisState[gameState])
         {
-            haveCuesPlayedForThisState[gameState] = true;
+            
             int count = 0;
             while (count < sequence.Length && panel.gameObject.activeInHierarchy)
             {
@@ -857,7 +868,9 @@ public class CanvasManager : MonoBehaviour
                 }
                 yield return null;
             }
-
+            
+            haveCuesPlayedForThisState[gameState] = true;
+            
             //reset the array
             for (int i = 0; i < haveCuesPlayedForThisState.Length; i++)
             {
@@ -866,11 +879,16 @@ public class CanvasManager : MonoBehaviour
                     haveCuesPlayedForThisState[i] = false;
                 }
             }
-            //haveCuesPlayedForThisState[cuesTrackingPrevState] = false;
-            //cuesTrackingPrevState = gameState;
+            
+            
+            
+            
         }
         else
         {
+            
+                shouldArrowGiveFeedback = true;
+            
             yield return null;
         }
         

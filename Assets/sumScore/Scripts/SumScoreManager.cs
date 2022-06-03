@@ -101,7 +101,7 @@ public class SumScoreManager : MonoBehaviour {
         {
             if (!GetComponent<AudioSource>().isPlaying)
             {
-                if (!countdown)
+                //if (!countdown)
                 {
                     GetComponent<AudioSource>().PlayOneShot(soundcue.clip_tenSec);
                     countdown = true;
@@ -109,13 +109,30 @@ public class SumScoreManager : MonoBehaviour {
             }
         }
         //30 second cue
+        if (yTimer == 0 && xTimer == 33)
+        {
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                //if (!countdown)
+                {
+                    
+                    GetComponent<AudioSource>().PlayOneShot(soundcue.clip_30secwarning);
+                    
+                    countdown = true;
+                }
+            }
+        }
+
+        //30 second cue
         if (yTimer == 0 && xTimer == 30)
         {
             if (!GetComponent<AudioSource>().isPlaying)
             {
-                if (!countdown)
+                //if (!countdown)
                 {
+                    
                     GetComponent<AudioSource>().PlayOneShot(soundcue.clip_30sec);
+                    
                     countdown = true;
                 }
             }

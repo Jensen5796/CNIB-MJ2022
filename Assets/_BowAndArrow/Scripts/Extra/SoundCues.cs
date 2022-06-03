@@ -20,6 +20,7 @@ public class SoundCues : MonoBehaviour
     //near end of round signals
     public AudioClip clip_tenSec;
     public AudioClip clip_30sec;
+    public AudioClip clip_30secwarning;
 
     //scoring
     public AudioClip clip_keepTrying;

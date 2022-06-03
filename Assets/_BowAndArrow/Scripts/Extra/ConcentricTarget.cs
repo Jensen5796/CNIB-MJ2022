@@ -12,8 +12,11 @@ public class ConcentricTarget : MonoBehaviour, IArrowHittable
 
     public void Hit(Arrow arrow)
     {
-
-        ApplyMaterial();
+        if (!CanvasManager.inDemoMode)
+        {
+            ApplyMaterial();
+        }
+        
         Debug.Log("You hit the " + name);
         //Debug.Log("Increase score here");
         SumScore.Add(ascore);
