@@ -32,7 +32,7 @@ MonoImporter:
   - clip_200: {fileID: 8300000, guid: b9e91b5d6c1f2284881ad0cfd478148c, type: 3}
   - clip_300: {fileID: 8300000, guid: 66404aef31461c542ab61dc24fa16e85, type: 3}
   - clip_400: {fileID: 8300000, guid: 67f32785dea1fdd4d803f17b5a32fb73, type: 3}
-  - clip_500: {fileID: 8300000, guid: 9b4ce2839b2cb904e94809022bcf2d47, type: 3}
+  - clip_500: {fileID: 8300000, guid: 7c7fdf37b5edbdd41af9259f9c3a65c6, type: 3}
   - clip_600: {fileID: 8300000, guid: 68ac89bf45ab17e4f8ba553140da0bc6, type: 3}
   - clip_700: {fileID: 8300000, guid: 3e7c9f53fdc584b45aac3e6528b41f27, type: 3}
   - clip_800: {fileID: 8300000, guid: 19a0f4a1c23388a41ae438f98f569524, type: 3}
