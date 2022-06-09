@@ -879,16 +879,10 @@ public class CanvasManager : MonoBehaviour
                     haveCuesPlayedForThisState[i] = false;
                 }
             }
-            
-            
-            
-            
+            shouldArrowGiveFeedback = true;
         }
         else
         {
-            
-                shouldArrowGiveFeedback = true;
-            
             yield return null;
         }
         
