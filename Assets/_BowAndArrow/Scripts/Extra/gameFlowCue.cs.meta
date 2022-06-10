@@ -26,7 +26,7 @@ MonoImporter:
   - thirtySecsLeft: {fileID: 8300000, guid: c81189e5c0ffaaf47a68ecb1f5fd78ae, type: 3}
   - creditsorMainMenu: {fileID: 8300000, guid: 185886a7be0cb3b4ba3310a2222bf173, type: 3}
   - wellDone: {fileID: 8300000, guid: c8ba128326eabd4419189bfc95b44a59, type: 3}
-  - credits: {fileID: 8300000, guid: c309c3a0908f21d45ba6eaeaa83df05a, type: 3}
+  - credits: {fileID: 8300000, guid: ee85c3ec44bb7e64197b83c49c7ede00, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
