@@ -145,6 +145,8 @@ public class Arrow : XRGrabInteractable
                     ChildArrow(hit);
                     CheckForHittable(hit);
 
+                                      
+
                     //arrow hit either ground or game boundary dome
                     //cue Missed Target reactions
                     //destroy arrow
@@ -201,8 +203,15 @@ public class Arrow : XRGrabInteractable
         if (Physics.Raycast(targetPosition, direction, out targetHit, Mathf.Infinity, targetAuraLayermask))
         {
             test.text = "Aura Collider detected";
+            if (targetHit.collider.gameObject.name == "settings")
+            {
+                CueToAccessSettings();
+            }
+            else
+            {
+                GivePlayerFeedback(targetHit);
+            }
             
-            GivePlayerFeedback(targetHit);
         }
         else
         {
@@ -229,6 +238,18 @@ public class Arrow : XRGrabInteractable
     //    }
 
     //}
+    public void CueToAccessSettings()
+    {
+        if (!CanvasManager.inDemoMode)
+        {
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                GetComponent<AudioSource>().panStereo = 0;
+                GetComponent<AudioSource>().PlayOneShot(soundcue.clip_accessSettings);
+            }
+        }
+        
+    }
 
     public void GivePlayerFeedback(RaycastHit targetHit)
     {

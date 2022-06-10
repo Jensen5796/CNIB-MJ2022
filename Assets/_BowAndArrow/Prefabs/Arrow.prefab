@@ -257,8 +257,10 @@ MonoBehaviour:
   clip_rightHigher: {fileID: 0}
   clip_arrowMissed: {fileID: 8300000, guid: eb99ba8633e8ce949933b1fc8f20b44f, type: 3}
   clip_loadingArrow: {fileID: 8300000, guid: 98ba879eb233b6c40beacacd07ab5db9, type: 3}
+  clip_accessSettings: {fileID: 8300000, guid: 33f247d1261f7b343af74b0cec68c362, type: 3}
   clip_tenSec: {fileID: 0}
   clip_30sec: {fileID: 0}
+  clip_30secwarning: {fileID: 0}
   clip_keepTrying: {fileID: 8300000, guid: 0f955f1960b285c4fbbda6e3ff41be27, type: 3}
   clip_10: {fileID: 0}
   clip_20: {fileID: 8300000, guid: 1aa9583c919c7aa4d86a207e04a38c7a, type: 3}

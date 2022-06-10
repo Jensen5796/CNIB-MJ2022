@@ -27,13 +27,13 @@ public class Quiver : XRBaseInteractable
         {
             // Create arrow, force into interacting hand
             testing.text = args.interactor.name;
-            if (CanvasManager.LRHandSelection == "L" && args.interactor.name == "RightHand Controller")
+            if (CanvasManager.LRHandSelection == "R" && args.interactor.name == "RightHand Controller")
             {
                 Arrow arrow = CreateArrow(args.interactor.transform);
                 interactionManager.ForceSelect(args.interactor, arrow);
                 Bow.isArrowLoaded = true;
             }
-            else if (CanvasManager.LRHandSelection == "R" && args.interactor.name == "LeftHand Controller")
+            else if (CanvasManager.LRHandSelection == "L" && args.interactor.name == "LeftHand Controller")
             {
                 Arrow arrow = CreateArrow(args.interactor.transform);
                 interactionManager.ForceSelect(args.interactor, arrow);

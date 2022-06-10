@@ -18,17 +18,17 @@ public class BowOrHand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (menuOption == "L")
+        if (menuOption == "R")
         {
-            //settings for L-handed mode: bow in right hand
+            //settings for bow in right hand
             bowR.SetActive(true);
             handR.SetActive(false);
             bowL.SetActive(false);
             handL.SetActive(true);
         }
-        else if (menuOption == "R")
+        else if (menuOption == "L")
         {
-            //settings for R-handed mode: bow in left hand
+            //settings for bow in left hand
             bowR.SetActive(false);
             handR.SetActive(true);
             bowL.SetActive(true);

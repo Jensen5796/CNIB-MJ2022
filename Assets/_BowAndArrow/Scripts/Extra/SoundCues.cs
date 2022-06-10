@@ -16,6 +16,7 @@ public class SoundCues : MonoBehaviour
     public AudioClip clip_rightHigher;
     public AudioClip clip_arrowMissed;
     public AudioClip clip_loadingArrow;
+    public AudioClip clip_accessSettings;
 
     //near end of round signals
     public AudioClip clip_tenSec;
