@@ -26,6 +26,8 @@ public class gameFlowCue : MonoBehaviour
     public AudioClip enteringGameMode;
 
     //Demo Mode cues
+    public AudioClip fullDemoModeBowInLeft;
+    public AudioClip fullDemoModeBowInRight;
     public AudioClip demoMode; // you are now in demo mode
     public AudioClip leftHandedBow; // left handed
     public AudioClip rightHandedBow; // right handed

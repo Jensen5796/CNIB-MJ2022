@@ -1347,7 +1347,7 @@ GameObject:
   - component: {fileID: 308155525}
   - component: {fileID: 308155529}
   - component: {fileID: 308155526}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: settings
   m_TagString: GameAreaBoundary
   m_Icon: {fileID: 0}
@@ -2808,6 +2808,7 @@ MonoBehaviour:
   clip_rightHigher: {fileID: 8300000, guid: 89e907160ce712a43bbe7d76f768caf8, type: 3}
   clip_arrowMissed: {fileID: 8300000, guid: 0d7c6a010baeeb844aff6fd8a6297380, type: 3}
   clip_loadingArrow: {fileID: 8300000, guid: 98ba879eb233b6c40beacacd07ab5db9, type: 3}
+  clip_accessSettings: {fileID: 0}
   clip_tenSec: {fileID: 8300000, guid: a1ccaa5a25f310f4191c8424de179a3d, type: 3}
   clip_30sec: {fileID: 8300000, guid: c81189e5c0ffaaf47a68ecb1f5fd78ae, type: 3}
   clip_30secwarning: {fileID: 8300000, guid: 54cfdbcc2aea3e64db19c5d54e0aa9ce, type: 3}
@@ -4286,15 +4287,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMode_DemoMode: {fileID: 8300000, guid: ee3f80b7529e5bb4986b2ea16f227730, type: 3}
   welcomeToMainMenu: {fileID: 8300000, guid: 4e948f2a39d615a4cab3249f30253d27, type: 3}
-  LRHanded: {fileID: 8300000, guid: 98124324b9eb0b240bfe67a29bd7752b, type: 3}
-  LRSelection: {fileID: 8300000, guid: a4f5e252ab435eb4da6069c80e7ae81d, type: 3}
+  LRHanded: {fileID: 8300000, guid: c3b102bc4eca92f478446eb2e7263b6c, type: 3}
+  LRSelection: {fileID: 8300000, guid: 0cfe06794e25133479eaa2e1c3babc7b, type: 3}
   chooseDNMode: {fileID: 8300000, guid: ca3a5c135f33b8f4a8ed3999bd8b51d1, type: 3}
   dayNight: {fileID: 8300000, guid: 5654a98f85b9518458735d246d11a526, type: 3}
   BYorPGdayMode: {fileID: 8300000, guid: 9b3d7e76167a0c2469b55440a36e0f60, type: 3}
   WRorPGnightMode: {fileID: 8300000, guid: 0ba228de605a58d48b327788dab5586e, type: 3}
   chooseTargetColors: {fileID: 8300000, guid: 64dbb776db4c17d42848762812e43d64, type: 3}
   enteringDemoMode: {fileID: 8300000, guid: ee8adb4b585cb5549884754028864eb9, type: 3}
-  enteringGameMode: {fileID: 8300000, guid: 2abb13386a7afb14cbc6dfb3e6327476, type: 3}
+  enteringGameMode: {fileID: 8300000, guid: e273c55980b3b7643871fb81f81fbcb7, type: 3}
+  fullDemoModeBowInLeft: {fileID: 8300000, guid: 2798a6ef5a295cd4f8887b54481ea0c0,
+    type: 3}
+  fullDemoModeBowInRight: {fileID: 8300000, guid: 92643f7f61a150d42a1d0275b889d132,
+    type: 3}
   demoMode: {fileID: 8300000, guid: 1f2519199042f354bafc7fc91f94e9fb, type: 3}
   leftHandedBow: {fileID: 8300000, guid: 66224066078b436488c4f75fbd18b03c, type: 3}
   rightHandedBow: {fileID: 8300000, guid: a99b3c6d19209044486879994f2ac8b5, type: 3}
@@ -5043,7 +5048,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ae1f503045af3f143be3fd474eb1a794, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 756870408d1b83247968986930719e2a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8554,7 +8559,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 47a4f7dc3383bf14f9db6e319d41978f, type: 3}
-    m_FontSize: 40
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -8565,7 +8570,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Play with right or left hand?
+  m_Text: Hold the bow with right or left hand
 --- !u!222 &2072837930
 CanvasRenderer:
   m_ObjectHideFlags: 0

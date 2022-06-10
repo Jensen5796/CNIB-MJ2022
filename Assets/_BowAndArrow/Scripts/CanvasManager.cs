@@ -76,6 +76,8 @@ public class CanvasManager : MonoBehaviour
     //sound cue
     private gameFlowCue gameCue;
     private Text scoreText;
+    private float demoTimer;
+    private bool isDemoAudioPlaying;
 
     // Start is called before the first frame update
     private void Awake()
@@ -128,8 +130,10 @@ public class CanvasManager : MonoBehaviour
         dayTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.BYorPGdayMode }; //4
         nightTargetCues = new AudioClip[] { soundcues.chooseTargetColors, soundcues.WRorPGnightMode }; //5
         endGameCues = new AudioClip[] { soundcues.wellDone, soundcues.creditsorMainMenu }; //6
-        leftDemoCues = new AudioClip[] { soundcues.enteringDemoMode, soundcues.leftHandedBow, soundcues.LHloadorReload}; //7
-        rightDemoCues = new AudioClip[] { soundcues.enteringDemoMode, soundcues.rightHandedBow, soundcues.RHloadorReload }; //8
+        leftDemoCues = new AudioClip[] { soundcues.fullDemoModeBowInLeft }; //7
+        //leftDemoCues = new AudioClip[] { soundcues.enteringDemoMode, soundcues.leftHandedBow, soundcues.LHloadorReload}; //7
+        rightDemoCues = new AudioClip[] { soundcues.fullDemoModeBowInRight }; //8
+        //rightDemoCues = new AudioClip[] { soundcues.enteringDemoMode, soundcues.rightHandedBow, soundcues.RHloadorReload }; //8
         creditsCues = new AudioClip[] { soundcues.credits };
         //creditsCues //9
         haveCuesPlayedForThisState = new bool[10] { false, false, false, false, false, false, false, false, false, false };
@@ -186,47 +190,47 @@ public class CanvasManager : MonoBehaviour
             switch (gameState)
             {
                 case 1:
-                    haveCuesPlayedForThisState[1] = false;
+                    //haveCuesPlayedForThisState[1] = false;
                     handleMainMenu();
                     return;
 
                 case 2:
-                    haveCuesPlayedForThisState[2] = false;
+                    //haveCuesPlayedForThisState[2] = false;
                     handleHandSelection();
                     return;
 
                 case 3:
-                    haveCuesPlayedForThisState[3] = false;
+                    //haveCuesPlayedForThisState[3] = false;
                     handleEnvSelection();
                     return;
 
                 case 4:
-                    haveCuesPlayedForThisState[4] = false;
+                    //haveCuesPlayedForThisState[4] = false;
                     handleTargetColSelectionDay();
                     return;
 
                 case 5:
-                    haveCuesPlayedForThisState[5] = false;
+                    //haveCuesPlayedForThisState[5] = false;
                     InitiateDemoMode();
                     return;
 
                 case 6:
-                    haveCuesPlayedForThisState[6] = false;
+                    //haveCuesPlayedForThisState[6] = false;
                     InitiateGameMode();
                     return;
 
                 case 7:
-                    haveCuesPlayedForThisState[7] = false;
+                    //haveCuesPlayedForThisState[7] = false;
                     handleGameOver();
                     return;
 
                 case 8:
-                    haveCuesPlayedForThisState[8] = false;
+                    //haveCuesPlayedForThisState[8] = false;
                     ShowCredits();
                     return;
 
                 case 9:
-                    haveCuesPlayedForThisState[9] = false;
+                    //haveCuesPlayedForThisState[9] = false;
                     handleTargetColSelectionNight();
                     return;
 
@@ -611,10 +615,12 @@ public class CanvasManager : MonoBehaviour
     //}
     private void InitiateDemoMode()
     {
-        shouldArrowGiveFeedback = false;
+        
         if (!inDemoMode)
         {
-            
+            shouldArrowGiveFeedback = false;
+            isDemoAudioPlaying = true;
+            demoTimer = Time.fixedTime;
             isDemoModeSelected = false;
             if (LRHandSelection == "R")
             {
@@ -627,8 +633,6 @@ public class CanvasManager : MonoBehaviour
             inDemoMode = true;
             
             tester.text += " In Demo Mode";
-
-
             ground.enabled = true;
 
             //enable quiver
@@ -646,7 +650,9 @@ public class CanvasManager : MonoBehaviour
             //enable bow and arrow
             //bowHandScript.menuOption = "L";
             bowHandScript.menuOption = LRHandSelection;
+
             
+
             /**enable sound cues:**/
             /*You are in Demo Mode. To exit shoot upward - this will return the player to the main menu*/
 
@@ -670,6 +676,21 @@ public class CanvasManager : MonoBehaviour
              *
              */
         }
+        if (isDemoAudioPlaying)
+        {
+            if ((LRHandSelection == "L") && (Time.fixedTime - demoTimer) >= 22.9)
+            {
+                shouldArrowGiveFeedback = true;
+                isDemoAudioPlaying = false;
+            }
+            else if ((LRHandSelection == "R") && (Time.fixedTime - demoTimer) >= 23.2)
+            {
+                shouldArrowGiveFeedback = true;
+                isDemoAudioPlaying = false;
+            }
+        }
+        
+
     }
 
     private void InitiateGameMode()
@@ -857,7 +878,7 @@ public class CanvasManager : MonoBehaviour
     {
         if (!haveCuesPlayedForThisState[gameState])
         {
-            
+           
             int count = 0;
             while (count < sequence.Length && panel.gameObject.activeInHierarchy)
             {
@@ -865,11 +886,13 @@ public class CanvasManager : MonoBehaviour
                 {
                     panel.gameObject.GetComponent<AudioSource>().PlayOneShot(sequence[count]);
                     count++;
+                
                 }
+                
+                haveCuesPlayedForThisState[gameState] = true;
+                
                 yield return null;
             }
-            
-            haveCuesPlayedForThisState[gameState] = true;
             
             //reset the array
             for (int i = 0; i < haveCuesPlayedForThisState.Length; i++)
@@ -879,14 +902,16 @@ public class CanvasManager : MonoBehaviour
                     haveCuesPlayedForThisState[i] = false;
                 }
             }
-            shouldArrowGiveFeedback = true;
+            
         }
         else
         {
+            
             yield return null;
         }
         
-        
+
+
     }
     IEnumerator PlayAudioSequence(AudioClip[] sequence)
     {
